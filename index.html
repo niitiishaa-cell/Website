@@ -1,251 +1,1051 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thinking Interface | Content & Communication</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-base: #F4F4F4;
-            --bg-beige: #EFEAE6;
-            --blue: #3B5BFF;
-            --green: #B6FF3B;
-            --pink: #FF2E7A;
-            --violet: #6C2BFF;
-            --orange: #FF7A2F;
-            --black: #111111;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitisha Maan — Brand Chaos Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=Caveat:wght@700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f0eb;
+      --lime: #d4ff00;
+      --hot: #ff2d6b;
+      --cyan: #00f0ff;
+      --purple: #9b5de5;
+      --orange: #ff6b2b;
+      --yellow: #ffe500;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+```
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--black);
-            overflow-x: hidden;
-        }
+::selection { background: var(--lime); color: var(--black); }
 
-        /* Subtle Grain Overlay */
-        .grain {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.4;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+html { scroll-behavior: smooth; }
 
-        h1, h2, h3 {
-            font-family: 'Syne', sans-serif;
-            text-transform: uppercase;
-            line-height: 0.9;
-        }
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
 
-        section {
-            padding: 8vw 5vw;
-            border-bottom: 2px solid var(--black);
-        }
+/* ─── CUSTOM CURSOR ─── */
+#cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  background: var(--lime);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease, width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: difference;
+}
+#cursor.big {
+  width: 60px;
+  height: 60px;
+}
+#cursor-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--hot);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: left 0.12s ease, top 0.12s ease;
+  opacity: 0.7;
+}
 
-        /* 1. HERO */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .hero h1 {
-            font-size: clamp(4rem, 8vw, 10rem);
-            max-width: 90vw;
-            margin-bottom: 2rem;
-        }
-        .hero-accent { color: var(--blue); }
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 400px;
-            margin-bottom: 3rem;
-            line-height: 1.4;
-        }
-        .cta {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--black);
-            color: var(--bg-base);
-            text-decoration: none;
-            font-weight: bold;
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            width: fit-content;
-        }
-        .cta:hover {
-            background: var(--pink);
-            color: var(--black);
-            transform: scale(1.05);
-        }
+/* ─── NOISE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.5;
+}
 
-        /* 2. WHAT I BUILD */
-        .build-section {
-            background-color: var(--violet);
-            color: var(--bg-base);
-        }
-        .build-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-        
-        /* UPDATED: Cards are now links */
-        .card {
-            border: 2px solid var(--bg-base);
-            padding: 2rem;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        .card h3 { font-size: 2rem; margin-bottom: 1rem; }
-        .card p { opacity: 0; transform: translateY(20px); transition: all 0.3s; font-size: 1rem; }
-        .card:hover {
-            background-color: var(--green);
-            color: var(--black);
-            border-color: var(--black);
-        }
-        .card:hover p {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ─── LOADING SCREEN ─── */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 99997;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.loader-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  letter-spacing: 0.1em;
+  color: var(--lime);
+  animation: glitch 0.4s infinite;
+}
+.loader-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--white);
+  opacity: 0.5;
+  margin-top: 1rem;
+  letter-spacing: 0.3em;
+}
+@keyframes glitch {
+  0%, 90%, 100% { text-shadow: none; transform: skewX(0); }
+  92% { text-shadow: -3px 0 var(--hot); transform: skewX(-2deg); }
+  94% { text-shadow: 3px 0 var(--cyan); transform: skewX(2deg); }
+  96% { text-shadow: -3px 0 var(--purple); transform: skewX(-1deg); }
+}
 
-        /* 3. IDEAS */
-        .ideas-section { background-color: var(--bg-beige); }
-        .idea-row {
-            border-bottom: 2px solid var(--black);
-            padding: 2rem 0;
-            cursor: pointer;
-        }
-        .idea-row h2 { font-size: 3rem; transition: color 0.3s; }
-        .idea-row:hover h2 { color: var(--orange); }
-        .idea-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-top: 1rem;
-        }
-        .idea-row.active .idea-content {
-            max-height: 200px;
-        }
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  mix-blend-mode: difference;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--lime);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
 
-        /* 4. SYSTEMS FLOW */
-        .systems-section {
-            background-color: var(--green);
-            text-align: center;
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-        }
-        .step { transition: color 0.3s; display: inline-block; }
-        .step:hover { color: var(--pink); text-decoration: line-through; }
-        .arrow { color: var(--blue); margin: 0 1vw; }
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10rem 5vw 6rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
 
-        /* 5. MARQUEE */
-        .marquee-section {
-            background-color: var(--blue);
-            color: var(--bg-base);
-            padding: 2rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .marquee-content {
-            display: inline-block;
-            font-family: 'Syne', sans-serif;
-            font-size: 4rem;
-            animation: marquee 15s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 1.2s forwards;
+}
 
-        /* 6. CONTACT */
-        .contact {
-            padding: 10vw 5vw;
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-        }
-        .contact a { color: var(--blue); text-decoration: none; }
-        .contact a:hover { color: var(--pink); }
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 11vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  max-width: 90vw;
+  opacity: 0;
+  animation: fadeUp 0.7s 1.4s forwards;
+}
 
-    </style>
+.hero h1 .line-accent { color: var(--lime); display: block; }
+.hero h1 .line-stroke {
+  -webkit-text-stroke: 2px var(--white);
+  color: transparent;
+  display: block;
+}
+.hero h1 .line-hot { color: var(--hot); display: block; }
+
+.hero-desc {
+  font-size: 1.1rem;
+  max-width: 420px;
+  line-height: 1.6;
+  margin-top: 2.5rem;
+  opacity: 0;
+  color: rgba(245,240,235,0.7);
+  animation: fadeUp 0.7s 1.6s forwards;
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 1.8s forwards;
+}
+
+.btn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  padding: 0.9rem 2.2rem;
+  border: 2px solid var(--white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--lime);
+  transform: translateY(101%);
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+.btn:hover::before { transform: translateY(0); }
+.btn:hover { color: var(--black); border-color: var(--lime); }
+.btn span { position: relative; z-index: 1; }
+
+.btn-primary { background: var(--lime); color: var(--black); border-color: var(--lime); }
+.btn-primary::before { background: var(--hot); }
+.btn-primary:hover { color: var(--white); border-color: var(--hot); }
+
+/* Floating stickers */
+.sticker {
+  position: absolute;
+  font-size: 3rem;
+  animation: float 4s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  animation: stickerIn 0.5s forwards, floatLoop 4s ease-in-out infinite;
+}
+.sticker:nth-child(1) { top: 15%; right: 8%; animation-delay: 2s, 2s; }
+.sticker:nth-child(2) { top: 35%; right: 20%; font-size: 2rem; animation-delay: 2.3s, 2.3s; }
+.sticker:nth-child(3) { bottom: 20%; right: 5%; animation-delay: 2.6s, 2.6s; }
+.sticker:nth-child(4) { top: 60%; right: 35%; font-size: 2.5rem; animation-delay: 2.9s, 2.9s; }
+.sticker:nth-child(5) { bottom: 30%; left: 5%; font-size: 2rem; animation-delay: 3.2s, 3.2s; }
+
+@keyframes stickerIn {
+  from { opacity: 0; transform: scale(0) rotate(-20deg); }
+  to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes floatLoop {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* Marquee */
+.marquee-bar {
+  background: var(--lime);
+  color: var(--black);
+  padding: 0.8rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+}
+.marquee-inner {
+  display: inline-block;
+  animation: scroll 18s linear infinite;
+}
+.marquee-inner span { margin: 0 2rem; }
+.marquee-inner .dot { color: var(--hot); }
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── BUILD SECTION ─── */
+.section {
+  padding: 8vw 5vw;
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 7vw, 8rem);
+  line-height: 0.95;
+  margin-bottom: 3rem;
+}
+
+.build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: rgba(255,255,255,0.1);
+}
+
+.build-card {
+  background: var(--black);
+  padding: 3rem 2.5rem;
+  text-decoration: none;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+  display: block;
+}
+
+.build-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--lime), var(--cyan));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.build-card:hover { background: #111; }
+.build-card:hover::before { transform: scaleX(1); }
+
+.card-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.2em;
+  margin-bottom: 3rem;
+}
+
+.card-emoji {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  transition: transform 0.3s;
+}
+.build-card:hover .card-emoji { transform: scale(1.3) rotate(10deg); }
+
+.build-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+.build-card:hover h3 { color: var(--lime); }
+
+.build-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(245,240,235,0.55);
+  max-width: 260px;
+}
+
+.card-arrow {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+  opacity: 0;
+}
+.build-card:hover .card-arrow { opacity: 1; transform: translate(4px, -4px); }
+
+/* ─── IDEAS ACCORDION ─── */
+.ideas-section {
+  border-top: 2px solid rgba(255,255,255,0.1);
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+.idea-item {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+
+.idea-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--white);
+  text-align: left;
+  padding: 2.5rem 0;
+  cursor: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.idea-trigger h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 5rem);
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+  line-height: 1;
+}
+.idea-trigger:hover h2 { color: var(--lime); }
+
+.idea-icon {
+  font-size: 2rem;
+  transition: transform 0.4s ease;
+  flex-shrink: 0;
+}
+.idea-item.open .idea-icon { transform: rotate(135deg); }
+
+.idea-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.idea-item.open .idea-body { max-height: 200px; }
+
+.idea-body p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(245,240,235,0.65);
+  max-width: 680px;
+  padding-bottom: 2.5rem;
+}
+.idea-body p .pop { color: var(--lime); font-weight: 700; }
+
+/* ─── SYSTEMS FLOW ─── */
+.flow-section {
+  padding: 8vw 5vw;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+.flow-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.flow-step {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  letter-spacing: 0.06em;
+  padding: 0.4rem 1.5rem;
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.flow-step::before {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime);
+  color: var(--black);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.flow-step:hover { border-color: var(--lime); color: transparent; }
+.flow-step:hover::before { transform: translateY(0); }
+
+.flow-arrow {
+  font-size: 2.5rem;
+  color: var(--hot);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+
+/* ─── FUN ZONE ─── */
+.fun-section {
+  padding: 8vw 5vw;
+  background: var(--hot);
+  color: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.fun-section .section-title { color: var(--black); }
+.fun-section .section-label { color: var(--black); opacity: 0.6; }
+
+.vibe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.vibe-card {
+  background: var(--black);
+  color: var(--white);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: none;
+}
+.vibe-card:hover {
+  background: var(--lime);
+  color: var(--black);
+  transform: translateY(-8px) rotate(-1deg);
+}
+.vibe-card .v-emoji { font-size: 2.5rem; display: block; margin-bottom: 0.8rem; }
+.vibe-card .v-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Rotating badge */
+.rotating-badge {
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+  width: 120px;
+  height: 120px;
+}
+.rotating-badge svg {
+  animation: rotateBadge 8s linear infinite;
+  width: 100%;
+  height: 100%;
+}
+.badge-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+@keyframes rotateBadge { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ─── SCRAMBLE SECTION ─── */
+.scramble-section {
+  padding: 6vw 5vw;
+  border-top: 2px solid rgba(255,255,255,0.1);
+}
+.scramble-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 9vw, 10rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  cursor: none;
+}
+.scramble-title .scramble-word { display: inline-block; transition: color 0.2s; }
+.scramble-title .scramble-word:hover { color: var(--cyan); }
+
+/* ─── CONTACT ─── */
+.contact-section {
+  padding: 8vw 5vw 6vw;
+  background: #0d0d0d;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 3rem;
+  border-top: 2px solid rgba(255,255,255,0.1);
+}
+
+.contact-left .name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: 0.05em;
+}
+.contact-left .role {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245,240,235,0.45);
+  margin-top: 0.5rem;
+}
+
+.contact-right { text-align: right; }
+.contact-right a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 5rem);
+  letter-spacing: 0.05em;
+  color: var(--white);
+  text-decoration: none;
+  display: block;
+  transition: color 0.25s;
+  line-height: 1.1;
+}
+.contact-right a:hover { color: var(--lime); }
+
+.footer-bar {
+  padding: 1.5rem 5vw;
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-bar span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ─── CURSOR SPARKLES ─── */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99996;
+  font-size: 1rem;
+  animation: sparkleOut 0.6s forwards;
+}
+@keyframes sparkleOut {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, calc(-50% - 30px)) scale(0.3); }
+}
+
+/* ─── VIBE CHECK POPUP ─── */
+#vibe-check {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--lime);
+  color: var(--black);
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  z-index: 9998;
+  border: 3px solid var(--black);
+  transform: translateY(200%);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 260px;
+}
+#vibe-check.show { transform: translateY(0); }
+#vibe-close {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  cursor: none;
+  text-decoration: underline;
+  opacity: 0.6;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .build-grid { grid-template-columns: 1fr; }
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { gap: 1rem; }
+  .flow-row { gap: 0.5rem; }
+  .rotating-badge { width: 80px; height: 80px; top: 2rem; right: 2rem; }
+  .contact-right { text-align: left; }
+}
+```
+
+  </style>
 </head>
 <body>
-    <div class="grain"></div>
 
-    <section class="hero">
-        <h1>WE DON'T NEED MORE CONTENT.<br>WE NEED <span class="hero-accent">BRAND CLARITY.</span></h1>
-        <p>I design the systems, tone, and architecture that take D2C brands from 0→1.</p>
-        <a href="#build" class="cta">EXPLORE THE SYSTEM</a>
-    </section>
+<!-- CUSTOM CURSOR -->
 
-    <section id="build" class="build-section">
-        <h2>What I Build</h2>
-        <div class="build-grid">
-            <a href="brand-thinking.html" class="card">
-                <h3>Brand Thinking</h3>
-                <p>Identity isn't a logo. It's the operational behavior of a company.</p>
-            </a>
-            <a href="content-systems.html" class="card">
-                <h3>Content Systems</h3>
-                <p>Predictable outputs from unpredictable inputs. Scale without losing the soul.</p>
-            </a>
-            <a href="marketing-foundations.html" class="card">
-                <h3>Marketing Foundations</h3>
-                <p>The unsexy infrastructure that scales revenue. Built for operators, not agencies.</p>
-            </a>
-        </div>
-    </section>
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
 
-    <section class="ideas-section">
-        <div class="idea-row" onclick="this.classList.toggle('active')">
-            <h2>TONE IS THE FIRST PRODUCT.</h2>
-            <div class="idea-content">If you sound like everyone else, you are a commodity. Tone is your only defensible moat before product-market fit.</div>
-        </div>
-        <div class="idea-row" onclick="this.classList.toggle('active')">
-            <h2>IF IT DOESN'T SCALE, IT'S NOT CONTENT.</h2>
-            <div class="idea-content">Hero assets don't build brands. Daily, systemic execution does. Build the engine before you build the car.</div>
-        </div>
-        <div class="idea-row" onclick="this.classList.toggle('active')">
-            <h2>AMBIGUITY IS THE ENEMY OF SCALE.</h2>
-            <div class="idea-content">If your team doesn't know exactly how the brand speaks and operates, they can't build for it.</div>
-        </div>
-    </section>
+<!-- LOADER -->
 
-    <section class="systems-section">
-        <span class="step">AMBIGUITY</span> <span class="arrow">→</span> 
-        <span class="step">CLARITY</span> <span class="arrow">→</span> 
-        <span class="step">SYSTEM</span> <span class="arrow">→</span> 
-        <span class="step">SCALE</span>
-    </section>
+<div id="loader">
+  <div class="loader-text" id="loader-text">LOADING</div>
+  <div class="loader-sub">BUILDING SOMETHING UNHINGED</div>
+</div>
 
-    <section class="marquee-section">
-        <div class="marquee-content">
-            BUILDING 0→1 BRANDS • INTERNET-NATIVE BRAND SYSTEMS • SCALABLE CONTENT ENGINES • BUILDING 0→1 BRANDS • INTERNET-NATIVE BRAND SYSTEMS • SCALABLE CONTENT ENGINES • 
-        </div>
-    </section>
+<!-- VIBE CHECK POPUP -->
 
-    <section class="contact">
-        <div>NITISHA MAAN <br><span style="font-size: 1rem; font-family: 'Inter', sans-serif;">CONTENT & COMMUNICATION LEAD</span></div>
-        <div><a href="mailto:hello@example.com">PING ME</a></div>
-    </section>
+<div id="vibe-check">
+  ✨ ur vibe? immaculate.<br>
+  ur brand clarity? still a mess.<br>
+  let's fix that besties 💅
+  <span id="vibe-close" onclick="closeVibe()">k bye (close)</span>
+</div>
+
+<!-- NAV -->
+
+<nav>
+  <div class="nav-logo">NM ✦</div>
+  <ul class="nav-links">
+    <li><a href="#build">Work</a></li>
+    <li><a href="#ideas">Ideas</a></li>
+    <li><a href="#contact">Ping</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <!-- Floating stickers -->
+  <span class="sticker">🔥</span>
+  <span class="sticker">✦</span>
+  <span class="sticker">💀</span>
+  <span class="sticker">⚡</span>
+  <span class="sticker">🖤</span>
+
+  <p class="hero-eyebrow">✦ Content & Communication Lead ✦</p>
+  <h1>
+    <span class="line-stroke">WE DON'T</span>
+    <span class="line-accent">NEED MORE</span>
+    <span class="line-hot">CONTENT.</span>
+  </h1>
+  <p class="hero-desc">
+    Brands don't die from bad products. They die from unclear positioning. I fix that — fast, loud, and with zero corporate energy.
+  </p>
+  <div class="hero-cta-row">
+    <a href="#build" class="btn btn-primary"><span>SEE THE WORK →</span></a>
+    <a href="#contact" class="btn"><span>LET'S COLLAB</span></a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>BRAND CLARITY</span><span class="dot">✦</span>
+    <span>CONTENT SYSTEMS</span><span class="dot">✦</span>
+    <span>SCALE WITHOUT SOUL-LOSS</span><span class="dot">✦</span>
+    <span>0→1 BRANDS</span><span class="dot">✦</span>
+    <span>INTERNET-NATIVE STRATEGY</span><span class="dot">✦</span>
+    <span>BRAND CLARITY</span><span class="dot">✦</span>
+    <span>CONTENT SYSTEMS</span><span class="dot">✦</span>
+    <span>SCALE WITHOUT SOUL-LOSS</span><span class="dot">✦</span>
+    <span>0→1 BRANDS</span><span class="dot">✦</span>
+    <span>INTERNET-NATIVE STRATEGY</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- BUILD SECTION -->
+
+<section id="build" class="section">
+  <p class="section-label">// what i build</p>
+  <h2 class="section-title">THE ACTUAL<br>WORK.</h2>
+  <div class="build-grid">
+    <a href="brand-thinking.html" class="build-card">
+      <div class="card-num">01 —</div>
+      <span class="card-emoji">🧠</span>
+      <h3>Brand Thinking</h3>
+      <p>Identity isn't a logo. It's the operational behavior of a company that compounds over time.</p>
+      <span class="card-arrow">↗</span>
+    </a>
+    <a href="content-systems.html" class="build-card">
+      <div class="card-num">02 —</div>
+      <span class="card-emoji">⚙️</span>
+      <h3>Content Systems</h3>
+      <p>Predictable outputs from chaotic inputs. Build the engine, not just the exhaust.</p>
+      <span class="card-arrow">↗</span>
+    </a>
+    <a href="marketing-foundations.html" class="build-card">
+      <div class="card-num">03 —</div>
+      <span class="card-emoji">🏗️</span>
+      <h3>Marketing Foundations</h3>
+      <p>The unsexy infrastructure that scales revenue. For operators, not agencies.</p>
+      <span class="card-arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- IDEAS ACCORDION -->
+
+<section id="ideas" class="section ideas-section">
+  <p class="section-label">// hot takes (and i stand by them)</p>
+  <h2 class="section-title">THE TAKES.</h2>
+
+  <div class="idea-item">
+    <button class="idea-trigger" onclick="toggleIdea(this)">
+      <h2>TONE IS THE FIRST PRODUCT.</h2>
+      <span class="idea-icon">+</span>
+    </button>
+    <div class="idea-body">
+      <p>If you sound like everyone else, you're already a commodity. <span class="pop">Tone is your only defensible moat</span> before product-market fit — and most brands throw it in the trash for "professional."</p>
+    </div>
+  </div>
+
+  <div class="idea-item">
+    <button class="idea-trigger" onclick="toggleIdea(this)">
+      <h2>IF IT DOESN'T SCALE, IT'S NOT CONTENT.</h2>
+      <span class="idea-icon">+</span>
+    </button>
+    <div class="idea-body">
+      <p>Hero assets are a flex, not a strategy. <span class="pop">Daily, systemic execution builds brands.</span> Build the engine before you obsess over the paint job.</p>
+    </div>
+  </div>
+
+  <div class="idea-item">
+    <button class="idea-trigger" onclick="toggleIdea(this)">
+      <h2>AMBIGUITY IS THE ENEMY OF SCALE.</h2>
+      <span class="idea-icon">+</span>
+    </button>
+    <div class="idea-body">
+      <p>If your team can't answer "how does this brand speak?" in 10 seconds, <span class="pop">you don't have a brand — you have vibes.</span> Vibes don't scale. Systems do.</p>
+    </div>
+  </div>
+
+  <div class="idea-item">
+    <button class="idea-trigger" onclick="toggleIdea(this)">
+      <h2>MOST "BRAND STRATEGY" IS JUST FONTS.</h2>
+      <span class="idea-icon">+</span>
+    </button>
+    <div class="idea-body">
+      <p>A brand deck is not a strategy. A strategy is <span class="pop">a set of irreversible decisions</span> about who you are, who you're not, and how that translates into behavior — every single day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEMS FLOW -->
+
+<section class="flow-section">
+  <p class="section-label">// the process</p>
+  <h2 class="section-title">HOW IT<br>WORKS.</h2>
+  <div class="flow-row">
+    <div class="flow-step" data-label="AMBIGUITY">AMBIGUITY</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" data-label="CLARITY">CLARITY</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" data-label="SYSTEM">SYSTEM</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step" data-label="SCALE 🚀">SCALE</div>
+  </div>
+</section>
+
+<!-- FUN ZONE -->
+
+<section class="fun-section">
+  <div class="rotating-badge">
+    <svg viewBox="0 0 100 100">
+      <defs>
+        <path id="circle" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+      </defs>
+      <text font-family="'DM Mono', monospace" font-size="10.5" fill="#0a0a0a" letter-spacing="2">
+        <textPath href="#circle">AVAILABLE NOW • AVAILABLE NOW •</textPath>
+      </text>
+    </svg>
+    <div class="badge-center">✦</div>
+  </div>
+  <p class="section-label">// the vibe check</p>
+  <h2 class="section-title">WHAT I<br>ACTUALLY AM.</h2>
+  <div class="vibe-grid">
+    <div class="vibe-card"><span class="v-emoji">🔥</span><div class="v-label">Brand Obsessed</div></div>
+    <div class="vibe-card"><span class="v-emoji">🧩</span><div class="v-label">Systems Builder</div></div>
+    <div class="vibe-card"><span class="v-emoji">📢</span><div class="v-label">Loud on Purpose</div></div>
+    <div class="vibe-card"><span class="v-emoji">🚀</span><div class="v-label">0→1 Specialist</div></div>
+    <div class="vibe-card"><span class="v-emoji">💀</span><div class="v-label">Kills Generic</div></div>
+    <div class="vibe-card"><span class="v-emoji">✨</span><div class="v-label">Internet-Native</div></div>
+  </div>
+</section>
+
+<!-- SCRAMBLE SECTION -->
+
+<section class="scramble-section">
+  <p class="section-label">// the philosophy (hover me)</p>
+  <div class="scramble-title">
+    <span class="scramble-word" data-original="CLARITY" data-alt="SIGNAL">CLARITY</span>
+    &nbsp;
+    <span class="scramble-word" data-original="OVER" data-alt="NOT">OVER</span>
+    &nbsp;
+    <span class="scramble-word" data-original="CLUTTER." data-alt="NOISE.">CLUTTER.</span>
+  </div>
+</section>
+
+<!-- SECOND MARQUEE -->
+
+<div class="marquee-bar" style="background: var(--black); color: var(--white); border-top: 2px solid rgba(255,255,255,0.1); border-bottom: 2px solid rgba(255,255,255,0.1);">
+  <div class="marquee-inner" style="animation-direction: reverse;">
+    <span>BUILD IN PUBLIC 🔥</span><span class="dot" style="color:var(--lime)">✦</span>
+    <span>SHIP FAST 🚀</span><span class="dot" style="color:var(--lime)">✦</span>
+    <span>STAY WEIRD 💀</span><span class="dot" style="color:var(--lime)">✦</span>
+    <span>NO FLUFF 🎯</span><span class="dot" style="color:var(--lime)">✦</span>
+    <span>BUILD IN PUBLIC 🔥</span><span class="dot" style="color:var(--lime)">✦</span>
+    <span>SHIP FAST 🚀</span><span class="dot" style="color:var(--lime)">✦</span>
+    <span>STAY WEIRD 💀</span><span class="dot" style="color:var(--lime)">✦</span>
+    <span>NO FLUFF 🎯</span><span class="dot" style="color:var(--lime)">✦</span>
+  </div>
+</div>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact-section">
+  <div class="contact-left">
+    <div class="name">NITISHA<br>MAAN</div>
+    <div class="role">Content & Communication Lead ✦ D2C Brand Architect</div>
+  </div>
+  <div class="contact-right">
+    <a href="mailto:hello@example.com">PING ME →</a>
+    <a href="#">INSTAGRAM</a>
+    <a href="#">LINKEDIN</a>
+  </div>
+</section>
+
+<div class="footer-bar">
+  <span>© 2026 Nitisha Maan</span>
+  <span>Built with ✦ chaos & intention</span>
+  <span>NO GENERIC CONTENT HERE</span>
+</div>
+
+<script>
+  // ─── LOADER ───
+  const loaderWords = ["LOADING", "THINKING", "CAFFEINATING", "OKAY GO"];
+  let lw = 0;
+  const loaderEl = document.getElementById("loader-text");
+  const loaderInterval = setInterval(() => {
+    lw++;
+    if (lw < loaderWords.length) {
+      loaderEl.textContent = loaderWords[lw];
+    } else {
+      clearInterval(loaderInterval);
+      setTimeout(() => {
+        document.getElementById("loader").classList.add("hide");
+        setTimeout(() => showVibeCheck(), 3000);
+      }, 400);
+    }
+  }, 600);
+
+  // ─── VIBE CHECK ───
+  function showVibeCheck() {
+    document.getElementById("vibe-check").classList.add("show");
+  }
+  function closeVibe() {
+    document.getElementById("vibe-check").classList.remove("show");
+  }
+
+  // ─── CUSTOM CURSOR ───
+  const cursor = document.getElementById("cursor");
+  const trail = document.getElementById("cursor-trail");
+  let mx = 0, my = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + "px";
+    cursor.style.top = my + "px";
+    setTimeout(() => {
+      trail.style.left = mx + "px";
+      trail.style.top = my + "px";
+    }, 80);
+  });
+
+  document.querySelectorAll("a, button, .idea-trigger, .build-card, .vibe-card, .flow-step").forEach(el => {
+    el.addEventListener("mouseenter", () => cursor.classList.add("big"));
+    el.addEventListener("mouseleave", () => cursor.classList.remove("big"));
+  });
+
+  // ─── CURSOR SPARKLES ───
+  const sparkleChars = ["✦", "★", "◆", "✿", "⚡", "💥"];
+  let lastSparkle = 0;
+  document.addEventListener("mousemove", (e) => {
+    const now = Date.now();
+    if (now - lastSparkle < 120) return;
+    lastSparkle = now;
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
+    s.style.left = e.clientX + "px";
+    s.style.top = e.clientY + "px";
+    s.style.color = ["#d4ff00","#ff2d6b","#00f0ff","#ffe500"][Math.floor(Math.random()*4)];
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 600);
+  });
+
+  // ─── ACCORDION ───
+  function toggleIdea(btn) {
+    const item = btn.closest(".idea-item");
+    const isOpen = item.classList.contains("open");
+    document.querySelectorAll(".idea-item").forEach(i => i.classList.remove("open"));
+    if (!isOpen) item.classList.add("open");
+  }
+
+  // ─── SCRAMBLE TEXT ───
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!?#$%&";
+  function scramble(el, targetText) {
+    let iter = 0;
+    const original = targetText;
+    const interval = setInterval(() => {
+      el.textContent = original.split("").map((c, i) => {
+        if (c === " ") return " ";
+        if (i < iter) return original[i];
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join("");
+      iter += 0.5;
+      if (iter >= original.length) {
+        el.textContent = original;
+        clearInterval(interval);
+      }
+    }, 40);
+  }
+
+  document.querySelectorAll(".scramble-word").forEach(el => {
+    const orig = el.dataset.original;
+    const alt = el.dataset.alt;
+    let hovered = false;
+    el.addEventListener("mouseenter", () => {
+      hovered = !hovered;
+      scramble(el, hovered ? alt : orig);
+    });
+  });
+
+  // ─── SCROLL FADE-IN ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = "1";
+        e.target.style.transform = "translateY(0)";
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".build-card, .idea-item, .flow-step, .vibe-card").forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(24px)";
+    el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+    observer.observe(el);
+  });
+</script>
 
 </body>
 </html>
