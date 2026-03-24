@@ -1,161 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Systems | Interface</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-base: #F4F4F4;
-            --blue: #3B5BFF;
-            --green: #B6FF3B;
-            --pink: #FF2E7A;
-            --violet: #6C2BFF;
-            --black: #111111;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Content Systems — Nitisha Maan</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--black);
-            color: var(--bg-base);
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f0eb;
+      --lime: #d4ff00;
+      --hot: #ff2d6b;
+      --cyan: #00f0ff;
+    }
 
-        .grain {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 9999; opacity: 0.4;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        nav { padding: 2vw 5vw; border-bottom: 2px solid var(--green); background-color: var(--black); }
-        nav a { color: var(--green); text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; transition: color 0.3s; }
-        nav a:hover { color: var(--blue); }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
 
-        .page-header {
-            padding: 10vw 5vw 5vw 5vw;
-            border-bottom: 2px solid var(--green);
-        }
-        
-        h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 10rem); text-transform: uppercase; line-height: 0.9; color: var(--green); margin-bottom: 2rem;}
-        
-        .manifesto {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            line-height: 1.2;
-            font-family: 'Syne', sans-serif;
-            max-width: 900px;
-            color: var(--bg-base);
-        }
+    nav {
+      padding: 1.5rem 5vw;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
 
-        .manifesto span { color: var(--blue); }
+    nav a {
+      font-family: 'DM Mono', monospace;
+      text-decoration: none;
+      color: var(--lime);
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+    }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: 2px solid var(--green);
-        }
-        
-        @media (max-width: 768px) {
-            .content-grid { grid-template-columns: 1fr; }
-        }
+    /* HEADER */
+    .header {
+      padding: 10vw 5vw 6vw;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
 
-        .problem-side {
-            padding: 5vw;
-            border-right: 2px solid var(--green);
-            background-color: var(--black);
-        }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 11rem);
+      line-height: 0.9;
+      margin-bottom: 2rem;
+    }
 
-        .solution-side {
-            padding: 5vw;
-            background-color: var(--green);
-            color: var(--black);
-        }
+    .manifesto {
+      font-size: 1.2rem;
+      max-width: 620px;
+      line-height: 1.6;
+      color: rgba(245,240,235,0.75);
+    }
 
-        h2 { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 2rem; text-transform: uppercase; }
-        
-        .problem-side h2 { color: var(--blue); }
-        .solution-side h2 { color: var(--black); }
+    .manifesto span {
+      color: var(--lime);
+      font-weight: 700;
+    }
 
-        p { margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.6; }
-        
-        ul { list-style: none; margin-top: 2rem; }
-        li { font-size: 1.2rem; margin-bottom: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem; }
-        .solution-side li { border-color: rgba(0,0,0,0.2); font-weight: 500;}
+    /* floating chaos text */
+    .chaos {
+      position: absolute;
+      right: 5vw;
+      top: 30%;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      opacity: 0.4;
+      transform: rotate(-10deg);
+    }
 
-        /* Massive CTA Section */
-        .cta-section {
-            padding: 10vw 5vw;
-            text-align: center;
-            background-color: var(--black);
-        }
+    /* SPLIT */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
 
-        .cta-text {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 4vw, 4rem);
-            margin-bottom: 3rem;
-            color: var(--bg-base);
-        }
+    @media(max-width:768px){
+      .split { grid-template-columns: 1fr; }
+    }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1.5rem 4rem;
-            background-color: var(--blue);
-            color: var(--bg-base);
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
+    .block {
+      padding: 6vw 5vw;
+      position: relative;
+    }
 
-        .cta-button:hover {
-            background-color: var(--green);
-            color: var(--black);
-            transform: scale(1.05);
-        }
+    .left {
+      border-right: 2px solid rgba(255,255,255,0.1);
+    }
 
-    </style>
+    .right {
+      background: var(--lime);
+      color: var(--black);
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .left h2 { color: var(--hot); }
+    .right h2 { color: var(--black); }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+
+    /* LIST */
+    ul { list-style: none; margin-top: 2rem; }
+
+    li {
+      border-top: 1px solid rgba(0,0,0,0.2);
+      padding: 1rem 0;
+      font-size: 1.05rem;
+    }
+
+    .left li {
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    li strong {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* FUN TAG */
+    .tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      background: var(--hot);
+      color: white;
+      padding: 0.4rem 0.6rem;
+      margin-top: 1rem;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 10vw 5vw;
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
+
+    .btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      padding: 1rem 3rem;
+      border: 2px solid var(--lime);
+      color: var(--black);
+      background: var(--lime);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--hot);
+      border-color: var(--hot);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+
+    /* hover glitch */
+    .glitch:hover {
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+    }
+
+  </style>
 </head>
+
 <body>
-    <div class="grain"></div>
 
-    <nav>
-        <a href="index.html">← Back to Interface</a>
-    </nav>
+<nav>
+  <a href="index.html">← BACK</a>
+</nav>
 
-    <header class="page-header">
-        <h1>Content Systems</h1>
-        <div class="manifesto">
-            Hero assets do not build brands. <span>Daily, systemic execution does.</span> If you are waiting for inspiration, you are already losing.
-        </div>
-    </header>
+<section class="header">
+  <h1>CONTENT<br>SYSTEMS.</h1>
 
-    <div class="content-grid">
-        <section class="problem-side">
-            <h2>The Content Hamster Wheel</h2>
-            <p>Most content teams operate in a state of constant panic. They wake up, ask "what should we post today?", and pray for a viral hit.</p>
-            <p>When the founder gets busy, the brand goes silent. When a social manager leaves, the entire voice of the company disappears with them.</p>
-            <p>You don't have a content strategy. You have an expensive dependency on emotion.</p>
-        </section>
+  <p class="manifesto">
+    Posting daily is not a strategy.<br>
+    It’s a coping mechanism.<br><br>
+    <span>If your content depends on motivation, it will die with it.</span>
+  </p>
 
-        <section class="solution-side">
-            <h2>The Assembly Line</h2>
-            <p>I build engines that decouple output from emotion. Predictable results require predictable inputs. I turn chaotic creative energy into scalable infrastructure.</p>
-            <ul>
-                <li><strong>01. Decoupling the Founder:</strong> Systems that extract the founder's brain without requiring their daily time.</li>
-                <li><strong>02. Repurposing Hierarchies:</strong> One core insight should generate 15 pieces of contextual micro-content. Stop reinventing the wheel daily.</li>
-                <li><strong>03. Franchise Formats:</strong> Developing recurring, repeatable content pillars that build audience habit and require zero new ideation to execute.</li>
-            </ul>
-        </section>
-    </div>
+  <div class="chaos">
+    what do we post today?<br>
+    what do we post today?<br>
+    what do we post today?
+  </div>
+</section>
 
-    <section class="cta-section">
-        <div class="cta-text">Stop praying for virality. Start building predictability.</div>
-        <a href="mailto:hello@example.com" class="cta-button">Build The Engine</a>
-    </section>
+<section class="split">
+
+  <div class="block left">
+    <h2>THE CHAOS LOOP.</h2>
+
+    <p>Every day starts with panic.</p>
+    <p>“Guys what do we post?”</p>
+    <p>Someone suggests a trend.</p>
+    <p>Someone says “let’s keep it simple.”</p>
+    <p>Nothing compounds. Everything resets.</p>
+
+    <p><strong>You’re not building a brand.<br>You’re surviving the algorithm.</strong></p>
+
+    <span class="tag">BURNOUT MODE ACTIVATED</span>
+
+    <ul>
+      <li><strong>SYMPTOM 01</strong> Founder = content machine</li>
+      <li><strong>SYMPTOM 02</strong> No memory, no system</li>
+      <li><strong>SYMPTOM 03</strong> Random ≠ strategy</li>
+    </ul>
+  </div>
+
+  <div class="block right">
+    <h2>THE ENGINE.</h2>
+
+    <p>I build systems that work on your worst days.</p>
+
+    <p>No inspiration.<br>No brainstorming marathons.<br>No “let’s ideate”.</p>
+
+    <p><strong>Just output.</strong></p>
+
+    <ul>
+      <li>
+        <strong>01 — EXTRACTION</strong>
+        pull signal from the founder’s brain
+      </li>
+
+      <li>
+        <strong>02 — MULTIPLICATION</strong>
+        one idea → content ecosystem
+      </li>
+
+      <li>
+        <strong>03 — FORMATS</strong>
+        repeatable = scalable
+      </li>
+
+      <li>
+        <strong>04 — SYSTEM</strong>
+        content runs even when team doesn’t
+      </li>
+    </ul>
+
+    <p class="glitch"><strong>no more “guys what do we post today?” energy.</strong></p>
+
+  </div>
+
+</section>
+
+<section class="cta">
+  <div class="cta-text">
+    VIRALITY IS RANDOM.<br>
+    CONSISTENCY IS DESIGNED.
+  </div>
+
+  <a href="mailto:hello@example.com" class="btn">
+    BUILD THE ENGINE →
+  </a>
+</section>
 
 </body>
 </html>
