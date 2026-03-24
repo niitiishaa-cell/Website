@@ -1,160 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brand Thinking | Interface</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-base: #F4F4F4;
-            --blue: #3B5BFF;
-            --green: #B6FF3B;
-            --pink: #FF2E7A;
-            --violet: #6C2BFF;
-            --black: #111111;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brand Thinking — Nitisha Maan</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--black);
-            color: var(--bg-base);
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f0eb;
+      --lime: #d4ff00;
+      --hot: #ff2d6b;
+      --cyan: #00f0ff;
+      --purple: #9b5de5;
+    }
 
-        .grain {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 9999; opacity: 0.4;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        nav { padding: 2vw 5vw; border-bottom: 2px solid var(--violet); background-color: var(--black); }
-        nav a { color: var(--violet); text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; transition: color 0.3s; }
-        nav a:hover { color: var(--pink); }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
 
-        .page-header {
-            padding: 10vw 5vw 5vw 5vw;
-            border-bottom: 2px solid var(--violet);
-        }
-        
-        h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 10rem); text-transform: uppercase; line-height: 0.9; color: var(--violet); margin-bottom: 2rem;}
-        
-        .manifesto {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            line-height: 1.2;
-            font-family: 'Syne', sans-serif;
-            max-width: 900px;
-            color: var(--bg-base);
-        }
+    nav {
+      padding: 1.5rem 5vw;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
 
-        .manifesto span { color: var(--pink); }
+    nav a {
+      font-family: 'DM Mono', monospace;
+      text-decoration: none;
+      color: var(--purple);
+      letter-spacing: 0.2em;
+      font-size: 0.75rem;
+    }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: 2px solid var(--violet);
-        }
-        
-        @media (max-width: 768px) {
-            .content-grid { grid-template-columns: 1fr; }
-        }
+    /* HEADER */
+    .header {
+      padding: 10vw 5vw 6vw;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
 
-        .problem-side {
-            padding: 5vw;
-            border-right: 2px solid var(--violet);
-            background-color: var(--black);
-        }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 10vw, 11rem);
+      line-height: 0.9;
+      margin-bottom: 2rem;
+    }
 
-        .solution-side {
-            padding: 5vw;
-            background-color: var(--violet);
-            color: var(--black);
-        }
+    .manifesto {
+      font-size: 1.2rem;
+      max-width: 620px;
+      line-height: 1.6;
+      color: rgba(245,240,235,0.75);
+    }
 
-        h2 { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 2rem; text-transform: uppercase; }
-        
-        .problem-side h2 { color: var(--pink); }
-        .solution-side h2 { color: var(--bg-base); }
+    .manifesto span {
+      color: var(--purple);
+      font-weight: 700;
+    }
 
-        p { margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.6; }
-        
-        ul { list-style: none; margin-top: 2rem; }
-        li { font-size: 1.2rem; margin-bottom: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem; }
-        .solution-side li { border-color: rgba(0,0,0,0.2); font-weight: 500;}
+    .floating-noise {
+      position: absolute;
+      right: 5vw;
+      top: 30%;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      opacity: 0.4;
+      transform: rotate(-8deg);
+    }
 
-        /* Massive CTA Section */
-        .cta-section {
-            padding: 10vw 5vw;
-            text-align: center;
-            background-color: var(--black);
-        }
+    /* SPLIT */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
 
-        .cta-text {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 4vw, 4rem);
-            margin-bottom: 3rem;
-            color: var(--bg-base);
-        }
+    @media(max-width:768px){
+      .split { grid-template-columns: 1fr; }
+    }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1.5rem 4rem;
-            background-color: var(--green);
-            color: var(--black);
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
+    .block {
+      padding: 6vw 5vw;
+    }
 
-        .cta-button:hover {
-            background-color: var(--pink);
-            transform: scale(1.05);
-        }
+    .left {
+      border-right: 2px solid rgba(255,255,255,0.1);
+    }
 
-    </style>
+    .right {
+      background: var(--purple);
+      color: var(--black);
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .left h2 { color: var(--hot); }
+    .right h2 { color: var(--black); }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+
+    /* LIST */
+    ul { list-style: none; margin-top: 2rem; }
+
+    li {
+      border-top: 1px solid rgba(0,0,0,0.2);
+      padding: 1rem 0;
+      font-size: 1.05rem;
+    }
+
+    .left li {
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    li strong {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* TAG */
+    .tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      background: var(--hot);
+      color: white;
+      padding: 0.4rem 0.6rem;
+      margin-top: 1rem;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 10vw 5vw;
+      text-align: center;
+    }
+
+    .cta-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
+
+    .btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      padding: 1rem 3rem;
+      border: 2px solid var(--lime);
+      color: var(--black);
+      background: var(--lime);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--hot);
+      border-color: var(--hot);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+
+    /* FUN HOVER */
+    .glitch:hover {
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+    }
+
+  </style>
 </head>
+
 <body>
-    <div class="grain"></div>
 
-    <nav>
-        <a href="index.html">← Back to Interface</a>
-    </nav>
+<nav>
+  <a href="index.html">← BACK</a>
+</nav>
 
-    <header class="page-header">
-        <h1>Brand Thinking</h1>
-        <div class="manifesto">
-            Founders confuse aesthetics with positioning. A beautiful color palette cannot save a brand that <span>doesn't know what it stands against.</span>
-        </div>
-    </header>
+<section class="header">
+  <h1>BRAND<br>THINKING.</h1>
 
-    <div class="content-grid">
-        <section class="problem-side">
-            <h2>The Ambiguity Trap</h2>
-            <p>Most D2C brands are built on vibes instead of architecture. They launch with a logo and a Shopify theme, but no operational compass.</p>
-            <p>This creates a downstream nightmare. The social manager doesn't know how to reply to comments. The copywriter sounds like a robot. Growth runs ads that damage the brand's long-term equity.</p>
-            <p>Ambiguity is the silent killer of scale.</p>
-        </section>
+  <p class="manifesto">
+    A logo is not a brand.<br>
+    A color palette is not a strategy.<br><br>
+    <span>If you don’t know what you stand against, you stand for nothing.</span>
+  </p>
 
-        <section class="solution-side">
-            <h2>The Architecture</h2>
-            <p>I build the structural foundation that dictates how a brand behaves. Identity is an operational output, not a mood board.</p>
-            <ul>
-                <li><strong>01. Tone & Vocabulary:</strong> Establishing exact linguistic guardrails. We define the words we own, and the words we never use.</li>
-                <li><strong>02. The Enemy:</strong> A brand needs friction to survive. We define exactly what you are fighting against to mobilize your audience.</li>
-                <li><strong>03. Operational Playbooks:</strong> Translating the "brand" into actual systems so the lowest-paid employee executes with the same voice as the founder.</li>
-            </ul>
-        </section>
-    </div>
+  <div class="floating-noise">
+    make it premium<br>
+    make it aesthetic<br>
+    make it viral
+  </div>
+</section>
 
-    <section class="cta-section">
-        <div class="cta-text">If your team can't explain the brand in one sentence without using the word "disruptive", we need to talk.</div>
-        <a href="mailto:hello@example.com" class="cta-button">Fix Your Brand</a>
-    </section>
+<section class="split">
+
+  <div class="block left">
+    <h2>THE VIBES TRAP.</h2>
+
+    <p>Most brands are built on ✨feeling✨, not decisions.</p>
+
+    <p>Nice logo. Clean website. Zero clarity.</p>
+
+    <p>The result?</p>
+
+    <p>Every team invents a new version of the brand every day.</p>
+
+    <p><strong>You don’t have a brand.<br>You have inconsistent behavior.</strong></p>
+
+    <span class="tag">AESTHETIC ≠ STRATEGY</span>
+
+    <ul>
+      <li><strong>SYMPTOM 01</strong> everyone writes differently</li>
+      <li><strong>SYMPTOM 02</strong> tone changes every week</li>
+      <li><strong>SYMPTOM 03</strong> brand = random mood</li>
+    </ul>
+
+  </div>
+
+  <div class="block right">
+    <h2>THE SYSTEM.</h2>
+
+    <p>I turn “vibes” into rules.</p>
+
+    <p>Because brands don’t scale on taste.<br>They scale on consistency.</p>
+
+    <ul>
+      <li>
+        <strong>01 — LANGUAGE</strong>
+        what you say, how you say it, what you never say
+      </li>
+
+      <li>
+        <strong>02 — ENEMY</strong>
+        what you stand against (this is where identity comes from)
+      </li>
+
+      <li>
+        <strong>03 — BEHAVIOR</strong>
+        how the brand shows up across every touchpoint
+      </li>
+
+      <li>
+        <strong>04 — PLAYBOOK</strong>
+        so even your intern sounds like your founder
+      </li>
+    </ul>
+
+    <p class="glitch"><strong>no more “make it sound premium” feedback loops.</strong></p>
+
+  </div>
+
+</section>
+
+<section class="cta">
+  <div class="cta-text">
+    CLARITY BUILDS BRANDS.<br>
+    VIBES BUILD CONFUSION.
+  </div>
+
+  <a href="mailto:hello@example.com" class="btn">
+    FIX YOUR BRAND →
+  </a>
+</section>
 
 </body>
 </html>
