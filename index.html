@@ -845,16 +845,70 @@ nav {
   <p class="section-label">// the process</p>
   <h2 class="section-title">HOW IT<br>WORKS.</h2>
   <div class="flow-row">
-    <div class="flow-step" data-label="AMBIGUITY">AMBIGUITY</div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step" data-label="CLARITY">CLARITY</div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step" data-label="SYSTEM">SYSTEM</div>
-    <div class="flow-arrow">→</div>
-    <div class="flow-step" data-label="SCALE 🚀">SCALE</div>
-  </div>
-</section>
+  <a href="#ambiguity" class="flow-step" data-label="AMBIGUITY">AMBIGUITY</a>
+  <div class="flow-arrow">→</div>
 
+  <a href="#clarity" class="flow-step" data-label="CLARITY">CLARITY</a>
+  <div class="flow-arrow">→</div>
+
+  <a href="#system" class="flow-step" data-label="SYSTEM">SYSTEM</a>
+  <div class="flow-arrow">→</div>
+
+  <a href="#scale" class="flow-step" data-label="SCALE 🚀">SCALE</a>
+</div>
+  <section class="process-detail">
+
+  <div id="ambiguity" class="process-block">
+    <h2>AMBIGUITY</h2>
+    <p>Everything feels right. Nothing is clear.</p>
+    <p>Teams guess. Founders override. Content feels inconsistent.</p>
+    <p><strong>You don’t have a direction.<br>You have opinions.</strong></p>
+  </div>
+
+  <div id="clarity" class="process-block">
+    <h2>CLARITY</h2>
+    <p>We define what the brand actually is.</p>
+    <p>What you say. What you don’t. What you stand against.</p>
+    <p><strong>This is where confusion dies.</strong></p>
+  </div>
+
+  <div id="system" class="process-block">
+    <h2>SYSTEM</h2>
+    <p>Clarity becomes execution.</p>
+    <p>Content, tone, flows — all operationalized.</p>
+    <p><strong>No more daily decision fatigue.</strong></p>
+  </div>
+
+  <div id="scale" class="process-block">
+    <h2>SCALE</h2>
+    <p>Now you grow without breaking.</p>
+    <p>Output increases. Identity stays intact.</p>
+    <p><strong>Consistency compounds.</strong></p>
+  </div>
+
+</section>
+.process-detail {
+  padding: 8vw 5vw;
+}
+
+.process-block {
+  margin-bottom: 6rem;
+  max-width: 600px;
+}
+
+.process-block h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  margin-bottom: 1rem;
+}
+
+.process-block p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(245,240,235,0.7);
+  margin-bottom: 1rem;
+}
+html { scroll-behavior: smooth; }
 <!-- FUN ZONE -->
 
 <section class="fun-section">
