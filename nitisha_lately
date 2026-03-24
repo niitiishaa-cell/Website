@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinking Interface | Content & Communication</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #F4F4F4;
+            --bg-beige: #EFEAE6;
+            --blue: #3B5BFF;
+            --green: #B6FF3B;
+            --pink: #FF2E7A;
+            --violet: #6C2BFF;
+            --orange: #FF7A2F;
+            --black: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* Subtle Grain Overlay */
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+
+        section {
+            padding: 8vw 5vw;
+            border-bottom: 2px solid var(--black);
+        }
+
+        /* 1. HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-size: clamp(4rem, 8vw, 10rem);
+            max-width: 90vw;
+            margin-bottom: 2rem;
+        }
+        .hero-accent { color: var(--blue); }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 400px;
+            margin-bottom: 3rem;
+            line-height: 1.4;
+        }
+        .cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--black);
+            color: var(--bg-base);
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+        .cta:hover {
+            background: var(--pink);
+            color: var(--black);
+            transform: scale(1.05);
+        }
+
+        /* 2. WHAT I BUILD */
+        .build-section {
+            background-color: var(--violet);
+            color: var(--bg-base);
+        }
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .card {
+            border: 2px solid var(--bg-base);
+            padding: 2rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .card h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .card p { opacity: 0; transform: translateY(20px); transition: all 0.3s; font-size: 1rem; }
+        .card:hover {
+            background-color: var(--green);
+            color: var(--black);
+            border-color: var(--black);
+        }
+        .card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3. IDEAS */
+        .ideas-section { background-color: var(--bg-beige); }
+        .idea-row {
+            border-bottom: 2px solid var(--black);
+            padding: 2rem 0;
+            cursor: pointer;
+        }
+        .idea-row h2 { font-size: 3rem; transition: color 0.3s; }
+        .idea-row:hover h2 { color: var(--orange); }
+        .idea-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-top: 1rem;
+        }
+        .idea-row.active .idea-content {
+            max-height: 200px;
+        }
+
+        /* 4. SYSTEMS FLOW */
+        .systems-section {
+            background-color: var(--green);
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+        }
+        .step { transition: color 0.3s; display: inline-block; }
+        .step:hover { color: var(--pink); text-decoration: line-through; }
+        .arrow { color: var(--blue); margin: 0 1vw; }
+
+        /* 5. MARQUEE */
+        .marquee-section {
+            background-color: var(--blue);
+            color: var(--bg-base);
+            padding: 2rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 6. CONTACT */
+        .contact {
+            padding: 10vw 5vw;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+        }
+        .contact a { color: var(--blue); text-decoration: none; }
+        .contact a:hover { color: var(--pink); }
+
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+
+    <section class="hero">
+        <h1>WE DON'T NEED MORE CONTENT.<br>WE NEED <span class="hero-accent">BRAND CLARITY.</span></h1>
+        <p>I design the systems, tone, and architecture that take D2C brands from 0→1.</p>
+        <a href="#build" class="cta">EXPLORE THE SYSTEM</a>
+    </section>
+
+    <section id="build" class="build-section">
+        <h2>What I Build</h2>
+        <div class="build-grid">
+            <div class="card">
+                <h3>Brand Thinking</h3>
+                <p>Identity isn't a logo. It's the operational behavior of a company.</p>
+            </div>
+            <div class="card">
+                <h3>Content Systems</h3>
+                <p>Predictable outputs from unpredictable inputs. Scale without losing the soul.</p>
+            </div>
+            <div class="card">
+                <h3>Marketing Foundations</h3>
+                <p>The unsexy infrastructure that scales revenue. Built for operators, not agencies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ideas-section">
+        <div class="idea-row" onclick="this.classList.toggle('active')">
+            <h2>TONE IS THE FIRST PRODUCT.</h2>
+            <div class="idea-content">If you sound like everyone else, you are a commodity. Tone is your only defensible moat before product-market fit.</div>
+        </div>
+        <div class="idea-row" onclick="this.classList.toggle('active')">
+            <h2>IF IT DOESN'T SCALE, IT'S NOT CONTENT.</h2>
+            <div class="idea-content">Hero assets don't build brands. Daily, systemic execution does. Build the engine before you build the car.</div>
+        </div>
+        <div class="idea-row" onclick="this.classList.toggle('active')">
+            <h2>AMBIGUITY IS THE ENEMY OF SCALE.</h2>
+            <div class="idea-content">If your team doesn't know exactly how the brand speaks and operates, they can't build for it.</div>
+        </div>
+    </section>
+
+    <section class="systems-section">
+        <span class="step">AMBIGUITY</span> <span class="arrow">→</span> 
+        <span class="step">CLARITY</span> <span class="arrow">→</span> 
+        <span class="step">SYSTEM</span> <span class="arrow">→</span> 
+        <span class="step">SCALE</span>
+    </section>
+
+    <section class="marquee-section">
+        <div class="marquee-content">
+            BUILDING 0→1 BRANDS • INTERNET-NATIVE BRAND SYSTEMS • SCALABLE CONTENT ENGINES • BUILDING 0→1 BRANDS • INTERNET-NATIVE BRAND SYSTEMS • SCALABLE CONTENT ENGINES • 
+        </div>
+    </section>
+
+    <section class="contact">
+        <div>NITISHA MAAN <br><span style="font-size: 1rem; font-family: 'Inter', sans-serif;">CONTENT & COMMUNICATION LEAD</span></div>
+        <div><a href="mailto:hello@example.com">PING ME</a></div>
+    </section>
+
+</body>
+</html>
