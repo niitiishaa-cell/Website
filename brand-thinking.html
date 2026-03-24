@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Thinking | Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #F4F4F4;
+            --blue: #3B5BFF;
+            --green: #B6FF3B;
+            --pink: #FF2E7A;
+            --violet: #6C2BFF;
+            --black: #111111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: var(--bg-base);
+            overflow-x: hidden;
+        }
+
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9999; opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        nav { padding: 2vw 5vw; border-bottom: 2px solid var(--violet); background-color: var(--black); }
+        nav a { color: var(--violet); text-decoration: none; font-family: 'Syne', sans-serif; font-size: 1.2rem; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: var(--pink); }
+
+        .page-header {
+            padding: 10vw 5vw 5vw 5vw;
+            border-bottom: 2px solid var(--violet);
+        }
+        
+        h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 10rem); text-transform: uppercase; line-height: 0.9; color: var(--violet); margin-bottom: 2rem;}
+        
+        .manifesto {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            line-height: 1.2;
+            font-family: 'Syne', sans-serif;
+            max-width: 900px;
+            color: var(--bg-base);
+        }
+
+        .manifesto span { color: var(--pink); }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 2px solid var(--violet);
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        .problem-side {
+            padding: 5vw;
+            border-right: 2px solid var(--violet);
+            background-color: var(--black);
+        }
+
+        .solution-side {
+            padding: 5vw;
+            background-color: var(--violet);
+            color: var(--black);
+        }
+
+        h2 { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 2rem; text-transform: uppercase; }
+        
+        .problem-side h2 { color: var(--pink); }
+        .solution-side h2 { color: var(--bg-base); }
+
+        p { margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.6; }
+        
+        ul { list-style: none; margin-top: 2rem; }
+        li { font-size: 1.2rem; margin-bottom: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem; }
+        .solution-side li { border-color: rgba(0,0,0,0.2); font-weight: 500;}
+
+        /* Massive CTA Section */
+        .cta-section {
+            padding: 10vw 5vw;
+            text-align: center;
+            background-color: var(--black);
+        }
+
+        .cta-text {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 4rem);
+            margin-bottom: 3rem;
+            color: var(--bg-base);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background-color: var(--green);
+            color: var(--black);
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--pink);
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+
+    <nav>
+        <a href="index.html">← Back to Interface</a>
+    </nav>
+
+    <header class="page-header">
+        <h1>Brand Thinking</h1>
+        <div class="manifesto">
+            Founders confuse aesthetics with positioning. A beautiful color palette cannot save a brand that <span>doesn't know what it stands against.</span>
+        </div>
+    </header>
+
+    <div class="content-grid">
+        <section class="problem-side">
+            <h2>The Ambiguity Trap</h2>
+            <p>Most D2C brands are built on vibes instead of architecture. They launch with a logo and a Shopify theme, but no operational compass.</p>
+            <p>This creates a downstream nightmare. The social manager doesn't know how to reply to comments. The copywriter sounds like a robot. Growth runs ads that damage the brand's long-term equity.</p>
+            <p>Ambiguity is the silent killer of scale.</p>
+        </section>
+
+        <section class="solution-side">
+            <h2>The Architecture</h2>
+            <p>I build the structural foundation that dictates how a brand behaves. Identity is an operational output, not a mood board.</p>
+            <ul>
+                <li><strong>01. Tone & Vocabulary:</strong> Establishing exact linguistic guardrails. We define the words we own, and the words we never use.</li>
+                <li><strong>02. The Enemy:</strong> A brand needs friction to survive. We define exactly what you are fighting against to mobilize your audience.</li>
+                <li><strong>03. Operational Playbooks:</strong> Translating the "brand" into actual systems so the lowest-paid employee executes with the same voice as the founder.</li>
+            </ul>
+        </section>
+    </div>
+
+    <section class="cta-section">
+        <div class="cta-text">If your team can't explain the brand in one sentence without using the word "disruptive", we need to talk.</div>
+        <a href="mailto:hello@example.com" class="cta-button">Fix Your Brand</a>
+    </section>
+
+</body>
+</html>
