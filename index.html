@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nitisha Maan — Brand Chaos Engineer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=Caveat:wght@700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
 <style>
 :root {
@@ -19,6 +19,7 @@
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
+
 body{
   font-family:'Space Grotesk',sans-serif;
   background:var(--black);
@@ -51,23 +52,27 @@ nav{
   justify-content:center;
   padding:10rem 5vw;
 }
+
 .hero h1{
   font-family:'Bebas Neue';
-  font-size:clamp(4rem,11vw,11rem);
+  font-size:clamp(4rem,11vw,12rem);
   line-height:.9;
 }
+
 .hero .accent{color:var(--lime);}
 .hero .hot{color:var(--hot);}
 
 .hero-desc{
   margin-top:2rem;
-  max-width:420px;
-  color:rgba(255,255,255,0.6);
+  max-width:480px;
+  color:rgba(255,255,255,0.7);
+  line-height:1.6;
 }
 
 /* FLOW */
 .flow-section{
   padding:8vw 5vw;
+  border-top:1px solid rgba(255,255,255,0.1);
 }
 
 .flow-row{
@@ -97,36 +102,39 @@ nav{
   color:var(--hot);
 }
 
-/* PROCESS CONTENT */
+/* PROCESS */
 .process-detail{
   padding:8vw 5vw;
 }
 
 .process-block{
-  margin-bottom:6rem;
-  max-width:600px;
+  margin-bottom:8rem;
+  max-width:700px;
 }
 
 .process-block h2{
   font-family:'Bebas Neue';
-  font-size:clamp(2.5rem,5vw,5rem);
+  font-size:clamp(3rem,6vw,6rem);
   margin-bottom:1rem;
 }
 
 .process-block p{
-  margin-bottom:1rem;
-  color:rgba(255,255,255,0.7);
+  margin-bottom:1.2rem;
+  color:rgba(255,255,255,0.75);
+  line-height:1.7;
 }
 
 /* CTA */
 .cta{
   padding:10vw 5vw;
   text-align:center;
+  border-top:1px solid rgba(255,255,255,0.1);
 }
 
 .cta h2{
   font-family:'Bebas Neue';
-  font-size:clamp(3rem,6vw,5rem);
+  font-size:clamp(3rem,6vw,6rem);
+  line-height:1.1;
 }
 
 .btn{
@@ -161,14 +169,20 @@ nav{
   </h1>
 
   <p class="hero-desc">
-    brands don't fail because of bad products.<br>
-    they fail because no one understands wtf they're saying.
+    Most brands are not underperforming because of lack of effort.<br>
+    They are underperforming because no one actually understands what the brand is.<br><br>
+
+    So they post more.<br>
+    spend more.<br>
+    hire more.<br><br>
+
+    <strong>and still sound like everyone else.</strong>
   </p>
 </section>
 
 <!-- FLOW -->
 <section id="process" class="flow-section">
-  <h2 style="font-family:'Bebas Neue';font-size:5rem;">HOW IT WORKS.</h2>
+  <h2 style="font-family:'Bebas Neue';font-size:6rem;">HOW IT WORKS.</h2>
 
   <div class="flow-row">
     <a href="#ambiguity" class="flow-step">AMBIGUITY</a>
@@ -189,31 +203,82 @@ nav{
 
   <div id="ambiguity" class="process-block">
     <h2>AMBIGUITY</h2>
-    <p>this is where most brands live.</p>
-    <p>everyone has opinions. no one has answers.</p>
-    <p>your designer says one thing. your copywriter says another.</p>
-    <p><strong>your brand sounds like 5 different people fighting.</strong></p>
+
+    <p>This is where 90% of brands live.</p>
+
+    <p>Things feel "fine". Nothing feels broken enough to fix.<br>
+    But nothing is strong enough to scale.</p>
+
+    <p>The founder has a vision — but it's in their head.<br>
+    The team has ideas — but they’re inconsistent.</p>
+
+    <p>So what happens?</p>
+
+    <p>You get content that looks good.<br>
+    but says nothing.<br>
+    sounds polished.<br>
+    but feels replaceable.</p>
+
+    <p><strong>You don’t have a brand problem.<br>
+    You have a clarity problem.</strong></p>
   </div>
 
   <div id="clarity" class="process-block">
     <h2>CLARITY</h2>
-    <p>we kill confusion.</p>
-    <p>what you say. how you say it. what you NEVER say.</p>
-    <p><strong>finally — your brand has a spine.</strong></p>
+
+    <p>This is where things get uncomfortable.</p>
+
+    <p>Because now we define things properly:</p>
+
+    <p>What you stand for.<br>
+    What you stand against.<br>
+    Who you are NOT.</p>
+
+    <p>No more “make it premium”.<br>
+    No more “keep it simple but impactful”.</p>
+
+    <p><strong>We replace vague language with decisions.</strong></p>
+
+    <p>This is where your brand stops being a mood…<br>
+    and starts becoming a system.</p>
   </div>
 
   <div id="system" class="process-block">
     <h2>SYSTEM</h2>
-    <p>clarity is useless if it stays in a doc.</p>
-    <p>we turn it into execution.</p>
-    <p><strong>now your brand works without you babysitting it.</strong></p>
+
+    <p>Clarity alone doesn’t scale.</p>
+
+    <p>Because clarity sitting in a Notion doc is useless.</p>
+
+    <p>This is where we operationalize:</p>
+
+    <p>How your content gets created.<br>
+    How your team writes.<br>
+    How your brand responds.<br>
+    How decisions get made.</p>
+
+    <p>No more dependency on one “creative” person.</p>
+
+    <p><strong>The brand starts running like a machine.</strong></p>
   </div>
 
   <div id="scale" class="process-block">
     <h2>SCALE</h2>
-    <p>this is where things compound.</p>
-    <p>content gets easier. growth gets cleaner.</p>
-    <p><strong>you stop guessing. you start stacking wins.</strong></p>
+
+    <p>This is where it compounds.</p>
+
+    <p>You don’t need more effort.<br>
+    You need less friction.</p>
+
+    <p>Content becomes faster.<br>
+    Decisions become easier.<br>
+    Growth becomes cleaner.</p>
+
+    <p><strong>You stop guessing.</strong><br>
+    <strong>You start executing.</strong></p>
+
+    <p>And most importantly —<br>
+    <strong>you stop sounding like everyone else.</strong></p>
   </div>
 
 </section>
@@ -221,12 +286,12 @@ nav{
 <!-- CTA -->
 <section class="cta">
   <h2>
-    VIBES DON'T SCALE.<br>
-    SYSTEMS DO.
+    MORE CONTENT WON'T FIX THIS.<br>
+    CLARITY WILL.
   </h2>
 
   <a href="mailto:hello@example.com" class="btn">
-    FIX MY BRAND →
+    LET'S FIX IT →
   </a>
 </section>
 
