@@ -134,7 +134,10 @@ nav {
   padding: 3rem 2rem;
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   background: transparent;
-  cursor: crosshair;
+  cursor: pointer;
+  text-decoration: none; /* Keeps links clean */
+  color: inherit;
+  display: block;
 }
 .build-card h3 {
   font-family: 'Bebas Neue', sans-serif;
@@ -295,20 +298,20 @@ nav {
   <h2 class="section-title">THE WORK.</h2>
 
   <div class="build-grid">
-    <div class="build-card">
+    <a href="brand-thinking.html" class="build-card">
       <h3>Brand Thinking</h3>
       <p>Stop confusing a moodboard with a strategy. We define the exact linguistic and visual guardrails of your identity so your team stops guessing.</p>
-    </div>
+    </a>
 
-    <div class="build-card">
+    <a href="content-systems.html" class="build-card">
       <h3>Content Systems</h3>
       <p>Predictable revenue requires predictable execution. I build the assembly line that gets you off the chaotic content hamster wheel.</p>
-    </div>
+    </a>
 
-    <div class="build-card">
+    <a href="marketing-foundations.html" class="build-card">
       <h3>Marketing Foundations</h3>
       <p>Growth hacks won't fix a leaky bucket. We map the post-click journey, fix your flows, and set up the unsexy infrastructure that actually converts.</p>
-    </div>
+    </a>
   </div>
 </section>
 
