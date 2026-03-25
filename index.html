@@ -3,583 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nitisha Maan | Brand Chaos Engineer</title>
+<title>NITISHA MAAN ✦ BRAND ARCHITECT</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 
 <style>
 /* =========================================
-   01. CORE VARIABLES & SETUP
+   01. HYPER-POP VARIABLES
 ========================================= */
 :root {
-  --black: #050505;
-  --black-alt: #111111;
-  --white: #f5f0eb;
-  --lime: #d4ff00;
-  --hot: #ff2d6b;
-  --cyan: #00f0ff;
-  --violet: #6C2BFF;
-  --grey: #333333;
+  --black: #000000;
+  --white: #FAFAFA;
+  --neon-yellow: #CCFF00;
+  --hot-pink: #FF007F;
+  --electric-blue: #0033FF;
+  --acid-green: #00FF66;
+  --border-thick: 4px solid var(--black);
+  --shadow-brutal: 8px 8px 0px var(--black);
+  --shadow-hover: 12px 12px 0px var(--black);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-html { scroll-behavior: smooth; background: var(--black); }
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+html { scroll-behavior: smooth; }
 
+/* The Gen Z Grid Background */
 body {
-  font-family: 'Space Grotesk', sans-serif;
-  background: var(--black);
-  color: var(--white);
+  font-family: 'Space Mono', monospace;
+  background-color: var(--white);
+  color: var(--black);
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
 }
 
-::selection { background: var(--lime); color: var(--black); }
-
-/* =========================================
-   02. THE NOISE & CUSTOM CURSOR
-========================================= */
-/* FIXED: Dropped opacity from 0.4 to 0.12 so it adds texture but doesn't ruin readability */
-.grain {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  pointer-events: none; z-index: 9999; opacity: 0.12; mix-blend-mode: screen;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-.cursor-dot, .cursor-outline {
-  position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-  border-radius: 50%; z-index: 10000; pointer-events: none;
-}
-.cursor-dot { width: 8px; height: 8px; background-color: var(--lime); }
-.cursor-outline {
-  width: 40px; height: 40px; border: 2px solid rgba(212, 255, 0, 0.5);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-}
-.cursor-outline.hovering { width: 80px; height: 80px; background-color: rgba(255, 45, 107, 0.2); border-color: var(--hot); mix-blend-mode: difference;}
+::selection { background: var(--hot-pink); color: var(--white); }
 
 /* =========================================
-   03. PRELOADER
-========================================= */
-.preloader {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  background: var(--black); z-index: 99999;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-}
-.preloader.hidden { transform: translateY(-100%); }
-.loader-text { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--hot); animation: pulse 1s infinite; }
-.loader-sub { font-family: 'DM Mono', monospace; font-size: 1rem; color: var(--white); margin-top: 1rem; text-transform: uppercase; letter-spacing: 2px; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-/* =========================================
-   04. NAVIGATION
+   02. BRUTALIST NAV
 ========================================= */
 nav {
-  position: fixed; top: 0; width: 100%; padding: 2rem 4vw;
+  position: fixed; top: 0; width: 100%; padding: 1.5rem 2vw;
   display: flex; justify-content: space-between; align-items: center;
-  z-index: 1000; mix-blend-mode: difference;
+  z-index: 1000; pointer-events: none;
 }
-.logo { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--white); letter-spacing: 2px; }
-.nav-links { display: flex; gap: 4rem; list-style: none; }
-.nav-links a {
-  font-family: 'DM Mono', monospace; font-size: 0.9rem; font-weight: 700;
-  color: var(--white); text-decoration: none; text-transform: uppercase;
-  position: relative; padding: 0.5rem 0;
+.nav-pill {
+  background: var(--neon-yellow);
+  border: var(--border-thick);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  box-shadow: 4px 4px 0px var(--black);
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  pointer-events: auto;
+  transition: transform 0.1s;
 }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 2px;
-  background: var(--hot); transition: width 0.3s ease;
+.nav-pill:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--black); background: var(--acid-green);}
+
+.nav-links { display: flex; gap: 1rem; pointer-events: auto; }
+.nav-btn {
+  background: var(--white);
+  border: var(--border-thick);
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--black);
+  box-shadow: 4px 4px 0px var(--black);
+  transition: all 0.2s;
 }
-.nav-links a:hover::after { width: 100%; }
+.nav-btn:hover { background: var(--hot-pink); color: var(--white); transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--black); }
 
 /* =========================================
-   05. HERO SECTION (UPGRADED DENSITY)
+   03. HERO SECTION (LOUD & KINETIC)
 ========================================= */
 .hero {
   min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-  padding: 10vw 5vw 5vw; position: relative; overflow: hidden;
+  padding: 15vh 5vw 5vw; position: relative;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
-  align-items: center;
-  z-index: 2;
-}
-
-@media (max-width: 1000px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-}
-
-/* Left Side: Massive Text */
-.glitch-wrapper { position: relative; }
-.glitch {
-  font-family: 'Bebas Neue', sans-serif; font-size: clamp(6rem, 15vw, 18rem);
-  line-height: 0.8; color: var(--white); text-transform: uppercase; position: relative;
-}
-.glitch::before, .glitch::after {
-  content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-}
-.glitch::before {
-  left: 4px; text-shadow: -2px 0 var(--hot); clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim 5s infinite linear alternate-reverse;
-}
-.glitch::after {
-  left: -4px; text-shadow: -2px 0 var(--cyan); clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim2 5s infinite linear alternate-reverse;
-}
-@keyframes glitch-anim { 0% { clip: rect(31px, 9999px, 94px, 0); } 20% { clip: rect(62px, 9999px, 42px, 0); } 40% { clip: rect(16px, 9999px, 78px, 0); } 60% { clip: rect(89px, 9999px, 13px, 0); } 80% { clip: rect(45px, 9999px, 56px, 0); } 100% { clip: rect(2px, 9999px, 34px, 0); } }
-@keyframes glitch-anim2 { 0% { clip: rect(65px, 9999px, 100px, 0); } 20% { clip: rect(12px, 9999px, 56px, 0); } 40% { clip: rect(89px, 9999px, 23px, 0); } 60% { clip: rect(45px, 9999px, 78px, 0); } 80% { clip: rect(2px, 9999px, 34px, 0); } 100% { clip: rect(31px, 9999px, 94px, 0); } }
-
-.hero-accent { color: var(--lime); -webkit-text-stroke: 2px var(--lime); color: transparent; font-family: 'Bebas Neue'; font-size: clamp(4rem, 10vw, 12rem); line-height: 0.8;}
-.hero-hot { color: var(--hot); font-family: 'Bebas Neue'; font-size: clamp(4rem, 10vw, 12rem); line-height: 0.8;}
-
-/* Right Side: The Diagnostic Panel */
-.diagnostic-panel {
-  background: rgba(17, 17, 17, 0.8);
-  border: 1px solid var(--grey);
-  padding: 3rem;
-  border-left: 4px solid var(--hot);
-  box-shadow: 20px 20px 0px rgba(0,0,0,0.5);
-}
-
-.diag-header {
-  font-family: 'DM Mono', monospace;
-  color: var(--hot);
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  margin-bottom: 2rem;
+/* Floating Stickers */
+.sticker {
+  position: absolute;
+  padding: 1rem;
+  background: var(--white);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-brutal);
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
   text-transform: uppercase;
-  display: flex;
-  justify-content: space-between;
+  animation: float 6s ease-in-out infinite;
+  z-index: 10;
+  transform: rotate(-10deg);
 }
-.diag-header span { color: var(--lime); }
+.sticker-1 { top: 20%; right: 10%; background: var(--electric-blue); color: var(--white); transform: rotate(15deg); }
+.sticker-2 { bottom: 25%; left: 5%; background: var(--acid-green); animation-delay: -3s; }
+.sticker-3 { top: 60%; right: 15%; font-size: 3rem; background: transparent; border: none; box-shadow: none; animation: spin 10s linear infinite; }
 
-.diag-body p {
-  font-size: 1.2rem;
-  color: rgba(255,255,255,0.8);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-20px) rotate(-5deg); } }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.hero-text { z-index: 2; position: relative; }
+.hero-text h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(4rem, 12vw, 15rem);
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  color: var(--black);
+  text-shadow: 4px 4px 0px var(--white), 8px 8px 0px var(--electric-blue);
 }
-.diag-body strong { color: var(--white); background: var(--violet); padding: 2px 5px; }
+.hero-text h1 span { color: var(--hot-pink); text-shadow: 4px 4px 0px var(--white), 8px 8px 0px var(--black); }
 
-.symptom-list { list-style: none; margin-top: 2rem; border-top: 1px solid var(--grey); padding-top: 2rem;}
-.symptom-list li {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+.hero-desc {
+  margin-top: 3rem; max-width: 600px;
+  font-size: 1.2rem; font-weight: 700; line-height: 1.5;
+  background: var(--white); border: var(--border-thick);
+  padding: 1.5rem; box-shadow: var(--shadow-brutal);
 }
-.symptom-list li::before { content: '[FAIL]'; color: var(--hot); }
-
-/* Rotating Badge */
-.rotating-badge {
-  position: absolute; right: 2vw; bottom: 5vh; width: 120px; height: 120px;
-  animation: rotate 10s linear infinite; z-index: 0; opacity: 0.6;
-}
-.rotating-badge svg { width: 100%; height: 100%; fill: var(--grey); }
-@keyframes rotate { 100% { transform: rotate(360deg); } }
-
-/* Text Scramble Class */
-.scramble:hover { color: var(--cyan); }
+.highlight { background: var(--neon-yellow); padding: 0 5px; }
 
 /* =========================================
-   06. SCROLL REVEAL ANIMATIONS
+   04. INFINITE MARQUEE SPAM
 ========================================= */
-.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
+.marquee-container {
+  background: var(--electric-blue); border-top: var(--border-thick); border-bottom: var(--border-thick);
+  padding: 1rem 0; overflow: hidden; white-space: nowrap;
+  transform: rotate(-3deg) scale(1.05); margin: 4rem 0;
+  box-shadow: 0 10px 0px rgba(0,0,0,1);
+}
+.marquee-text {
+  display: inline-block; font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
+  color: var(--white); text-transform: uppercase; animation: marquee 10s linear infinite;
+}
+.marquee-text span { color: var(--neon-yellow); margin: 0 2rem; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* =========================================
-   07. MARQUEE
+   05. THE WORK (NEOBRUTAL CARDS)
 ========================================= */
-.marquee-wrapper {
-  background: var(--lime); padding: 1.5rem 0; overflow: hidden; white-space: nowrap;
-  transform: rotate(-2deg) scale(1.05); margin: 6rem 0; border: 4px solid var(--black); box-shadow: 0 10px 30px rgba(212,255,0,0.1);
-}
-.marquee {
-  display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
-  color: var(--black); animation: scroll 20s linear infinite;
-}
-.marquee span { color: var(--hot); margin: 0 2rem; }
-
-/* =========================================
-   08. SECTION BASICS
-========================================= */
-.section { padding: 10vw 5vw; border-top: 1px solid var(--grey); }
+.section { padding: 8vw 5vw; }
 .section-title {
-  font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 10rem);
-  margin-bottom: 5rem; color: var(--white); line-height: 0.9;
+  font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 8rem);
+  margin-bottom: 3rem; text-transform: uppercase; text-shadow: 4px 4px 0px var(--acid-green);
+  display: inline-block; border-bottom: 8px solid var(--black);
 }
-.section-title span { color: var(--cyan); }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+.b-card {
+  background: var(--white); border: var(--border-thick); padding: 2.5rem;
+  box-shadow: var(--shadow-brutal); transition: all 0.2s ease-out;
+  position: relative; overflow: hidden; text-decoration: none; color: var(--black);
+}
+.b-card:nth-child(1) { background: #E8E8E8; }
+.b-card:nth-child(2) { background: var(--neon-yellow); }
+.b-card:nth-child(3) { background: #E8E8E8; }
+
+.b-card::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--hot-pink); transition: left 0.3s ease; z-index: 0;
+}
+.b-card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-hover); }
+.b-card:hover::before { left: 0; }
+
+.b-card h3, .b-card p { position: relative; z-index: 1; transition: color 0.3s; }
+.b-card h3 { font-family: 'Syne', sans-serif; font-size: 2.5rem; margin-bottom: 1rem; text-transform: uppercase; }
+.b-card p { font-size: 1rem; font-weight: 700; line-height: 1.4; }
+.b-card:hover h3, .b-card:hover p { color: var(--white); }
 
 /* =========================================
-   09. THE WORK (3D TILT CARDS)
+   06. THE TAKES (AGGRESSIVE ACCORDION)
 ========================================= */
-.build-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; perspective: 1000px; }
-.tilt-card {
-  background: var(--black-alt); border: 1px solid var(--grey); padding: 4rem 3rem;
-  text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between;
-  min-height: 400px; position: relative; transform-style: preserve-3d; transition: border-color 0.3s;
-}
-.tilt-card::before {
-  content: '0' counter(card-counter); counter-increment: card-counter;
-  font-family: 'DM Mono', monospace; font-size: 4rem; font-weight: 700;
-  color: var(--grey); position: absolute; top: 2rem; right: 2rem; opacity: 0.5; transition: color 0.3s;
-}
-body { counter-reset: card-counter; }
+.takes-container { border: var(--border-thick); background: var(--white); box-shadow: var(--shadow-brutal); }
+.take-item { border-bottom: var(--border-thick); }
+.take-item:last-child { border-bottom: none; }
 
-.tilt-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--white); margin-bottom: 1.5rem; transform: translateZ(50px); }
-.tilt-card p { font-family: 'DM Mono', monospace; font-size: 1.1rem; color: rgba(255,255,255,0.6); line-height: 1.6; transform: translateZ(30px); }
-
-.tilt-card:hover { border-color: var(--hot); box-shadow: 0 30px 60px rgba(255, 45, 107, 0.1); }
-.tilt-card:hover::before { color: var(--hot); opacity: 1; }
-.tilt-card:hover h3 { color: var(--lime); }
-
-/* =========================================
-   10. THE TAKES (SAVAGE ACCORDION)
-========================================= */
-.takes-wrapper { max-width: 1000px; margin: 0 auto; }
-.idea-item { border-bottom: 2px solid var(--grey); }
-.idea-trigger {
-  width: 100%; background: none; border: none; color: var(--white); padding: 3rem 0;
+.take-btn {
+  width: 100%; background: none; border: none; padding: 2rem;
   display: flex; justify-content: space-between; align-items: center;
-  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 5rem);
-  text-align: left; transition: color 0.3s, padding-left 0.3s;
+  font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 800;
+  text-transform: uppercase; text-align: left; transition: background 0.2s;
 }
-.idea-trigger:hover { color: var(--hot); padding-left: 2rem; }
-.idea-trigger span { font-size: 4rem; color: var(--lime); transition: transform 0.5s cubic-bezier(0.87, 0, 0.13, 1); }
-.idea-item.open .idea-trigger span { transform: rotate(135deg); color: var(--cyan); }
+.take-btn:hover { background: var(--acid-green); }
+.take-icon { font-size: 3rem; color: var(--hot-pink); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.take-item.open .take-icon { transform: rotate(45deg); color: var(--black); }
 
-.idea-body { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.87, 0, 0.13, 1); }
-.idea-content { padding: 0 0 4rem 0; font-size: 1.8rem; color: rgba(255,255,255,0.7); line-height: 1.5; font-weight: 400; }
-.idea-content strong { color: var(--white); }
+.take-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: var(--black); color: var(--white); }
+.take-inner { padding: 2rem; font-size: 1.2rem; line-height: 1.6; }
+.take-inner strong { color: var(--neon-yellow); }
+.take-item.open .take-content { max-height: 500px; }
 
 /* =========================================
-   11. THE PROCESS (HOVER GRID)
+   07. FOOTER / BIG BUTTON
 ========================================= */
-.process-grid { display: grid; grid-template-columns: 1fr; border-top: 2px solid var(--grey); }
-.process-row {
-  display: grid; grid-template-columns: 100px 1fr 1fr; gap: 2rem; padding: 4rem 2rem;
-  border-bottom: 2px solid var(--grey); transition: background 0.4s, color 0.4s;
-}
-.p-num { font-family: 'DM Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--grey); transition: color 0.4s; }
-.p-title { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--white); transition: color 0.4s; }
-.p-desc { font-size: 1.2rem; color: rgba(255,255,255,0.5); line-height: 1.5; transition: color 0.4s; }
-.p-desc strong { display: block; margin-top: 1rem; color: var(--white); font-family: 'DM Mono'; text-transform: uppercase; font-size: 0.9rem;}
-
-.process-row:hover { background: var(--cyan); }
-.process-row:hover .p-num, .process-row:hover .p-title { color: var(--black); }
-.process-row:hover .p-desc { color: var(--black-alt); }
-.process-row:hover .p-desc strong { color: var(--black); }
-
-@media (max-width: 900px) {
-  .process-row { grid-template-columns: 1fr; padding: 3rem 1rem; }
+.footer { padding: 10vw 5vw; text-align: center; background: var(--electric-blue); border-top: var(--border-thick); }
+.footer h2 {
+  font-family: 'Syne', sans-serif; font-size: clamp(4rem, 10vw, 10rem);
+  color: var(--white); text-transform: uppercase; margin-bottom: 3rem;
+  text-shadow: 6px 6px 0px var(--black); line-height: 0.9;
 }
 
-/* =========================================
-   12. FOOTER & MAGNETIC CTA
-========================================= */
-.footer { padding: 15vw 5vw; background: var(--violet); text-align: center; position: relative; overflow: hidden; }
-.footer h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 15vw, 15rem); line-height: 0.8; color: var(--black); margin-bottom: 4rem; }
-.footer h2 span { color: var(--lime); -webkit-text-stroke: 2px var(--black); }
-
-.magnetic-btn {
-  display: inline-block; padding: 2rem 5rem; background: var(--black); color: var(--lime);
-  font-family: 'Bebas Neue', sans-serif; font-size: 3rem; text-decoration: none;
-  border-radius: 100px; transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s, color 0.3s;
+.giant-btn {
+  display: inline-block; padding: 1.5rem 4rem;
+  background: var(--hot-pink); color: var(--white);
+  font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
+  text-decoration: none; text-transform: uppercase;
+  border: var(--border-thick); box-shadow: 10px 10px 0px var(--black);
+  transition: all 0.1s;
 }
-.magnetic-btn:hover { background: var(--hot); color: var(--black); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.giant-btn:hover {
+  background: var(--neon-yellow); color: var(--black);
+  transform: translate(4px, 4px); box-shadow: 6px 6px 0px var(--black);
+}
+.giant-btn:active {
+  transform: translate(10px, 10px); box-shadow: 0px 0px 0px var(--black);
+}
 
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .sticker { display: none; } /* Hide stickers on mobile to avoid blocking text */
+}
 </style>
 </head>
 <body>
 
-<div class="preloader" id="preloader">
-  <div class="loader-text">DIAGNOSTICS RUNNING</div>
-  <div class="loader-sub">Nitisha Maan ✦ Brand Chaos Engineer</div>
-</div>
-
-<div class="cursor-dot" id="cursor-dot"></div>
-<div class="cursor-outline" id="cursor-outline"></div>
-
-<div class="grain"></div>
-
 <nav>
-  <div class="logo scramble hover-target">NM ✦</div>
-  <ul class="nav-links">
-    <li><a href="#work" class="hover-target">The Work</a></li>
-    <li><a href="#takes" class="hover-target">The Takes</a></li>
-    <li><a href="#fix" class="hover-target">The Fix</a></li>
-  </ul>
+  <div class="nav-pill">NM ✦</div>
+  <div class="nav-links">
+    <a href="#work" class="nav-btn">THE LORE</a>
+    <a href="#takes" class="nav-btn">VIBE CHECK</a>
+    <a href="#contact" class="nav-btn" style="background: var(--neon-yellow);">PULL UP</a>
+  </div>
 </nav>
 
 <section class="hero">
-  
-  <div class="hero-grid">
-    <div class="hero-left reveal">
-      <div class="glitch-wrapper">
-        <h1 class="glitch" data-text="WE DON'T">WE DON'T</h1>
-      </div>
-      <div class="hero-accent">NEED MORE</div>
-      <div class="hero-hot">NOISE.</div>
-    </div>
+  <div class="sticker sticker-1">LITERALLY CURED MY BRAND</div>
+  <div class="sticker sticker-2">NO FLOP ERA ALLOWED</div>
+  <div class="sticker sticker-3">✳️</div>
 
-    <div class="diagnostic-panel reveal reveal-delay-1 hover-target">
-      <div class="diag-header">
-        [ SYSTEM STATUS ] <span>CRITICAL FAILURE</span>
-      </div>
-      <div class="diag-body">
-        <p>Your aesthetic is not a strategy. You are burning cash on ads, posting 5 times a week, and your brand has <strong class="scramble">zero defensible moat.</strong></p>
-        <p>If I swap your logo with your competitor's right now, no one would notice. You do not have a content problem. You have an identity crisis.</p>
-        
-        <ul class="symptom-list">
-          <li class="scramble">Symptom 01: Relying on aesthetics over positioning.</li>
-          <li class="scramble">Symptom 02: Posting randomly with no operational compass.</li>
-          <li class="scramble">Symptom 03: Sounding exactly like a ChatGPT prompt.</li>
-        </ul>
-      </div>
+  <div class="hero-text">
+    <h1>YOUR BRAND<br>IS GIVING<br><span>NOTHING.</span></h1>
+    <div class="hero-desc">
+      Stop confusing a Pinterest board with a personality. You are posting 3x a day and your audience is quite literally asleep.<br><br>
+      I build <span class="highlight">main-character brands</span> that drop the corporate filter, stop the endless scroll, and actually print money.
     </div>
-  </div>
-
-  <div class="rotating-badge">
-    <svg viewBox="0 0 100 100">
-      <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
-      <text font-family="DM Mono" font-size="11" font-weight="bold" letter-spacing="3.5">
-        <textPath href="#circlePath">CHAOS ENGINEER • BRAND ARCHITECT •</textPath>
-      </text>
-    </svg>
   </div>
 </section>
 
-<div class="marquee-wrapper reveal">
-  <div class="marquee">
-    BRAND CHAOS ENGINEER <span>✦</span> KILLING AMBIGUITY <span>✦</span> SCALING SYSTEMS <span>✦</span> BRAND CHAOS ENGINEER <span>✦</span> KILLING AMBIGUITY <span>✦</span> SCALING SYSTEMS <span>✦</span> BRAND CHAOS ENGINEER <span>✦</span>
+<div class="marquee-container">
+  <div class="marquee-text">
+    UNHINGED BUT STRATEGIC <span>✦</span> NO MORE BORING BRANDS <span>✦</span> LET HER COOK <span>✦</span> UNHINGED BUT STRATEGIC <span>✦</span> NO MORE BORING BRANDS <span>✦</span> LET HER COOK <span>✦</span>
   </div>
 </div>
 
 <section id="work" class="section">
-  <h2 class="section-title reveal">THE <span>WORK.</span></h2>
+  <h2 class="section-title">HOW I FIX YOU.</h2>
 
-  <div class="build-grid">
-    <a href="brand-thinking.html" class="tilt-card hover-target reveal">
-      <h3>Brand Thinking</h3>
-      <p>Stop confusing a moodboard with a strategy. We define the exact linguistic and visual guardrails of your identity so your team stops guessing.</p>
+  <div class="card-grid">
+    <a href="brand-thinking.html" class="b-card">
+      <h3>The Lore</h3>
+      <p>Identity isn't a hex code. We define your enemy, your tone, and your boundaries so you stop sounding like a ChatGPT prompt.</p>
     </a>
-
-    <a href="content-systems.html" class="tilt-card hover-target reveal reveal-delay-1">
-      <h3>Content Systems</h3>
-      <p>Predictable revenue requires predictable execution. I build the assembly line that gets you off the chaotic content hamster wheel.</p>
+    <a href="content-systems.html" class="b-card">
+      <h3>The Matrix</h3>
+      <p>The content hamster wheel is a trap. I build the unsexy operational playbooks and assembly lines so your brand scales without you.</p>
     </a>
-
-    <a href="marketing-foundations.html" class="tilt-card hover-target reveal reveal-delay-2">
-      <h3>Marketing Foundations</h3>
-      <p>Growth hacks won't fix a leaky bucket. We map the post-click journey, fix your flows, and set up the unsexy infrastructure that actually converts.</p>
+    <a href="marketing-foundations.html" class="b-card">
+      <h3>The Plumbing</h3>
+      <p>Stop paying Zuckerberg for traffic that bounces. We map the post-click journey and build the lifecycle flows that actually convert.</p>
     </a>
   </div>
 </section>
 
 <section id="takes" class="section">
-  <h2 class="section-title reveal">THE <span>TAKES.</span></h2>
+  <h2 class="section-title">THE VIBE CHECK.</h2>
 
-  <div class="takes-wrapper">
-    <div class="idea-item reveal">
-      <button class="idea-trigger hover-target" onclick="toggleIdea(this)">
-        TONE IS YOUR ONLY MOAT <span>+</span>
+  <div class="takes-container">
+    <div class="take-item">
+      <button class="take-btn" onclick="toggleTake(this)">
+        TONE IS YOUR ONLY DEFENSE <span class="take-icon">✚</span>
       </button>
-      <div class="idea-body">
-        <div class="idea-content">
-          If I can swap your logo with your competitor's and no one notices, you do not have a brand. You have a commodity. <strong>Tone is the first product you sell.</strong>
+      <div class="take-content">
+        <div class="take-inner">
+          If I can swap your logo with your competitor's and no one notices, you are an NPC. <strong>Tone is the first product you sell.</strong> Play it safe and you will be ignored.
         </div>
       </div>
     </div>
 
-    <div class="idea-item reveal">
-      <button class="idea-trigger hover-target" onclick="toggleIdea(this)">
-        AMBIGUITY IS EXPENSIVE <span>+</span>
+    <div class="take-item">
+      <button class="take-btn" onclick="toggleTake(this)">
+        AESTHETICS != STRATEGY <span class="take-icon">✚</span>
       </button>
-      <div class="idea-body">
-        <div class="idea-content">
-          Every time your social media manager has to ask "does this sound like us?", you are bleeding money. <strong>Clarity is the ultimate operational leverage.</strong>
+      <div class="take-content">
+        <div class="take-inner">
+          A cute color palette will not save a brand that doesn't know what it stands for. <strong>Clarity beats cleverness every single time.</strong>
         </div>
       </div>
     </div>
-    
-    <div class="idea-item reveal">
-      <button class="idea-trigger hover-target" onclick="toggleIdea(this)">
-        IF IT DOESN'T SCALE, IT ISN'T CONTENT <span>+</span>
+
+    <div class="take-item">
+      <button class="take-btn" onclick="toggleTake(this)">
+        IF IT DOESN'T SCALE, TRASH IT <span class="take-icon">✚</span>
       </button>
-      <div class="idea-body">
-        <div class="idea-content">
-          Hero assets are a vanity metric. Daily, systemic execution is what actually builds mental availability. <strong>Build the engine before you build the car.</strong>
+      <div class="take-content">
+        <div class="take-inner">
+          Viral hero assets are a vanity metric. Daily, systemic, relentless execution is what builds empires. <strong>Build the engine before you build the car.</strong>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="fix" class="section">
-  <h2 class="section-title reveal">HOW I <span>FIX IT.</span></h2>
-
-  <div class="process-grid">
-    <div class="process-row reveal hover-target">
-      <div class="p-num">01</div>
-      <div class="p-title">AMBIGUITY</div>
-      <div class="p-desc">Everything feels fine. Nothing is clear.<strong>You have opinions, not a brand.</strong></div>
-    </div>
-
-    <div class="process-row reveal hover-target">
-      <div class="p-num">02</div>
-      <div class="p-title">CLARITY</div>
-      <div class="p-desc">We define exactly what the brand stands against.<strong>This is where confusion dies.</strong></div>
-    </div>
-
-    <div class="process-row reveal hover-target">
-      <div class="p-num">03</div>
-      <div class="p-title">SYSTEM</div>
-      <div class="p-desc">Clarity translates into strict operational playbooks.<strong>No more daily chaos.</strong></div>
-    </div>
-
-    <div class="process-row reveal hover-target">
-      <div class="p-num">04</div>
-      <div class="p-title">SCALE</div>
-      <div class="p-desc">Execution compounds. Growth accelerates.<strong>You stop guessing and start owning.</strong></div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <h2 class="reveal">CLARITY <br><span>BUILDS BRANDS.</span></h2>
-  <a href="mailto:hello@example.com" class="magnetic-btn hover-target reveal">FIX YOUR BRAND →</a>
+<footer id="contact" class="footer">
+  <h2>STOP BEING <br>BORING.</h2>
+  <a href="mailto:hello@example.com" class="giant-btn">SLIDE INTO MY INBOX →</a>
 </footer>
 
 <script>
-  // 1. PRELOADER LOGIC
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('preloader').classList.add('hidden');
-    }, 600); // Snappier load
-  });
-
-  // 2. CUSTOM MAGNETIC CURSOR
-  const dot = document.getElementById("cursor-dot");
-  const outline = document.getElementById("cursor-outline");
-  const hoverTargets = document.querySelectorAll(".hover-target, a, button");
-
-  let mouseX = 0, mouseY = 0;
-  let outlineX = 0, outlineY = 0;
-
-  window.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    dot.style.left = mouseX + "px";
-    dot.style.top = mouseY + "px";
-  });
-
-  function animateCursor() {
-    let distX = mouseX - outlineX;
-    let distY = mouseY - outlineY;
-    outlineX += distX * 0.15;
-    outlineY += distY * 0.15;
-    outline.style.left = outlineX + "px";
-    outline.style.top = outlineY + "px";
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  hoverTargets.forEach(target => {
-    target.addEventListener("mouseenter", () => outline.classList.add("hovering"));
-    target.addEventListener("mouseleave", () => outline.classList.remove("hovering"));
-  });
-
-  // 3. TEXT SCRAMBLE HOVER EFFECT (HACKER VIBE)
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
-  document.querySelectorAll('.scramble').forEach(el => {
-    el.addEventListener('mouseover', event => {
-      let iteration = 0;
-      clearInterval(el.interval);
-      el.interval = setInterval(() => {
-        event.target.innerText = event.target.innerText
-          .split("")
-          .map((letter, index) => {
-            if(index < iteration) return event.target.dataset.value[index];
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("");
-        if(iteration >= event.target.dataset.value.length){ 
-          clearInterval(el.interval);
-        }
-        iteration += 1 / 3;
-      }, 30);
-    });
-    // Store original text
-    el.dataset.value = el.innerText;
-  });
-
-  // 4. VANILLA 3D TILT EFFECT FOR CARDS
-  const cards = document.querySelectorAll('.tilt-card');
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -10; 
-      const rotateY = ((x - centerX) / centerX) * 10;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-    });
-  });
-
-  // 5. MAGNETIC BUTTON (FOOTER CTA)
-  const magBtn = document.querySelector('.magnetic-btn');
-  magBtn.addEventListener('mousemove', (e) => {
-    const rect = magBtn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    magBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-  });
-  magBtn.addEventListener('mouseleave', () => {
-    magBtn.style.transform = `translate(0px, 0px)`;
-  });
-
-  // 6. ACCORDION LOGIC
-  function toggleIdea(btn) {
-    const item = btn.closest(".idea-item");
+  function toggleTake(btn) {
+    const item = btn.closest(".take-item");
     const isOpen = item.classList.contains("open");
-    const body = item.querySelector('.idea-body');
+    const content = item.querySelector('.take-content');
     
-    document.querySelectorAll(".idea-item").forEach(i => {
+    // Close others
+    document.querySelectorAll(".take-item").forEach(i => {
       i.classList.remove("open");
-      i.querySelector('.idea-body').style.maxHeight = null;
+      i.querySelector('.take-content').style.maxHeight = null;
     });
     
+    // Open clicked
     if (!isOpen) {
       item.classList.add("open");
-      body.style.maxHeight = body.scrollHeight + "px";
+      content.style.maxHeight = content.scrollHeight + "px";
     }
   }
-
-  // 7. SCROLL REVEAL (INTERSECTION OBSERVER)
-  const revealElements = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        revealObserver.unobserve(entry.target); 
-      }
-    });
-  }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-
 </script>
+
 </body>
 </html>
