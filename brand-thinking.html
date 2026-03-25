@@ -3,189 +3,228 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brand Thinking — Nitisha Maan</title>
+  <title>The Lore | Brand Thinking</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 
   <style>
+    /* =========================================
+       01. HYPER-POP VARIABLES
+    ========================================= */
     :root {
-      --black: #0a0a0a;
-      --white: #f5f0eb;
-      --lime: #d4ff00;
-      --hot: #ff2d6b;
-      --cyan: #00f0ff;
-      --purple: #9b5de5;
+      --black: #000000;
+      --white: #FAFAFA;
+      --neon-yellow: #CCFF00;
+      --hot-pink: #FF007F;
+      --electric-blue: #0033FF;
+      --acid-green: #00FF66;
+      --border-thick: 4px solid var(--black);
+      --shadow-brutal: 8px 8px 0px var(--black);
+      --shadow-hover: 12px 12px 0px var(--black);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+    html { scroll-behavior: smooth; }
 
+    /* The Gen Z Grid Background */
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--black);
-      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      background-color: var(--white);
+      color: var(--black);
       overflow-x: hidden;
+      background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
+      background-size: 30px 30px;
     }
 
+    ::selection { background: var(--hot-pink); color: var(--white); }
+
+    /* =========================================
+       02. BRUTALIST NAV
+    ========================================= */
     nav {
-      padding: 1.5rem 5vw;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
+      position: fixed; top: 0; width: 100%; padding: 1.5rem 2vw;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1000; pointer-events: none;
     }
-
-    nav a {
-      font-family: 'DM Mono', monospace;
+    .nav-btn {
+      background: var(--neon-yellow);
+      border: var(--border-thick);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
       text-decoration: none;
-      color: var(--purple);
-      letter-spacing: 0.2em;
-      font-size: 0.75rem;
+      color: var(--black);
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0px var(--black);
+      pointer-events: auto;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover { background: var(--hot-pink); color: var(--white); transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--black); }
+
+    /* =========================================
+       03. HERO SECTION
+    ========================================= */
+    .header {
+      padding: 15vh 5vw 8vw;
+      border-bottom: var(--border-thick);
+      position: relative;
+      background: var(--electric-blue);
+      overflow: hidden;
     }
 
-    /* HEADER */
-    .header {
-      padding: 10vw 5vw 6vw;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-      position: relative;
+    /* Floating Stickers */
+    .sticker {
+      position: absolute;
+      padding: 1rem;
+      background: var(--white);
+      border: var(--border-thick);
+      box-shadow: var(--shadow-brutal);
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      animation: float 6s ease-in-out infinite;
+      z-index: 10;
+      color: var(--black);
     }
+    .sticker-1 { top: 25%; right: 10%; background: var(--hot-pink); color: var(--white); transform: rotate(15deg); }
+    .sticker-2 { bottom: 15%; right: 25%; background: var(--acid-green); animation-delay: -3s; transform: rotate(-10deg); }
+
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-20px) rotate(-5deg); } }
 
     h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 10vw, 11rem);
-      line-height: 0.9;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(4rem, 12vw, 14rem);
+      line-height: 0.85;
       margin-bottom: 2rem;
+      text-transform: uppercase;
+      color: var(--white);
+      text-shadow: 6px 6px 0px var(--black);
+      position: relative;
+      z-index: 2;
     }
 
     .manifesto {
       font-size: 1.2rem;
-      max-width: 620px;
+      font-weight: 700;
+      max-width: 700px;
       line-height: 1.6;
-      color: rgba(245,240,235,0.75);
+      background: var(--white);
+      color: var(--black);
+      border: var(--border-thick);
+      padding: 2rem;
+      box-shadow: var(--shadow-brutal);
+      position: relative;
+      z-index: 2;
+      transform: rotate(-1deg);
     }
 
     .manifesto span {
-      color: var(--purple);
-      font-weight: 700;
+      background: var(--neon-yellow);
+      padding: 0 5px;
     }
 
-    .floating-noise {
-      position: absolute;
-      right: 5vw;
-      top: 30%;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      opacity: 0.4;
-      transform: rotate(-8deg);
-    }
-
-    /* SPLIT */
+    /* =========================================
+       04. THE SPLIT (PROBLEM VS SYSTEM)
+    ========================================= */
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
+      border-bottom: var(--border-thick);
+      background: var(--white);
     }
 
-    @media(max-width:768px){
+    @media(max-width:900px){
       .split { grid-template-columns: 1fr; }
     }
 
-    .block {
-      padding: 6vw 5vw;
-    }
-
-    .left {
-      border-right: 2px solid rgba(255,255,255,0.1);
-    }
-
-    .right {
-      background: var(--purple);
-      color: var(--black);
-    }
+    .block { padding: 8vw 5vw; }
+    .left { border-right: var(--border-thick); background: var(--white); }
+    .right { background: var(--neon-yellow); color: var(--black); }
+    @media(max-width:900px){ .left { border-right: none; border-bottom: var(--border-thick); } }
 
     h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 5vw, 4rem);
       margin-bottom: 2rem;
-      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0px var(--black);
+      color: var(--white);
     }
+    .left h2 { color: var(--hot-pink); }
+    .right h2 { color: var(--electric-blue); }
 
-    .left h2 { color: var(--hot); }
-    .right h2 { color: var(--black); }
+    p { font-size: 1.1rem; font-weight: 700; line-height: 1.6; margin-bottom: 1.5rem; max-width: 520px; }
 
-    p {
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      max-width: 520px;
-    }
-
-    /* LIST */
-    ul { list-style: none; margin-top: 2rem; }
-
+    /* Brutalist Lists */
+    ul { list-style: none; margin-top: 3rem; }
     li {
-      border-top: 1px solid rgba(0,0,0,0.2);
-      padding: 1rem 0;
-      font-size: 1.05rem;
+      border-top: var(--border-thick);
+      padding: 1.5rem 0;
+      font-size: 1.1rem;
+      font-weight: 700;
     }
-
-    .left li {
-      border-color: rgba(255,255,255,0.15);
-    }
+    li:last-child { border-bottom: var(--border-thick); }
+    
+    .left li { border-color: var(--black); }
+    .right li { border-color: var(--black); }
 
     li strong {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      text-transform: uppercase;
       display: block;
       margin-bottom: 0.5rem;
+      color: var(--black);
     }
+    .left li strong { color: var(--hot-pink); text-shadow: 2px 2px 0px var(--black); }
 
-    /* TAG */
+    /* Hyper-pop Tag */
     .tag {
       display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      background: var(--hot);
-      color: white;
-      padding: 0.4rem 0.6rem;
-      margin-top: 1rem;
-    }
-
-    /* CTA */
-    .cta {
-      padding: 10vw 5vw;
-      text-align: center;
-    }
-
-    .cta-text {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      margin-bottom: 3rem;
-      line-height: 1.1;
-    }
-
-    .btn {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Syne', sans-serif;
       font-size: 1.5rem;
-      padding: 1rem 3rem;
-      border: 2px solid var(--lime);
-      color: var(--black);
-      background: var(--lime);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      transition: all 0.3s ease;
+      font-weight: 800;
+      background: var(--black);
+      color: var(--acid-green);
+      padding: 0.5rem 1rem;
+      margin: 2rem 0;
+      transform: rotate(2deg);
+      box-shadow: 4px 4px 0px var(--hot-pink);
     }
 
-    .btn:hover {
-      background: var(--hot);
-      border-color: var(--hot);
+    /* =========================================
+       05. CTA SECTION
+    ========================================= */
+    .cta { padding: 10vw 5vw; text-align: center; background: var(--acid-green); }
+    .cta-text {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      margin-bottom: 4rem;
+      line-height: 0.9;
+      text-transform: uppercase;
       color: var(--white);
-      transform: scale(1.05);
+      text-shadow: 6px 6px 0px var(--black);
     }
 
-    /* FUN HOVER */
-    .glitch:hover {
-      color: var(--cyan);
-      letter-spacing: 0.08em;
+    .giant-btn {
+      display: inline-block; padding: 1.5rem 4rem;
+      background: var(--black); color: var(--neon-yellow);
+      font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
+      text-decoration: none; text-transform: uppercase;
+      border: var(--border-thick); box-shadow: 10px 10px 0px var(--hot-pink);
+      transition: all 0.1s;
     }
+    .giant-btn:hover {
+      background: var(--hot-pink); color: var(--white); border-color: var(--black);
+      transform: translate(4px, 4px); box-shadow: 6px 6px 0px var(--black);
+    }
+    .giant-btn:active { transform: translate(10px, 10px); box-shadow: 0px 0px 0px var(--black); }
+
+    /* Scramble class for fun */
+    .scramble { display: inline-block; }
 
   </style>
 </head>
@@ -193,10 +232,13 @@
 <body>
 
 <nav>
-  <a href="index.html">← BACK</a>
+  <a href="index.html" class="nav-btn scramble">← MAIN MENU</a>
 </nav>
 
 <section class="header">
+  <div class="sticker sticker-1">AESTHETICS ≠ STRATEGY</div>
+  <div class="sticker sticker-2">STOP THE CAP</div>
+
   <h1>BRAND<br>THINKING.</h1>
 
   <p class="manifesto">
@@ -204,12 +246,6 @@
     A color palette is not a strategy.<br><br>
     <span>If you don’t know what you stand against, you stand for nothing.</span>
   </p>
-
-  <div class="floating-noise">
-    make it premium<br>
-    make it aesthetic<br>
-    make it viral
-  </div>
 </section>
 
 <section class="split">
@@ -218,55 +254,47 @@
     <h2>THE VIBES TRAP.</h2>
 
     <p>Most brands are built on ✨feeling✨, not decisions.</p>
-
-    <p>Nice logo. Clean website. Zero clarity.</p>
-
+    <p>Aesthetic Instagram grid. Zero actual clarity.</p>
     <p>The result?</p>
-
-    <p>Every team invents a new version of the brand every day.</p>
-
-    <p><strong>You don’t have a brand.<br>You have inconsistent behavior.</strong></p>
-
-    <span class="tag">AESTHETIC ≠ STRATEGY</span>
+    <p>Your social manager is fighting for her life trying to guess your tone.</p>
+    
+    <span class="tag">YOU HAVE INCONSISTENT BEHAVIOR.</span>
 
     <ul>
-      <li><strong>SYMPTOM 01</strong> everyone writes differently</li>
-      <li><strong>SYMPTOM 02</strong> tone changes every week</li>
-      <li><strong>SYMPTOM 03</strong> brand = random mood</li>
+      <li><strong class="scramble">SYMPTOM 01</strong> Everyone on the team writes differently.</li>
+      <li><strong class="scramble">SYMPTOM 02</strong> Your tone changes depending on the week.</li>
+      <li><strong class="scramble">SYMPTOM 03</strong> Your brand is just a random moodboard.</li>
     </ul>
-
   </div>
 
   <div class="block right">
     <h2>THE SYSTEM.</h2>
 
-    <p>I turn “vibes” into rules.</p>
-
-    <p>Because brands don’t scale on taste.<br>They scale on consistency.</p>
+    <p>I turn "vibes" into brutal rules.</p>
+    <p>Because brands don’t scale on taste. They scale on consistency.</p>
 
     <ul>
       <li>
-        <strong>01 — LANGUAGE</strong>
-        what you say, how you say it, what you never say
+        <strong class="scramble">01 — LANGUAGE</strong>
+        What you say, how you say it, and what you literally never say.
       </li>
-
       <li>
-        <strong>02 — ENEMY</strong>
-        what you stand against (this is where identity comes from)
+        <strong class="scramble">02 — THE ENEMY</strong>
+        What you stand against (this is where identity actually comes from).
       </li>
-
       <li>
-        <strong>03 — BEHAVIOR</strong>
-        how the brand shows up across every touchpoint
+        <strong class="scramble">03 — BEHAVIOR</strong>
+        How the brand shows up across every single touchpoint.
       </li>
-
       <li>
-        <strong>04 — PLAYBOOK</strong>
-        so even your intern sounds like your founder
+        <strong class="scramble">04 — PLAYBOOK</strong>
+        So even your newest intern sounds exactly like the founder.
       </li>
     </ul>
 
-    <p class="glitch"><strong>no more “make it sound premium” feedback loops.</strong></p>
+    <p style="margin-top: 3rem; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase;">
+      <strong>No more "make it sound premium" feedback loops.</strong>
+    </p>
 
   </div>
 
@@ -278,10 +306,36 @@
     VIBES BUILD CONFUSION.
   </div>
 
-  <a href="mailto:hello@example.com" class="btn">
+  <a href="mailto:hello@example.com" class="giant-btn scramble">
     FIX YOUR BRAND →
   </a>
 </section>
+
+<script>
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+  document.querySelectorAll('.scramble').forEach(el => {
+    el.dataset.value = el.innerText; // Store original text
+    
+    el.addEventListener('mouseover', event => {
+      let iteration = 0;
+      clearInterval(el.interval);
+      el.interval = setInterval(() => {
+        event.target.innerText = event.target.innerText
+          .split("")
+          .map((letter, index) => {
+            if(index < iteration) return event.target.dataset.value[index];
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join("");
+        if(iteration >= event.target.dataset.value.length){ 
+          clearInterval(el.interval);
+          event.target.innerText = event.target.dataset.value; // ensure it resets perfectly
+        }
+        iteration += 1 / 2; // Speed of scramble
+      }, 30);
+    });
+  });
+</script>
 
 </body>
 </html>
