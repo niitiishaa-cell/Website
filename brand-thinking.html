@@ -2,339 +2,738 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Lore | Brand Thinking</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Thinking | Nitisha Maan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=Caveat:wght@700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    /* =========================================
-       01. HYPER-POP VARIABLES
-    ========================================= */
     :root {
-      --black: #000000;
-      --white: #FAFAFA;
-      --neon-yellow: #CCFF00;
-      --hot-pink: #FF007F;
-      --electric-blue: #0033FF;
-      --acid-green: #00FF66;
-      --border-thick: 4px solid var(--black);
-      --shadow-brutal: 8px 8px 0px var(--black);
-      --shadow-hover: 12px 12px 0px var(--black);
+      --black: #0a0a0a;
+      --white: #f5f0eb;
+      --lime: #d4ff00;
+      --hot: #ff2d6b;
+      --cyan: #00f0ff;
+      --purple: #9b5de5;
+      --orange: #ff6b2b;
+      --yellow: #ffe500;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::selection { background: var(--lime); color: var(--black); }
     html { scroll-behavior: smooth; }
 
-    /* The Gen Z Grid Background */
     body {
-      font-family: 'Space Mono', monospace;
-      background-color: var(--white);
-      color: var(--black);
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--black);
+      color: var(--white);
       overflow-x: hidden;
-      background-image: radial-gradient(var(--black) 1.5px, transparent 1.5px);
-      background-size: 30px 30px;
+      cursor: none;
     }
 
-    ::selection { background: var(--hot-pink); color: var(--white); }
+    /* ── NOISE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9990;
+      opacity: 0.5;
+    }
 
-    /* =========================================
-       02. BRUTALIST NAV
-    ========================================= */
+    /* ── CURSOR ── */
+    #cursor {
+      position: fixed;
+      width: 18px; height: 18px;
+      background: var(--lime);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background 0.2s;
+      mix-blend-mode: difference;
+    }
+    #cursor.big { width: 60px; height: 60px; }
+    #cursor-trail {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--hot);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: left 0.12s ease, top 0.12s ease;
+      opacity: 0.7;
+    }
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99996;
+      font-size: 1rem;
+      animation: sparkleOut 0.6s forwards;
+    }
+    @keyframes sparkleOut {
+      0%   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, calc(-50% - 30px)) scale(0.3); }
+    }
+
+    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; width: 100%; padding: 1.5rem 2vw;
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 1000; pointer-events: none;
+      position: fixed;
+      top: 0; width: 100%;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      mix-blend-mode: difference;
     }
-    .nav-btn {
-      background: var(--neon-yellow);
-      border: var(--border-thick);
-      padding: 0.5rem 1.5rem;
-      border-radius: 50px;
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 800;
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
       text-decoration: none;
-      color: var(--black);
+    }
+    .nav-back {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      box-shadow: 4px 4px 0px var(--black);
-      pointer-events: auto;
-      transition: all 0.2s;
+      transition: color 0.2s;
     }
-    .nav-btn:hover { background: var(--hot-pink); color: var(--white); transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--black); }
+    .nav-back:hover { color: var(--lime); }
 
-    /* =========================================
-       03. HERO SECTION
-    ========================================= */
-    .header {
-      padding: 15vh 5vw 8vw;
-      border-bottom: var(--border-thick);
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--hot);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 14rem 5vw 6vw;
       position: relative;
-      background: var(--electric-blue);
       overflow: hidden;
+      border-bottom: 2px solid var(--black);
     }
 
-    /* Floating Stickers */
+    /* BG number */
+    .hero-bg-num {
+      position: absolute;
+      top: 50%;
+      right: -2vw;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(20rem, 40vw, 50rem);
+      line-height: 1;
+      color: rgba(0,0,0,0.12);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--black);
+      opacity: 0.6;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.3s forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 13vw, 15rem);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .hero h1 .outline {
+      -webkit-text-stroke: 3px var(--black);
+      color: transparent;
+      display: block;
+    }
+    .hero h1 .filled { display: block; }
+
+    .hero-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-top: 2rem;
+      max-width: 520px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.7s forwards;
+    }
+
+    /* Floating stickers */
     .sticker {
       position: absolute;
-      padding: 1rem;
-      background: var(--white);
-      border: var(--border-thick);
-      box-shadow: var(--shadow-brutal);
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      animation: float 6s ease-in-out infinite;
-      z-index: 10;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      padding: 0.7rem 1.2rem;
+      border: 2.5px solid var(--black);
+      background: var(--lime);
       color: var(--black);
+      box-shadow: 5px 5px 0 var(--black);
+      pointer-events: none;
+      animation: floatSticker 5s ease-in-out infinite;
+      opacity: 0;
+      animation: stickerIn 0.5s forwards, floatSticker 5s ease-in-out 0.5s infinite;
     }
-    .sticker-1 { top: 25%; right: 10%; background: var(--hot-pink); color: var(--white); transform: rotate(15deg); }
-    .sticker-2 { bottom: 15%; right: 25%; background: var(--acid-green); animation-delay: -3s; transform: rotate(-10deg); }
+    .sticker-a { top: 22%; right: 8%; transform: rotate(12deg); animation-delay: 0.8s, 0.8s; background: var(--yellow); }
+    .sticker-b { top: 42%; right: 18%; transform: rotate(-8deg); animation-delay: 1.1s, 1.1s; background: var(--cyan); }
+    .sticker-c { bottom: 22%; right: 6%; transform: rotate(5deg); animation-delay: 1.4s, 1.4s; }
 
-    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-20px) rotate(-5deg); } }
-
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(4rem, 12vw, 14rem);
-      line-height: 0.85;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      color: var(--white);
-      text-shadow: 6px 6px 0px var(--black);
-      position: relative;
-      z-index: 2;
+    @keyframes stickerIn {
+      from { opacity: 0; transform: scale(0) rotate(-20deg); }
+      to   { opacity: 1; }
+    }
+    @keyframes floatSticker {
+      0%, 100% { translate: 0 0; }
+      50%       { translate: 0 -14px; }
     }
 
-    .manifesto {
-      font-size: 1.2rem;
-      font-weight: 700;
-      max-width: 700px;
-      line-height: 1.6;
-      background: var(--white);
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--lime);
       color: var(--black);
-      border: var(--border-thick);
-      padding: 2rem;
-      box-shadow: var(--shadow-brutal);
-      position: relative;
-      z-index: 2;
-      transform: rotate(-1deg);
+      padding: 0.8rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      border-bottom: 2px solid rgba(255,255,255,0.08);
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: scrollM 16s linear infinite;
+    }
+    .marquee-inner span { margin: 0 2rem; }
+    .dot { color: var(--hot); }
+    @keyframes scrollM { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── SECTION COMMON ── */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
     }
 
-    .manifesto span {
-      background: var(--neon-yellow);
-      padding: 0 5px;
-    }
-
-    /* =========================================
-       04. THE SPLIT (PROBLEM VS SYSTEM)
-    ========================================= */
+    /* ── SPLIT SECTION ── */
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      border-bottom: var(--border-thick);
-      background: var(--white);
+      border-bottom: 2px solid rgba(255,255,255,0.08);
     }
-
-    @media(max-width:900px){
+    @media (max-width: 860px) {
       .split { grid-template-columns: 1fr; }
+      .split-right { border-top: 2px solid rgba(255,255,255,0.08); }
     }
 
-    .block { padding: 8vw 5vw; }
-    .left { border-right: var(--border-thick); background: var(--white); }
-    .right { background: var(--neon-yellow); color: var(--black); }
-    @media(max-width:900px){ .left { border-right: none; border-bottom: var(--border-thick); } }
-
-    h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 5vw, 4rem);
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      text-shadow: 4px 4px 0px var(--black);
-      color: var(--white);
+    .split-left {
+      padding: 6vw 5vw;
+      border-right: 2px solid rgba(255,255,255,0.08);
+      background: #111;
     }
-    .left h2 { color: var(--hot-pink); }
-    .right h2 { color: var(--electric-blue); }
-
-    p { font-size: 1.1rem; font-weight: 700; line-height: 1.6; margin-bottom: 1.5rem; max-width: 520px; }
-
-    /* Brutalist Lists */
-    ul { list-style: none; margin-top: 3rem; }
-    li {
-      border-top: var(--border-thick);
-      padding: 1.5rem 0;
-      font-size: 1.1rem;
-      font-weight: 700;
+    .split-right {
+      padding: 6vw 5vw;
+      background: #0d0d0d;
     }
-    li:last-child { border-bottom: var(--border-thick); }
-    
-    .left li { border-color: var(--black); }
-    .right li { border-color: var(--black); }
 
-    li strong {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--black);
+    .split-left .section-title { color: var(--hot); }
+    .split-right .section-title { color: var(--lime); }
+
+    .body-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(245,240,235,0.6);
+      max-width: 460px;
+      margin-bottom: 1rem;
     }
-    .left li strong { color: var(--hot-pink); text-shadow: 2px 2px 0px var(--black); }
 
-    /* Hyper-pop Tag */
-    .tag {
-      display: inline-block;
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
+    /* Diagnosis card */
+    .diagnosis-card {
       background: var(--black);
-      color: var(--acid-green);
-      padding: 0.5rem 1rem;
-      margin: 2rem 0;
-      transform: rotate(2deg);
-      box-shadow: 4px 4px 0px var(--hot-pink);
+      border: 2px solid rgba(255,255,255,0.08);
+      padding: 1.5rem 2rem;
+      margin-top: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
     }
+    .diagnosis-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--hot);
+      transition: width 0.3s ease;
+    }
+    .diagnosis-card:hover { border-color: var(--hot); }
+    .diagnosis-card:hover::before { width: 100%; opacity: 0.06; }
 
-    /* =========================================
-       05. CTA SECTION
-    ========================================= */
-    .cta { padding: 10vw 5vw; text-align: center; background: var(--acid-green); }
-    .cta-text {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      margin-bottom: 4rem;
-      line-height: 0.9;
+    .diag-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      color: var(--hot);
+      margin-bottom: 0.6rem;
       text-transform: uppercase;
-      color: var(--white);
-      text-shadow: 6px 6px 0px var(--black);
+    }
+    .diag-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .diagnosis-card:hover .diag-title { color: var(--hot); }
+    .diag-body {
+      font-size: 0.9rem;
+      color: rgba(245,240,235,0.5);
+      line-height: 1.6;
     }
 
-    .giant-btn {
-      display: inline-block; padding: 1.5rem 4rem;
-      background: var(--black); color: var(--neon-yellow);
-      font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800;
-      text-decoration: none; text-transform: uppercase;
-      border: var(--border-thick); box-shadow: 10px 10px 0px var(--hot-pink);
-      transition: all 0.1s;
+    /* System card */
+    .system-card {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      transition: padding-left 0.3s ease;
     }
-    .giant-btn:hover {
-      background: var(--hot-pink); color: var(--white); border-color: var(--black);
-      transform: translate(4px, 4px); box-shadow: 6px 6px 0px var(--black);
+    .system-card:first-of-type { border-top: 1px solid rgba(255,255,255,0.07); margin-top: 2.5rem; }
+    .system-card:hover { padding-left: 1rem; }
+
+    .sys-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.25);
+      padding-top: 0.3rem;
+      flex-shrink: 0;
+      width: 3rem;
     }
-    .giant-btn:active { transform: translate(10px, 10px); box-shadow: 0px 0px 0px var(--black); }
+    .sys-content {}
+    .sys-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+      transition: color 0.3s;
+    }
+    .system-card:hover .sys-title { color: var(--lime); }
+    .sys-body {
+      font-size: 0.9rem;
+      color: rgba(245,240,235,0.5);
+      line-height: 1.6;
+      max-width: 340px;
+    }
 
-    /* Scramble class for fun */
-    .scramble { display: inline-block; }
+    /* ── TAG / CALLOUT ── */
+    .inline-tag {
+      display: inline-block;
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: var(--lime);
+      color: var(--black);
+      padding: 0.3rem 1rem;
+      transform: rotate(-1.5deg);
+      margin: 2rem 0;
+    }
 
+    /* ── MANIFESTO SECTION ── */
+    .manifesto-section {
+      padding: 8vw 5vw;
+      background: var(--cyan);
+      color: var(--black);
+      border-bottom: 2px solid var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .manifesto-section .section-title { color: var(--black); }
+    .manifesto-section .section-label { color: var(--black); opacity: 0.5; }
+
+    .manifesto-lines { margin-top: 3rem; }
+    .m-line {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5.5vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      border-top: 2px solid rgba(0,0,0,0.15);
+      padding: 1.2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      transition: color 0.25s, padding-left 0.3s;
+      cursor: none;
+    }
+    .m-line:last-child { border-bottom: 2px solid rgba(0,0,0,0.15); }
+    .m-line:hover { color: var(--hot); padding-left: 1.5rem; }
+    .m-line:hover .m-tag { opacity: 1; transform: scale(1); }
+    .m-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      background: var(--black);
+      color: var(--cyan);
+      padding: 0.3rem 0.8rem;
+      flex-shrink: 0;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      padding: 10vw 5vw;
+      background: var(--black);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-top: 2px solid rgba(255,255,255,0.08);
+    }
+
+    .cta-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 11rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      margin-bottom: 3rem;
+    }
+    .cta-headline .l1 { color: var(--white); display: block; }
+    .cta-headline .l2 {
+      -webkit-text-stroke: 2px var(--lime);
+      color: transparent;
+      display: block;
+    }
+    .cta-headline .l3 { color: var(--lime); display: block; }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      letter-spacing: 0.1em;
+      padding: 1.2rem 3.5rem;
+      background: var(--lime);
+      color: var(--black);
+      text-decoration: none;
+      border: 2px solid var(--lime);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s;
+    }
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--hot);
+      transform: translateX(-101%);
+      transition: transform 0.3s ease;
+      z-index: 0;
+    }
+    .cta-btn:hover::before { transform: translateX(0); }
+    .cta-btn:hover { color: var(--white); border-color: var(--hot); }
+    .cta-btn span { position: relative; z-index: 1; }
+
+    .cta-note {
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      color: rgba(245,240,235,0.4);
+      margin-top: 1.5rem;
+    }
+
+    /* ── FOOTER BAR ── */
+    .footer-bar {
+      padding: 1.5rem 5vw;
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bar span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .footer-bar a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--lime);
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    /* ── UTILS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1.2rem 1.5rem; }
+    }
   </style>
 </head>
-
 <body>
 
+<div id="cursor"></div>
+<div id="cursor-trail"></div>
+
+<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-btn scramble">← MAIN MENU</a>
+  <a href="index.html" class="nav-logo">NM ✦</a>
+  <a href="index.html" class="nav-back">← Back to main</a>
 </nav>
 
-<section class="header">
-  <div class="sticker sticker-1">AESTHETICS ≠ STRATEGY</div>
-  <div class="sticker sticker-2">STOP THE CAP</div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-num">01</div>
 
-  <h1>BRAND<br>THINKING.</h1>
+  <div class="sticker sticker-a">AESTHETICS ≠ STRATEGY</div>
+  <div class="sticker sticker-b">STOP VIBING, START DECIDING</div>
+  <div class="sticker sticker-c">NO MORE MOODBOARDS 💀</div>
 
-  <p class="manifesto">
+  <p class="hero-eyebrow">✦ Service 01 / Brand Thinking ✦</p>
+  <h1>
+    <span class="outline">BRAND</span>
+    <span class="filled">THINK</span>
+    <span class="outline">ING.</span>
+  </h1>
+  <p class="hero-sub">
     A logo is not a brand.<br>
-    A color palette is not a strategy.<br><br>
-    <span>If you don’t know what you stand against, you stand for nothing.</span>
+    A color palette is not a strategy.<br>
+    If you don't know what you stand <em>against</em> — you stand for nothing. 🙃
   </p>
 </section>
 
-<section class="split">
-
-  <div class="block left">
-    <h2>THE VIBES TRAP.</h2>
-
-    <p>Most brands are built on ✨feeling✨, not decisions.</p>
-    <p>Aesthetic Instagram grid. Zero actual clarity.</p>
-    <p>The result?</p>
-    <p>Your social manager is fighting for her life trying to guess your tone.</p>
-    
-    <span class="tag">YOU HAVE INCONSISTENT BEHAVIOR.</span>
-
-    <ul>
-      <li><strong class="scramble">SYMPTOM 01</strong> Everyone on the team writes differently.</li>
-      <li><strong class="scramble">SYMPTOM 02</strong> Your tone changes depending on the week.</li>
-      <li><strong class="scramble">SYMPTOM 03</strong> Your brand is just a random moodboard.</li>
-    </ul>
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>BRAND IDENTITY</span><span class="dot">✦</span>
+    <span>TONE OF VOICE</span><span class="dot">✦</span>
+    <span>MESSAGING ARCHITECTURE</span><span class="dot">✦</span>
+    <span>CLARITY NOT VIBES</span><span class="dot">✦</span>
+    <span>BRAND PLAYBOOKS</span><span class="dot">✦</span>
+    <span>BRAND IDENTITY</span><span class="dot">✦</span>
+    <span>TONE OF VOICE</span><span class="dot">✦</span>
+    <span>MESSAGING ARCHITECTURE</span><span class="dot">✦</span>
+    <span>CLARITY NOT VIBES</span><span class="dot">✦</span>
+    <span>BRAND PLAYBOOKS</span><span class="dot">✦</span>
   </div>
+</div>
 
-  <div class="block right">
-    <h2>THE SYSTEM.</h2>
+<!-- SPLIT: PROBLEM vs SYSTEM -->
+<div class="split">
 
-    <p>I turn "vibes" into brutal rules.</p>
-    <p>Because brands don’t scale on taste. They scale on consistency.</p>
+  <div class="split-left">
+    <p class="section-label">// the diagnosis</p>
+    <h2 class="section-title reveal">THE<br>VIBES<br>TRAP.</h2>
 
-    <ul>
-      <li>
-        <strong class="scramble">01 — LANGUAGE</strong>
-        What you say, how you say it, and what you literally never say.
-      </li>
-      <li>
-        <strong class="scramble">02 — THE ENEMY</strong>
-        What you stand against (this is where identity actually comes from).
-      </li>
-      <li>
-        <strong class="scramble">03 — BEHAVIOR</strong>
-        How the brand shows up across every single touchpoint.
-      </li>
-      <li>
-        <strong class="scramble">04 — PLAYBOOK</strong>
-        So even your newest intern sounds exactly like the founder.
-      </li>
-    </ul>
-
-    <p style="margin-top: 3rem; font-family: 'Syne', sans-serif; font-size: 2rem; text-transform: uppercase;">
-      <strong>No more "make it sound premium" feedback loops.</strong>
+    <p class="body-text reveal" style="margin-top:2rem;">
+      Most brands are built on ✨feeling✨ — not decisions.<br>
+      Aesthetic Instagram grid. Zero actual clarity.
+    </p>
+    <p class="body-text reveal">
+      Your social manager is fighting for her life trying to guess your tone from a mood board that has a Zaha Hadid building and a matcha latte on it.
     </p>
 
+    <div class="inline-tag reveal">you have inconsistent behavior 🚨</div>
+
+    <div class="diagnosis-card reveal">
+      <div class="diag-num">// symptom 01</div>
+      <div class="diag-title">EVERYONE SOUNDS DIFFERENT.</div>
+      <div class="diag-body">Sales deck reads formal. Instagram is quirky. Newsletter is... a press release?? Pick a lane.</div>
+    </div>
+
+    <div class="diagnosis-card reveal">
+      <div class="diag-num">// symptom 02</div>
+      <div class="diag-title">TONE CHANGES BY THE WEEK.</div>
+      <div class="diag-body">Your brand voice depends on who had a good morning. That's not a brand, that's a personality disorder.</div>
+    </div>
+
+    <div class="diagnosis-card reveal">
+      <div class="diag-num">// symptom 03</div>
+      <div class="diag-title">JUST A RANDOM MOODBOARD.</div>
+      <div class="diag-body">Saved 847 references on Pinterest. Still can't explain what the brand stands for. Classic.</div>
+    </div>
   </div>
 
+  <div class="split-right">
+    <p class="section-label">// the fix</p>
+    <h2 class="section-title reveal">THE<br>SYSTEM.</h2>
+
+    <p class="body-text reveal" style="margin-top:2rem;">
+      I turn vibes into brutal, irreversible rules.
+    </p>
+    <p class="body-text reveal">
+      Because brands don't scale on taste. They scale on <strong style="color:var(--lime)">consistency that doesn't require a creative director in the room.</strong>
+    </p>
+
+    <div class="system-card reveal">
+      <div class="sys-num">01 —</div>
+      <div class="sys-content">
+        <div class="sys-title">LANGUAGE RULES</div>
+        <div class="sys-body">What you say, how you say it, and the words you are literally banned from using. Ever.</div>
+      </div>
+    </div>
+
+    <div class="system-card reveal">
+      <div class="sys-num">02 —</div>
+      <div class="sys-content">
+        <div class="sys-title">THE ENEMY</div>
+        <div class="sys-body">What you stand against. This is where identity actually comes from — not your "why."</div>
+      </div>
+    </div>
+
+    <div class="system-card reveal">
+      <div class="sys-num">03 —</div>
+      <div class="sys-content">
+        <div class="sys-title">BEHAVIOR MAP</div>
+        <div class="sys-body">How the brand shows up across every touchpoint. No more "make it feel premium" feedback loops.</div>
+      </div>
+    </div>
+
+    <div class="system-card reveal">
+      <div class="sys-num">04 —</div>
+      <div class="sys-content">
+        <div class="sys-title">THE PLAYBOOK</div>
+        <div class="sys-body">So even your newest intern sounds exactly like the founder on day one. No briefing call needed.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MANIFESTO SECTION -->
+<section class="manifesto-section">
+  <p class="section-label">// the things i believe (loudly)</p>
+  <h2 class="section-title reveal">THE TAKES.</h2>
+
+  <div class="manifesto-lines">
+    <div class="m-line reveal">
+      TONE IS YOUR FIRST PRODUCT.
+      <span class="m-tag">NON-NEGOTIABLE</span>
+    </div>
+    <div class="m-line reveal">
+      YOUR BRAND IS HOW IT BEHAVES, NOT HOW IT LOOKS.
+      <span class="m-tag">WRITE THAT DOWN</span>
+    </div>
+    <div class="m-line reveal">
+      CLARITY IS MORE VALUABLE THAN CREATIVITY.
+      <span class="m-tag">CONTROVERSIAL?</span>
+    </div>
+    <div class="m-line reveal">
+      IF YOU STAND FOR EVERYTHING, YOU STAND FOR NOTHING.
+      <span class="m-tag">CLASSIC FOR A REASON</span>
+    </div>
+    <div class="m-line reveal">
+      A REBRAND WON'T FIX A STRATEGY PROBLEM.
+      <span class="m-tag">SORRY NOT SORRY</span>
+    </div>
+  </div>
 </section>
 
-<section class="cta">
-  <div class="cta-text">
-    CLARITY BUILDS BRANDS.<br>
-    VIBES BUILD CONFUSION.
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-headline">
+    <span class="l1 reveal">CLARITY</span>
+    <span class="l2 reveal">BUILDS</span>
+    <span class="l3 reveal">BRANDS.</span>
   </div>
-
-  <a href="mailto:hello@example.com" class="giant-btn scramble">
-    FIX YOUR BRAND →
+  <a href="mailto:hello@example.com" class="cta-btn reveal">
+    <span>LET'S FIX YOUR BRAND →</span>
   </a>
+  <p class="cta-note reveal">no moodboards. no vibes. just decisions. 🔥</p>
 </section>
+
+<div class="footer-bar">
+  <span>© 2026 Nitisha Maan</span>
+  <a href="index.html">← Back Home</a>
+  <span>Brand Thinking / 01</span>
+</div>
 
 <script>
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
-  document.querySelectorAll('.scramble').forEach(el => {
-    el.dataset.value = el.innerText; // Store original text
-    
-    el.addEventListener('mouseover', event => {
-      let iteration = 0;
-      clearInterval(el.interval);
-      el.interval = setInterval(() => {
-        event.target.innerText = event.target.innerText
-          .split("")
-          .map((letter, index) => {
-            if(index < iteration) return event.target.dataset.value[index];
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("");
-        if(iteration >= event.target.dataset.value.length){ 
-          clearInterval(el.interval);
-          event.target.innerText = event.target.dataset.value; // ensure it resets perfectly
-        }
-        iteration += 1 / 2; // Speed of scramble
-      }, 30);
-    });
+  // ── CURSOR ──
+  const cursor = document.getElementById("cursor");
+  const trail  = document.getElementById("cursor-trail");
+  let mx = 0, my = 0;
+  document.addEventListener("mousemove", (e) => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + "px";
+    cursor.style.top  = my + "px";
+    setTimeout(() => {
+      trail.style.left = mx + "px";
+      trail.style.top  = my + "px";
+    }, 80);
   });
+  document.querySelectorAll("a, button, .m-line, .diagnosis-card, .system-card").forEach(el => {
+    el.addEventListener("mouseenter", () => cursor.classList.add("big"));
+    el.addEventListener("mouseleave", () => cursor.classList.remove("big"));
+  });
+
+  // ── SPARKLES ──
+  const sparkleChars = ["✦","★","◆","✿","⚡","💥"];
+  let lastS = 0;
+  document.addEventListener("mousemove", (e) => {
+    const now = Date.now();
+    if (now - lastS < 130) return;
+    lastS = now;
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
+    s.style.left  = e.clientX + "px";
+    s.style.top   = e.clientY + "px";
+    s.style.color = ["#d4ff00","#ff2d6b","#00f0ff","#ffe500"][Math.floor(Math.random()*4)];
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 600);
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 </script>
 
 </body>
