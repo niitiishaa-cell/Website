@@ -3,195 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitisha Maan | Strategic Ghostwriter for D2C Founders</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+    <title>Nitisha Maan | Founder IP Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #080808;
-            --surface: #111111;
-            --text: #ffffff;
-            --muted: #a0a0a0;
-            --accent: #ffffff;
-            --border: rgba(255,255,255,0.08);
+            --bg-cream: #F9F6F0;
+            --text-ink: #0A1128;
+            --accent-terra: #C85A40;
+            --accent-terra-hover: #A6452E;
+            --card-bg: #FFFFFF;
+            --border-light: rgba(10, 17, 40, 0.1);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-ink);
+            font-family: 'Outfit', sans-serif;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        .serif { font-family: 'Cormorant Garamond', serif; font-style: italic; }
-        .mono { font-family: monospace; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.4em; color: var(--muted); }
-
-        /* NAV */
-        nav { 
-            position: fixed; top: 0; width: 100%; padding: 2rem 5%; 
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(8,8,8,0.9); backdrop-filter: blur(15px); z-index: 1000;
-            border-bottom: 1px solid var(--border);
+        /* TYPOGRAPHY */
+        h1, h2, h3, .serif {
+            font-family: 'Fraunces', serif;
+            font-weight: 400;
         }
-        .logo { font-weight: 900; letter-spacing: -1px; font-size: 1.1rem; text-decoration: none; color: white; }
-
-        /* HERO */
-        .hero { padding: 14rem 5% 8rem; max-width: 1300px; margin: 0 auto; }
-        .hero span.mono { margin-bottom: 1.5rem; display: block; color: var(--text); }
-        .hero h1 { font-size: clamp(3rem, 7.5vw, 6.5rem); font-weight: 900; line-height: 0.92; letter-spacing: -0.06em; margin-bottom: 3rem; }
         
-        .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 6rem; border-top: 1px solid var(--border); padding-top: 3rem; }
-        .hero-pitch { font-size: 1.4rem; line-height: 1.4; font-weight: 300; color: var(--muted); }
-        .hero-pitch strong { color: var(--text); font-weight: 600; }
-
-        /* MANIFESTO / PROBLEM SECTION */
-        .problem-section { padding: 10rem 5%; background: var(--surface); }
-        .container-narrow { max-width: 900px; margin: 0 auto; }
-        .problem-section h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 3rem; font-weight: 800; letter-spacing: -0.03em; }
-        .problem-section p { font-size: 1.25rem; color: var(--muted); margin-bottom: 2rem; }
-
-        /* THE SYSTEM (CLICKABLE CARDS) */
-        .system-section { padding: 10rem 5%; }
-        .system-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 4rem; }
-        .system-card { 
-            background: var(--surface); padding: 4rem; border: 1px solid var(--border); 
-            text-decoration: none; color: inherit; transition: all 0.4s ease;
-            display: flex; flex-direction: column; justify-content: space-between;
+        h1 {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            color: var(--text-ink);
         }
-        .system-card:hover { border-color: var(--accent); background: #181818; transform: translateY(-5px); }
-        .system-card h3 { font-size: 1.8rem; margin: 2rem 0 1rem; font-weight: 700; }
-        .system-card p { color: var(--muted); font-size: 1.05rem; line-height: 1.5; }
-        .system-card .arrow { margin-top: 2rem; font-size: 1.2rem; transition: 0.3s; }
-        .system-card:hover .arrow { transform: translateX(10px); }
 
-        /* THE "WHY" SECTION - LONG FORM TEXT */
-        .long-form { padding: 10rem 5%; border-top: 1px solid var(--border); }
-        .article-layout { display: grid; grid-template-columns: 300px 1fr; gap: 4rem; }
-        .article-content h3 { font-size: 2.2rem; margin-bottom: 1.5rem; }
-        .article-content p { font-size: 1.2rem; color: var(--muted); margin-bottom: 2.5rem; }
-
-        /* CALL TO ACTION */
-        .cta-box { 
-            margin: 10rem 5%; padding: 8rem 5%; background: var(--text); color: var(--bg); text-align: center;
-            border-radius: 4px;
+        h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
         }
-        .cta-box h2 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; letter-spacing: -0.04em; margin-bottom: 2rem; }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #334155;
+        }
+
+        .tag {
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+            color: var(--accent-terra);
+            margin-bottom: 1rem;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(249, 246, 240, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-ink);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-ink);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
         
-        .btn { 
-            display: inline-block; padding: 1.5rem 3.5rem; background: var(--bg); 
-            color: var(--text); text-decoration: none; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 0.15em; font-size: 0.9rem; transition: 0.3s;
+        .nav-link:hover {
+            color: var(--accent-terra);
         }
-        .btn:hover { background: #333; transform: scale(1.05); }
 
-        @media (max-width: 1000px) {
-            .hero-grid, .system-grid, .article-layout { grid-template-columns: 1fr; gap: 3rem; }
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background-color: var(--accent-terra);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 100px;
+            transition: var(--transition);
+            border: 1px solid var(--accent-terra);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-terra-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(200, 90, 64, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-ink);
+            border-color: var(--text-ink);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-ink);
+            color: var(--bg-cream);
+            box-shadow: none;
+        }
+
+        /* LAYOUT & SECTIONS */
+        section {
+            padding: 8rem 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding-top: 14rem;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-lead {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--text-ink);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        /* THE PROBLEM SECTION */
+        .problem {
+            background-color: var(--text-ink);
+            color: var(--bg-cream);
+            padding: 10rem 5%;
+        }
+
+        .problem p {
+            color: #CBD5E1;
+            font-size: 1.3rem;
+        }
+
+        .problem .tag {
+            color: #E2E8F0;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 0.2rem;
+        }
+
+        /* INTERACTIVE CARDS GRID */
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 3.5rem 3rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-ink);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(10, 17, 40, 0.08);
+            border-color: var(--accent-terra);
+        }
+
+        .card-number {
+            font-family: 'Fraunces', serif;
+            font-size: 4rem;
+            color: var(--bg-cream);
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-weight: 600;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-number {
+            color: rgba(200, 90, 64, 0.1);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+        }
+
+        .card-arrow {
+            margin-top: 2rem;
+            font-weight: 600;
+            color: var(--accent-terra);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-arrow {
+            gap: 1rem;
+        }
+
+        /* PRICING & FOMO */
+        .investment-box {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-terra);
+            border-radius: 20px;
+            padding: 5rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 8rem auto 0;
+            position: relative;
+        }
+
+        .capacity-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-terra);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-family: 'Fraunces', serif;
+            font-size: 4rem;
+            color: var(--text-ink);
+            margin: 1.5rem 0;
+        }
+
+        .price span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            color: #64748B;
+            font-weight: 400;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 5rem 5%; }
+            .hero { padding-top: 10rem; }
+            .investment-box { padding: 3rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="logo">NITISHAMAAN / GHOST</a>
-    <a href="#apply" class="mono" style="text-decoration:none; color: var(--text); border: 1px solid var(--border); padding: 0.5rem 1rem;">Slot: Q3 Open →</a>
+    <a href="index.html" class="logo">Nitisha Maan.</a>
+    <div style="display: flex; gap: 2rem; align-items: center;">
+        <a href="#methodology" class="nav-link">The Process</a>
+        <a href="mailto:nitisha@maan.com" class="btn" style="padding: 0.8rem 1.8rem; font-size: 0.9rem;">Book Strategy Call</a>
+    </div>
 </nav>
 
 <section class="hero">
-    <span class="mono">Private Intellectual Property Architect</span>
-    <h1>Your <span class="serif">Silence</span> is a <br>Liquidity Risk.</h1>
-    
-    <div class="hero-grid">
-        <div class="hero-pitch">
-            <p>For D2C founders, <strong>the brand is the moat.</strong> But if your unique logic is trapped inside your head, your company is just another commodity on a shelf.</p>
-            <br>
-            <p>I extract your "Founder DNA" and convert it into <strong>high-leverage Intellectual Property</strong> that works while you sleep. I build the authority that makes VCs call <em>you</em>.</p>
-        </div>
-        <div style="display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-end;">
-            <p class="mono" style="margin-bottom: 1rem; text-align:right;">Investment: ₹30,000 / mo</p>
-            <a href="#apply" class="btn">Apply for extraction</a>
+    <div class="container">
+        <div class="hero-content">
+            <span class="tag">Strategic Ghostwriting for Founders</span>
+            <h1>Your silence actively costs you leverage.</h1>
+            <p class="hero-lead">You are building a category-defining D2C company. Every hour goes into supply chains and hiring. Meanwhile, your competitors control the public narrative. I extract your operational reality and build intellectual property that attracts investors, talent, and customers.</p>
+            <div style="display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+                <a href="#methodology" class="btn">Explore the Methodology</a>
+                <a href="#investment" class="btn btn-outline">View Partnership Details</a>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="problem-section">
+<section class="problem">
     <div class="container-narrow">
-        <span class="mono" style="color:white">The Thesis</span>
-        <h2>Most founders look "cheap" on LinkedIn.</h2>
-        <p>They post platitudes. They use ChatGPT to write "5 tips for productivity." They look like every other "hustler" with a keyboard.</p>
-        <p><strong>This is a reputation hazard.</strong> High-tier founders need to sound like owners, not interns. You need <strong>Signal</strong>—the kind that proves you are a category authority before the first pitch meeting even starts.</p>
+        <span class="tag">The Core Issue</span>
+        <h2 style="color: var(--bg-cream);">The invisible tax of staying quiet.</h2>
+        <p>Founders avoid LinkedIn because the standard advice is terrible. You see peers posting generic advice and you refuse to participate in that ecosystem. You have high standards for your brand.</p>
+        <p>This creates a vacuum. When you do not publish your thinking, venture capitalists only see your pitch deck. Top talent only sees a job description. Customers only see a transactional storefront.</p>
+        <p>We fix this vacuum without compromising your dignity. We create high-signal essays based strictly on your actual business decisions and market observations.</p>
     </div>
 </section>
 
-<section class="system-section">
-    <div class="container-narrow" style="text-align:center;">
-        <span class="mono">The Methodology</span>
-        <h2 style="font-size: 3rem; margin-top:1rem;">The Extraction Framework</h2>
-    </div>
-    
-    <div class="system-grid">
-        <a href="brand-thinking.html" class="system-card">
-            <div>
-                <span class="mono">01 / The Voice Lab</span>
-                <h3>Linguistic Architecture</h3>
-                <p>I audit your syntax, forbidden vocabulary, and industry "enemies." We don't write content; we build a linguistic fingerprint that is impossible to clone.</p>
-            </div>
-            <div class="arrow">Explore Phase 01 →</div>
-        </a>
+<section id="methodology" style="background-color: #F1EFE9;">
+    <div class="container">
+        <span class="tag">How It Works</span>
+        <h2>The 60-Minute Architecture</h2>
+        <p style="max-width: 600px;">A detailed breakdown of how we capture your exact tone and convert a single monthly conversation into four high-leverage assets.</p>
 
-        <a href="content-systems.html" class="system-card">
-            <div>
-                <span class="mono">02 / The Engine</span>
-                <h3>60-Minute Extraction</h3>
-                <p>One hour of your voice per month becomes four "God-level" essays. I handle the research, the logic-mapping, and the publishing. You handle the company.</p>
-            </div>
-            <div class="arrow">Explore Phase 02 →</div>
-        </a>
+        <div class="system-grid">
+            <a href="voice-calibration.html" class="card">
+                <span class="card-number">01</span>
+                <div class="card-content">
+                    <h3>Voice Calibration</h3>
+                    <p>We analyze your internal memos and speaking cadence. We map your specific vocabulary. We guarantee the final output perfectly mirrors your natural communication style.</p>
+                    <div class="card-arrow">Read Phase 01 <span>→</span></div>
+                </div>
+            </a>
 
-        <a href="marketing-foundations.html" class="system-card">
-            <div>
-                <span class="mono">03 / Distribution</span>
-                <h3>The Authority Moat</h3>
-                <p>We turn LinkedIn into a deal-flow engine. Every post is an asset that builds equity with VCs, talent, and customers. 100% Signal. 0% Noise.</p>
-            </div>
-            <div class="arrow">Explore Phase 03 →</div>
-        </a>
+            <a href="extraction-system.html" class="card">
+                <span class="card-number">02</span>
+                <div class="card-content">
+                    <h3>The Extraction</h3>
+                    <p>We schedule one 60-minute recorded interview per month. We discuss your current bottlenecks, your industry predictions, and your product philosophy.</p>
+                    <div class="card-arrow">Read Phase 02 <span>→</span></div>
+                </div>
+            </a>
 
-        <a href="#apply" class="system-card" style="background:var(--accent); color:var(--bg);">
-            <div>
-                <span class="mono" style="color:rgba(0,0,0,0.5)">04 / Partnership</span>
-                <h3 style="color:black">Exclusive Retention</h3>
-                <p style="color:rgba(0,0,0,0.7)">I only partner with 3 founders at a time. This ensures I am a strategic partner, not a freelancer. Check current availability.</p>
-            </div>
-            <div class="arrow">Check availability →</div>
-        </a>
-    </div>
-</section>
-
-<section class="long-form">
-    <div class="article-layout">
-        <aside class="mono">Philosophy</aside>
-        <div class="article-content">
-            <h3>Why ₹30,000 per month for one post a week?</h3>
-            <p>You aren't paying for "writing." You are paying to <strong>buy back your time</strong> and to protect your reputation. A single poorly-worded post can cost a founder millions in lost trust. A single "God-level" post can trigger a funding round.</p>
-            
-            <h3>I am a Category Strategist, not a writer.</h3>
-            <p>Most ghostwriters wait for you to give them ideas. <strong>I bring the ideas to you.</strong> I study your industry trends, analyze your competitors' weaknesses, and tell <em>you</em> what your point of view should be. I don't just put words on a page; I build the <strong>Personal Economic Moat</strong> that makes you irreplaceable.</p>
-            
-            <p>If you want volume, hire an agency. If you want <strong>Authority</strong>, hire me.</p>
+            <a href="distribution-engine.html" class="card">
+                <span class="card-number">03</span>
+                <div class="card-content">
+                    <h3>The Distribution</h3>
+                    <p>We synthesize the raw transcript into four deeply researched weekly essays. You review the material in five minutes. We handle all publishing logistics.</p>
+                    <div class="card-arrow">Read Phase 03 <span>→</span></div>
+                </div>
+            </a>
         </div>
     </div>
 </section>
 
-<section class="cta-box" id="apply">
-    <span class="mono">Limited Capacity</span>
-    <h2>Build your <span class="serif">Legacy.</span></h2>
-    <p style="font-size: 1.2rem; margin-bottom: 3rem;">I am currently accepting applications for <strong>one</strong> new founder partnership.</p>
-    <a href="mailto:nitisha@maan.com" class="btn">Apply for a Strategy Call</a>
+<section id="investment">
+    <div class="container">
+        <div class="investment-box">
+            <div class="capacity-badge">Currently Open: 1 Slot</div>
+            <span class="tag">The Partnership</span>
+            <h2>Complete IP Management</h2>
+            <p style="margin: 0 auto; max-width: 500px;">I operate as a direct extension of your executive team. I cap my roster at three founders total to ensure absolute depth and exclusivity.</p>
+            
+            <div class="price">₹30,000 <span>/ month</span></div>
+            
+            <ul style="list-style: none; text-align: left; max-width: 350px; margin: 3rem auto; color: var(--text-ink);">
+                <li style="padding: 1rem 0; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 1rem;">
+                    <span style="color: var(--accent-terra);">✓</span> Full Linguistic Audit
+                </li>
+                <li style="padding: 1rem 0; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 1rem;">
+                    <span style="color: var(--accent-terra);">✓</span> Monthly 60-Minute Strategy Call
+                </li>
+                <li style="padding: 1rem 0; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 1rem;">
+                    <span style="color: var(--accent-terra);">✓</span> Four High-Signal Weekly Essays
+                </li>
+                <li style="padding: 1rem 0; display: flex; align-items: center; gap: 1rem;">
+                    <span style="color: var(--accent-terra);">✓</span> Complete Publishing Management
+                </li>
+            </ul>
+
+            <a href="mailto:nitisha@maan.com" class="btn" style="width: 100%; max-width: 350px;">Apply for the final slot</a>
+        </div>
+    </div>
 </section>
 
-<footer style="padding: 5rem 5%; border-top: 1px solid var(--border); text-align: center;">
-    <p class="mono">© 2026 Nitisha Maan — Private Office</p>
+<footer style="background-color: var(--text-ink); color: var(--bg-cream); padding: 4rem 5%; text-align: center;">
+    <div class="container">
+        <h2 style="font-family: 'Fraunces', serif; font-size: 1.5rem; margin-bottom: 1rem;">Nitisha Maan.</h2>
+        <p style="color: #64748B; font-size: 0.9rem;">Building intellectual property for category creators.</p>
+        <p style="color: #64748B; font-size: 0.8rem; margin-top: 2rem;">© 2026 Nitisha Maan. All rights reserved.</p>
+    </div>
 </footer>
 
 </body>
