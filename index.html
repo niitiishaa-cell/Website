@@ -1,177 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nitisha Maan | Brand Architect & Systems Designer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Inter:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0f1115;
-      --surface: #1a1d23;
-      --text: #e2e4e9;
-      --accent: #c5ff4a; /* Acid Green for credibility + pop */
-      --muted: #8d929d;
-      --border: rgba(255,255,255,0.08);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitisha Maan | The Founder's Ghost</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --text: #f4f4f4;
+            --muted: #888888;
+            --accent: #ffffff;
+            --border: rgba(255,255,255,0.1);
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    /* ── TYPOGRAPHY ── */
-    h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
-    .serif { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; }
-    .mono { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+        .serif { font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .mono { font-family: monospace; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--muted); }
 
-    /* ── LAYOUT ── */
-    section { padding: 8rem 10% 4rem; border-bottom: 1px solid var(--border); }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
+        /* NAV */
+        nav { 
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; 
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,10,0.8); backdrop-filter: blur(10px); z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-weight: 900; letter-spacing: -1px; font-size: 1.2rem; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; width: 100%; padding: 2rem 10%;
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 100; background: rgba(15, 17, 21, 0.8); backdrop-filter: blur(10px);
-    }
-    .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; color: var(--text); }
+        /* HERO */
+        .hero { padding: 12rem 5% 6rem; max-width: 1200px; margin: 0 auto; }
+        .hero h1 { font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; margin-bottom: 2.5rem; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
+        .hero-text { font-size: 1.25rem; color: var(--muted); font-weight: 300; }
+        .hero-text strong { color: var(--text); font-weight: 600; }
 
-    /* ── HERO ── */
-    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
-    .hero h1 { font-size: clamp(3.5rem, 8vw, 7rem); margin-bottom: 2rem; }
-    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; }
-    .hero strong { color: var(--text); }
+        /* THE MANIFESTO SECTION (CONTENT HEAVY) */
+        .manifesto { padding: 8rem 5%; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .m-container { max-width: 800px; margin: 0 auto; }
+        .m-header { text-align: center; margin-bottom: 5rem; }
+        .m-content h2 { font-size: 2.5rem; margin: 2rem 0 1rem; font-weight: 700; letter-spacing: -0.02em; }
+        .m-content p { font-size: 1.15rem; color: var(--muted); margin-bottom: 2rem; }
+        .m-content blockquote { 
+            border-left: 2px solid var(--accent); padding-left: 2rem; margin: 3rem 0;
+            font-size: 1.8rem; line-height: 1.3; font-weight: 500; color: var(--text);
+        }
 
-    /* ── BUTTONS ── */
-    .cta-group { display: flex; gap: 1.5rem; }
-    .btn {
-      padding: 1.2rem 2.5rem; border-radius: 4px; text-decoration: none;
-      font-weight: 600; font-size: 0.9rem; transition: 0.3s;
-    }
-    .btn-primary { background: var(--accent); color: var(--bg); }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(197, 255, 74, 0.2); }
-    .btn-secondary { border: 1px solid var(--border); color: var(--text); }
-    .btn-secondary:hover { background: var(--surface); }
+        /* THE SYSTEM STEPS */
+        .system-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin: 4rem 0; border: 1px solid var(--border); }
+        .step { background: var(--bg); padding: 3rem; }
+        .step span { color: var(--muted); display: block; margin-bottom: 1rem; }
+        .step h3 { font-size: 1.5rem; margin-bottom: 1rem; }
 
-    /* ── SERVICES ── */
-    .service-card {
-      grid-column: span 4; background: var(--surface); padding: 3rem;
-      border-radius: 8px; border: 1px solid var(--border); transition: 0.4s;
-    }
-    .service-card:hover { border-color: var(--accent); transform: translateY(-10px); }
-    .service-card h3 { font-size: 1.8rem; margin: 1.5rem 0 1rem; }
-    .service-card p { color: var(--muted); font-size: 0.95rem; }
+        /* PRICE/CTA */
+        .cta-section { padding: 10rem 5%; text-align: center; }
+        .price-card { 
+            max-width: 500px; margin: 4rem auto; padding: 4rem; 
+            border: 1px solid var(--accent); position: relative;
+        }
+        .price-card .label { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--bg); padding: 0 1rem; }
 
-    /* ── STATS/CREDIBILITY ── */
-    .stats-bar {
-      display: flex; justify-content: space-between; padding: 4rem 10%;
-      background: var(--surface); margin-top: -1px;
-    }
-    .stat-item h4 { font-size: 3rem; color: var(--accent); }
-    .stat-item span { color: var(--muted); font-size: 0.8rem; }
+        .btn { 
+            display: inline-block; padding: 1.2rem 3rem; background: var(--accent); 
+            color: var(--bg); text-decoration: none; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.1em; font-size: 0.8rem; transition: 0.3s;
+        }
+        .btn:hover { filter: invert(1); transform: translateY(-2px); }
 
-    /* ── PROCESS ── */
-    .process-step { grid-column: span 12; display: flex; gap: 4rem; padding: 2rem 0; border-top: 1px solid var(--border); }
-    .step-num { font-size: 4rem; opacity: 0.2; font-weight: 800; flex-shrink: 0; }
-    .step-content h3 { font-size: 2rem; margin-bottom: 1rem; }
-
-    @media (max-width: 800px) {
-      .service-card { grid-column: span 12; }
-      .process-step { flex-direction: column; gap: 1rem; }
-    }
-  </style>
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .system-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="logo">NM / ARCHITECT.</a>
-  <div class="cta-group">
-    <a href="#contact" class="mono" style="text-decoration:none; color: var(--text)">Enquire →</a>
-  </div>
+    <div class="logo">NITISHAMAAN/GHOST</div>
+    <div class="nav-links">
+        <a href="#manifesto" class="mono" style="text-decoration:none; margin-right: 2rem;">Philosophy</a>
+        <a href="#apply" class="btn" style="padding: 0.6rem 1.5rem;">Enquire</a>
+    </div>
 </nav>
 
 <section class="hero">
-  <span class="mono">Strategic Brand Partner for D2C Founders</span>
-  <h1>Systems that scale <span class="serif">personality.</span></h1>
-  <p>
-    Nitisha Maan builds <strong>identity infrastructure</strong> for brands that are ready to stop chasing trends and start building equity. 
-    I bridge the gap between creative storytelling and conversion-first systems.
-  </p>
-  <div class="cta-group">
-    <a href="#work" class="btn btn-primary">VIEW METHODOLOGY</a>
-    <a href="#contact" class="btn btn-secondary">BOOK A DIAGNOSIS</a>
-  </div>
+    <span class="mono">Scale your conviction. Not your calendar.</span>
+    <h1>The Cost of <span class="serif">Founder Silence</span> is Market Share.</h1>
+    <div class="hero-grid">
+        <div class="hero-text">
+            <p>You are building a D2C powerhouse, but your digital footprint is <strong>unoptimized, irregular, or nonexistent.</strong> While you focus on supply chains and CAC, your competitors are building "Personal Moats."</p>
+            <br>
+            <p>I install an <strong>Authority Engine</strong> that extracts your unique product philosophy and turns it into high-leverage Intellectual Property. No hustle porn. No cringe. Just pure signal.</p>
+        </div>
+        <div style="text-align: right;">
+            <a href="#apply" class="btn">Apply for the Q3 Cohort</a>
+        </div>
+    </div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat-item"><h4>0 to 1</h4><span>Foundational Launch</span></div>
-  <div class="stat-item"><h4>40%</h4><span>Avg. Conversion Lift</span></div>
-  <div class="stat-item"><h4>90 Days</h4><span>System Installation</span></div>
-</div>
+<section class="manifesto" id="manifesto">
+    <div class="m-container">
+        <div class="m-header">
+            <span class="mono">The Thesis</span>
+            <h2>Why "Content" is a Trap for Founders</h2>
+        </div>
+        
+        <div class="m-content">
+            <p>Most ghostwriters are "content creators." They want likes, comments, and engagement. They write generic threads that make you look like every other "thought leader" on the timeline.</p>
+            
+            <blockquote>"If your posts look like they were written by an agency, you’ve already lost the trust of your most valuable peers."</blockquote>
 
-<section id="work">
-  <div style="margin-bottom: 4rem;">
-    <span class="mono">The Core Disciplines</span>
-    <h2 style="font-size: 3rem;">Three Gaps. One Solution.</h2>
-  </div>
-  <div class="grid">
-    <div class="service-card">
-      <span class="mono">Phase 01</span>
-      <h3>Brand Thinking</h3>
-      <p>Hard-coding your brand's DNA. We define the language, the "enemy," and the behavior patterns that make you irreplaceable.</p>
+            <h2>I don't write content. I architect IP.</h2>
+            <p>My goal is to make you <strong>discoverable to the right 1,000 people.</strong> The VCs who fund your next round. The high-level hires who won't join a faceless company. The customers who want to buy from a human, not a logo.</p>
+
+            <div class="system-grid">
+                <div class="step">
+                    <span>01 / EXTRACTION</span>
+                    <h3>The High-Signal Interview</h3>
+                    <p>We spend 60 minutes on a recorded call. I don't ask about "tips." I ask about your <strong>convictions, your mistakes, and your worldview.</strong></p>
+                </div>
+                <div class="step">
+                    <span>02 / DISTILLATION</span>
+                    <h3>Syntax Matching</h3>
+                    <p>I study your past emails, voice notes, and speeches. My job is to mirror your exact vocabulary so your own mother wouldn't know I wrote it.</p>
+                </div>
+                <div class="step">
+                    <span>03 / EXECUTION</span>
+                    <h3>One Pillar, Four Essays</h3>
+                    <p>Every week, one "God-level" LinkedIn post goes live. These are 500-800 word deep dives into your category expertise. No filler.</p>
+                </div>
+                <div class="step">
+                    <span>04 / COMPOUNDING</span>
+                    <h3>The Digital Moat</h3>
+                    <p>Every post is an asset. Over 6 months, we build a library of your thinking that works for you while you sleep.</p>
+                </div>
+            </div>
+
+            <h2>Exclusivity as a Standard</h2>
+            <p>I am not a factory. I take a maximum of <strong>three founders</strong> at any given time. This allows me to live inside your brand, understand your industry nuances, and represent your voice with total integrity.</p>
+        </div>
     </div>
-    <div class="service-card">
-      <span class="mono">Phase 02</span>
-      <h3>Content Engines</h3>
-      <p>Turning founder intuition into a repeatable production machine. One hour of your time, one month of strategic presence.</p>
-    </div>
-    <div class="service-card">
-      <span class="mono">Phase 03</span>
-      <h3>Retention Ops</h3>
-      <p>Fixing the "leaky bucket." We build high-conversion lifecycle flows that turn one-time buyers into brand loyalists.</p>
-    </div>
-  </div>
 </section>
 
-<section>
-  <span class="mono">The Road Map</span>
-  <h2 style="font-size: 3rem; margin-bottom: 4rem;">The Installation Process.</h2>
-  
-  <div class="process-step">
-    <div class="step-num">01</div>
-    <div class="step-content">
-      <h3>Audit & Diagnosis</h3>
-      <p>We perform a deep-tissue audit of your current communication and funnel. We find exactly where your brand authority is leaking and where your money is being wasted.</p>
+<section class="cta-section" id="apply">
+    <div class="container">
+        <span class="mono">Investment</span>
+        <div class="price-card">
+            <span class="label mono">The Partnership</span>
+            <h2 style="font-size: 3.5rem; margin-bottom: 1rem;">₹30,000<span style="font-size: 1rem; color: var(--muted);">/mo</span></h2>
+            <ul style="list-style: none; color: var(--muted); margin-bottom: 2rem; text-align: left;">
+                <li style="margin-bottom: 0.5rem;">✓ Full IP Extraction Strategy</li>
+                <li style="margin-bottom: 0.5rem;">✓ 4 High-Signal LinkedIn Essays / Month</li>
+                <li style="margin-bottom: 0.5rem;">✓ Syntax & Tone Calibration</li>
+                <li style="margin-bottom: 0.5rem;">✓ Ghost-to-Publish Management</li>
+            </ul>
+            <a href="mailto:nitisha@maan.com" class="btn">Request a Chemistry Call</a>
+        </div>
+        <p style="color: var(--muted);">Zero long-term contracts. Monthly rolling engagement. <br>One month to prove the value.</p>
     </div>
-  </div>
-
-  <div class="process-step">
-    <div class="step-num">02</div>
-    <div class="step-content">
-      <h3>Architecture Design</h3>
-      <p>We build the playbooks. No fluff—just actionable rules for content, tone, and customer journeys that your team can execute without a babysitter.</p>
-    </div>
-  </div>
-
-  <div class="process-step">
-    <div class="step-num">03</div>
-    <div class="step-content">
-      <h3>Handover & Scale</h3>
-      <p>I install the system into your operations. You gain a self-sustaining brand engine that compounds in value every single month.</p>
-    </div>
-  </div>
 </section>
 
-<section id="contact" style="text-align: center; background: var(--accent); color: var(--bg);">
-  <span class="mono" style="color: var(--bg); opacity: 0.6;">Are you ready?</span>
-  <h2 style="font-size: clamp(2rem, 6vw, 5rem); margin: 1rem 0 2rem;">Build a brand that <br><span class="serif" style="font-weight: 400;">actually works.</span></h2>
-  <a href="mailto:hello@nitishamaan.com" class="btn" style="background: var(--bg); color: var(--text);">SECURE A CONSULTATION</a>
-</section>
+<footer style="padding: 4rem 5%; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
+    <span class="mono">© 2026 Nitisha Maan</span>
+    <span class="mono">Built for the 1%</span>
+</footer>
 
 </body>
 </html>
