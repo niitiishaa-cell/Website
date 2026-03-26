@@ -3,165 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NM | Private Office</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>Nitisha Maan | Private Office</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d0d0d;
-            --text: #e0e0e0;
-            --accent: #ff4d00; /* Safety Orange - authoritative and modern */
-            --border: rgba(255, 255, 255, 0.1);
+            --bg: #fcfcfc;
+            --text: #1a1a1a;
+            --muted: #666;
+            --border: #e5e5e5;
+            --accent: #1a1a1a;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             background: var(--bg); 
             color: var(--text); 
-            font-family: 'Space Grotesk', sans-serif;
-            overflow: hidden; /* We handle scroll via GSAP */
-        }
-
-        /* FILM GRAIN OVERLAY */
-        .noise {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.04; pointer-events: none; z-index: 9999;
-        }
-
-        /* LAYOUT */
-        .container {
-            height: 100vh;
-            width: 100%;
-            overflow-y: auto;
-            scroll-snap-type: y mandatory;
-        }
-
-        section {
-            height: 100vh;
-            width: 100%;
-            scroll-snap-align: start;
-            padding: 5%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            border-bottom: 1px solid var(--border);
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* TYPOGRAPHY */
-        .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 1.2em; }
-        h1 { font-size: clamp(3rem, 12vw, 9rem); line-height: 0.8; letter-spacing: -0.04em; text-transform: uppercase; font-weight: 700; }
-        .sub-header { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: block; }
-        p { font-size: clamp(1rem, 2vw, 1.5rem); max-width: 600px; font-weight: 300; line-height: 1.3; }
+        .serif { font-family: 'Fraunces', serif; }
+        h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 3rem; }
+        h2 { font-size: 2.2rem; font-weight: 400; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        p { font-size: 1.15rem; color: var(--text); margin-bottom: 2rem; max-width: 650px; font-weight: 300; }
+        .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 1rem; display: block; }
 
-        /* INTERACTIVE ELEMENTS */
-        .grid-nav {
-            position: absolute; bottom: 5%; left: 5%; right: 5%;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+        /* LAYOUT */
+        nav { 
+            padding: 3rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: baseline;
+            border-bottom: 1px solid var(--border);
         }
-
-        .nav-item {
-            padding: 1.5rem; border: 1px solid var(--border);
-            text-decoration: none; color: inherit; transition: 0.3s;
-            display: flex; flex-direction: column; justify-content: space-between; height: 150px;
-        }
-
-        .nav-item:hover { background: var(--text); color: var(--bg); }
-        .nav-item span { font-size: 0.7rem; font-weight: 700; }
-        .nav-item h4 { font-size: 1.2rem; margin-top: auto; }
-
-        /* THE "HITS" SECTIONS */
-        .highlight { color: var(--accent); }
         
-        .status-bar {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 5%;
-            display: flex; justify-content: space-between; font-size: 0.7rem;
-            letter-spacing: 0.1em; z-index: 100; border-bottom: 1px solid var(--border);
-            background: var(--bg);
-        }
+        section { padding: 10rem 5%; border-bottom: 1px solid var(--border); }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* CONTENT BLOCKS */
+        .thesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10rem; align-items: start; }
+        .sticky { position: sticky; top: 10rem; }
 
-        .glitch-link {
-            text-decoration: none; color: var(--accent); font-weight: 700;
-            border: 1px solid var(--accent); padding: 0.5rem 1rem; transition: 0.3s;
+        /* SYSTEM TILES */
+        .system-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; }
+        .tile { 
+            padding: 3rem 0; border-top: 1px solid var(--text); 
+            text-decoration: none; color: inherit; transition: 0.3s;
         }
-        .glitch-link:hover { background: var(--accent); color: white; }
+        .tile:hover { opacity: 0.6; }
+        .tile h4 { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 400; margin: 1rem 0; }
+        .tile p { font-size: 0.9rem; color: var(--muted); margin: 0; }
 
-        /* ANIMATION BOXES */
-        .logic-card {
-            background: #151515; padding: 2rem; border-left: 4px solid var(--accent);
-            margin-top: 2rem; max-width: 500px;
+        /* FOOTER CTA */
+        footer { padding: 10rem 5%; background: #000; color: #fff; }
+        .footer-link { color: #fff; text-decoration: none; font-family: 'Fraunces', serif; font-size: 3rem; border-bottom: 1px solid #333; transition: 0.3s; }
+        .footer-link:hover { border-bottom: 1px solid #fff; }
+
+        @media (max-width: 900px) {
+            .thesis-grid, .system-nav { grid-template-columns: 1fr; gap: 4rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="noise"></div>
+<nav>
+    <div class="serif" style="font-size: 1.5rem; font-style: italic;">Nitisha Maan</div>
+    <div style="font-size: 0.8rem; color: var(--muted);">IP ARCHITECTURE // 2026</div>
+</nav>
 
-<div class="status-bar">
-    <div>NITISHA MAAN // PRIVATE OFFICE</div>
-    <div>AVAILABILITY: 01 SLOT [Q3-2026]</div>
-    <div>IP ARCHITECTURE FOR D2C</div>
-</div>
+<section>
+    <div class="container">
+        <span class="label">The Thesis</span>
+        <h1 class="serif">In an era of algorithmic noise, <span style="font-style: italic;">conviction</span> is the only unfair advantage left for a D2C founder.</h1>
+        <p>You are building a company, but your intellectual property is trapped in private meetings. When a founder stays silent, the market treats their brand as a commodity. I extract your product philosophy and convert it into a digital moat that protects your margins and attracts high-level leverage.</p>
+    </div>
+</section>
 
-<div class="container">
-    <section>
-        <span class="sub-header">The Cost of Silence</span>
-        <h1>Stop <span class="serif">Feeding</span> <br>The Ads.</h1>
-        <p style="margin-top: 2rem;">Every rupee spent on Meta is a tax on your lack of <span class="highlight">Authority</span>. I build the Intellectual Moat that makes your distribution organic and your brand uncopyable.</p>
-    </section>
-
-    <section style="background: #111;">
-        <span class="sub-header">The Problem</span>
-        <h2 style="font-size: 5rem; line-height: 1; letter-spacing: -0.02em;">You are a founder, <br>not a <span class="serif">content creator.</span></h2>
-        <div class="logic-card">
-            <p style="font-size: 1.1rem;">You hate LinkedIn because it is full of "5 tips for morning routines." You refuse to look that cheap. I don't write content. I extract your <strong>logic</strong> and map it to <strong>market share</strong>.</p>
+<section>
+    <div class="container thesis-grid">
+        <div class="sticky">
+            <span class="label">The Problem</span>
+            <h2 class="serif">The high cost of <span style="font-style: italic;">generic</span> distribution.</h2>
         </div>
-    </section>
+        <div>
+            <p>Most D2C brands are bleeding out on Meta and Google. They are paying a "performance tax" because they lack a human core. You don't need "content." Content is what creators make to get likes.</p>
+            <p>You need a documented worldview. You need to explain why your category is broken, why your supply chain is superior, and why your competitors are making the wrong bets. This isn't marketing. This is category design.</p>
+            <p>I operate as a private strategist. We take 60 minutes a month to record your logic. I distill those 60 minutes into four weekly essays that position you as the only logical authority in your space.</p>
+        </div>
+    </div>
+</section>
 
-    <section>
-        <span class="sub-header">The Math</span>
-        <h1>₹30,000 / <br><span class="highlight">Asset</span></h1>
-        <p>I don't charge for "posts." I charge for <strong>IP Extraction</strong>. 60 minutes of your time per month. 4 high-signal assets. Total strategic dominance of your category.</p>
-        
-        <div class="grid-nav">
-            <a href="brand-thinking.html" class="nav-item">
+<section>
+    <div class="container">
+        <span class="label">The System</span>
+        <div class="system-nav">
+            <a href="voice-calibration.html" class="tile">
                 <span>01</span>
-                <h4>Linguistic Audit</h4>
+                <h4>Linguistic Mirroring</h4>
+                <p>We audit your syntax to ensure every word sounds like it came from your own keyboard.</p>
             </a>
-            <a href="content-systems.html" class="nav-item">
+            <a href="extraction-system.html" class="tile">
                 <span>02</span>
-                <h4>Extraction Engine</h4>
+                <h4>Logic Extraction</h4>
+                <p>A monthly 60-minute spar sessions to download your market observations and product truths.</p>
             </a>
-            <a href="marketing-foundations.html" class="nav-item">
+            <a href="distribution.html" class="tile">
                 <span>03</span>
-                <h4>Distribution ROI</h4>
-            </a>
-            <a href="mailto:nitisha@maan.com" class="nav-item" style="border-color: var(--accent);">
-                <span style="color: var(--accent);">04</span>
-                <h4 style="color: var(--accent);">Apply →</h4>
+                <h4>Authority Moat</h4>
+                <p>Strategic deployment of your IP to attract VCs, top-tier talent, and institutional partners.</p>
             </a>
         </div>
-    </section>
-</div>
+    </div>
+</section>
 
-<script>
-    // Reveal animation on scroll
-    gsap.from("h1", {
-        duration: 1.5,
-        y: 100,
-        opacity: 0,
-        ease: "power4.out",
-        stagger: 0.2
-    });
-
-    // Custom GSAP for section transitions
-    document.querySelector('.container').addEventListener('scroll', () => {
-        // You could add logic here for background color shifts or text fades
-    });
-</script>
+<footer>
+    <div class="container">
+        <span class="label" style="color: #666;">Contact</span>
+        <h2 class="serif" style="color: #fff; font-size: 4rem; margin-bottom: 4rem;">Ready to build <span style="font-style: italic;">Equity</span> in your name?</h2>
+        <a href="mailto:nitisha@maan.com" class="footer-link">Request a Private Briefing</a>
+        <div style="margin-top: 6rem; display: flex; justify-content: space-between; align-items: flex-end;">
+            <p style="color: #666; font-size: 0.8rem; margin: 0;">Retainer: ₹30,000/mo. <br>Exclusivity: 3 Founders Max.</p>
+            <p style="color: #666; font-size: 0.8rem; margin: 0;">© 2026 NITISHA MAAN. <br>ALL RIGHTS RESERVED.</p>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
