@@ -3,973 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nitisha Maan ✦ Brand Architect</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=Caveat:wght@700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>Nitisha Maan | Brand Architect & Systems Designer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Inter:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --black: #0a0a0a;
-      --white: #f5f0eb;
-      --lime: #d4ff00;
-      --hot: #ff2d6b;
-      --cyan: #00f0ff;
-      --purple: #9b5de5;
-      --orange: #ff6b2b;
-      --yellow: #ffe500;
-      --off: #141414;
+      --bg: #0f1115;
+      --surface: #1a1d23;
+      --text: #e2e4e9;
+      --accent: #c5ff4a; /* Acid Green for credibility + pop */
+      --muted: #8d929d;
+      --border: rgba(255,255,255,0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::selection { background: var(--lime); color: var(--black); }
-    html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--black);
-      color: var(--white);
-      overflow-x: hidden;
-      cursor: none;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9990; opacity: 0.5;
-    }
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+    .serif { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; }
+    .mono { font-family: 'Space Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
 
-    /* ── CURSOR ── */
-    #cursor {
-      position: fixed; width: 18px; height: 18px;
-      background: var(--lime); border-radius: 50%;
-      pointer-events: none; z-index: 99999;
-      transform: translate(-50%,-50%);
-      transition: width .2s, height .2s, background .2s;
-      mix-blend-mode: difference;
-    }
-    #cursor.big { width: 60px; height: 60px; }
-    #cursor-trail {
-      position: fixed; width: 8px; height: 8px;
-      background: var(--hot); border-radius: 50%;
-      pointer-events: none; z-index: 99998;
-      transform: translate(-50%,-50%);
-      transition: left .12s ease, top .12s ease;
-      opacity: .7;
-    }
-    .sparkle {
-      position: fixed; pointer-events: none; z-index: 99996;
-      font-size: 1rem; animation: sparkleOut .6s forwards;
-    }
-    @keyframes sparkleOut {
-      0%   { opacity:1; transform: translate(-50%,-50%) scale(1); }
-      100% { opacity:0; transform: translate(-50%, calc(-50% - 30px)) scale(0.3); }
-    }
+    /* ── LAYOUT ── */
+    section { padding: 8rem 10% 4rem; border-bottom: 1px solid var(--border); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; width: 100%;
-      padding: 1.2rem 3rem;
+      position: fixed; top: 0; width: 100%; padding: 2rem 10%;
       display: flex; justify-content: space-between; align-items: center;
-      z-index: 1000; mix-blend-mode: difference;
+      z-index: 100; background: rgba(15, 17, 21, 0.8); backdrop-filter: blur(10px);
     }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
-      letter-spacing: .1em; color: var(--white); text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-family: 'DM Mono', monospace; font-size: .75rem;
-      color: var(--white); text-decoration: none;
-      letter-spacing: .15em; text-transform: uppercase;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 2px; background: var(--lime);
-      transition: width .3s;
-    }
-    .nav-links a:hover::after { width: 100%; }
+    .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; color: var(--text); }
 
     /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: stretch;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 2px solid rgba(255,255,255,.08);
-    }
-    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
+    .hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
+    .hero h1 { font-size: clamp(3.5rem, 8vw, 7rem); margin-bottom: 2rem; }
+    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; }
+    .hero strong { color: var(--text); }
 
-    .hero-left {
-      padding: 14rem 5vw 6vw;
-      position: relative;
-      z-index: 2;
-      display: flex; flex-direction: column; justify-content: flex-end;
-    }
-
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace; font-size: .75rem;
-      letter-spacing: .45em; text-transform: uppercase;
-      color: var(--lime); margin-bottom: 1.5rem;
-      opacity: 0; animation: fadeUp .6s .3s forwards;
-    }
-
-    .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 10vw, 12rem);
-      line-height: .88; letter-spacing: .02em;
-      opacity: 0; animation: fadeUp .7s .5s forwards;
-    }
-    .hero h1 .l-white { color: var(--white); display: block; }
-    .hero h1 .l-stroke {
-      -webkit-text-stroke: 2px var(--white); color: transparent; display: block;
-    }
-    .hero h1 .l-lime { color: var(--lime); display: block; }
-
-    .hero-bio {
-      margin-top: 2.5rem;
-      max-width: 400px;
-      font-size: 1rem; line-height: 1.7;
-      color: rgba(245,240,235,.65);
-      opacity: 0; animation: fadeUp .7s .7s forwards;
-    }
-    .hero-bio strong { color: var(--white); }
-
-    .hero-cta-row {
-      display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp .7s .9s forwards;
-    }
-
+    /* ── BUTTONS ── */
+    .cta-group { display: flex; gap: 1.5rem; }
     .btn {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
-      letter-spacing: .1em; padding: .9rem 2.2rem;
-      border: 2px solid var(--white); text-decoration: none;
-      display: inline-flex; align-items: center; gap: .5rem;
-      transition: all .25s; position: relative; overflow: hidden;
+      padding: 1.2rem 2.5rem; border-radius: 4px; text-decoration: none;
+      font-weight: 600; font-size: 0.9rem; transition: 0.3s;
     }
-    .btn::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--lime); transform: translateY(101%);
-      transition: transform .3s; z-index: 0;
-    }
-    .btn:hover::before { transform: translateY(0); }
-    .btn:hover { color: var(--black); border-color: var(--lime); }
-    .btn span { position: relative; z-index: 1; }
-    .btn-primary { background: var(--lime); color: var(--black); border-color: var(--lime); }
-    .btn-primary::before { background: var(--hot); }
-    .btn-primary:hover { color: var(--white); border-color: var(--hot); }
-
-    /* Hero right: color portal stack */
-    .hero-right {
-      display: flex; flex-direction: column;
-      border-left: 2px solid rgba(255,255,255,.07);
-      min-height: 100vh;
-    }
-    @media (max-width: 800px) { .hero-right { min-height: 50vh; } }
-
-    .hero-block {
-      flex: 1;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-      letter-spacing: .1em;
-      border-bottom: 1.5px solid rgba(0,0,0,.2);
-      text-decoration: none;
-      transition: flex .4s ease, letter-spacing .3s;
-      position: relative; overflow: hidden;
-      opacity: 0; animation: fadeUp .5s forwards;
-    }
-    .hero-block:last-child { border-bottom: none; }
-    .hero-block:nth-child(1) { background: var(--hot);    color: var(--black); animation-delay: 1s; }
-    .hero-block:nth-child(2) { background: var(--cyan);   color: var(--black); animation-delay: 1.15s; }
-    .hero-block:nth-child(3) { background: var(--purple); color: var(--white); animation-delay: 1.3s; }
-    .hero-block:hover { flex: 2.5; letter-spacing: .2em; }
-
-    .hb-inner {
-      display: flex; flex-direction: column; align-items: center; gap: .4rem;
-      position: relative; z-index: 1;
-    }
-    .hb-num {
-      font-family: 'DM Mono', monospace; font-size: .65rem;
-      letter-spacing: .4em; opacity: .55;
-    }
-    .hb-arrow {
-      font-size: 1.5rem; opacity: 0;
-      transition: opacity .3s, transform .3s;
-      transform: translateX(-8px);
-    }
-    .hero-block:hover .hb-arrow { opacity: 1; transform: translateX(0); }
-
-    /* ── MARQUEE 1 ── */
-    .marquee-bar {
-      background: var(--lime); color: var(--black);
-      padding: .8rem 0; overflow: hidden; white-space: nowrap;
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
-      letter-spacing: .12em;
-    }
-    .marquee-inner { display: inline-block; animation: scrollM 18s linear infinite; }
-    .marquee-inner span { margin: 0 2rem; }
-    .mdot { color: var(--hot); }
-    @keyframes scrollM { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-
-    /* ── WHO THIS IS FOR ── */
-    .filter-section {
-      padding: 8vw 5vw;
-      background: var(--off);
-      border-bottom: 2px solid rgba(255,255,255,.06);
-    }
-
-    .filter-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2px; background: rgba(255,255,255,.05);
-      margin-top: 3rem;
-    }
-
-    .filter-cell {
-      background: var(--off);
-      padding: 2.5rem 2rem;
-      transition: background .3s;
-      cursor: none;
-      position: relative;
-    }
-    .filter-cell:hover { background: #1a1a1a; }
-    .filter-cell::before {
-      content: '';
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 3px;
-    }
-    .filter-cell:nth-child(1)::before { background: var(--hot); }
-    .filter-cell:nth-child(2)::before { background: var(--cyan); }
-    .filter-cell:nth-child(3)::before { background: var(--purple); }
-    .filter-cell:nth-child(4)::before { background: var(--lime); }
-
-    .fc-emoji { font-size: 2.2rem; display: block; margin-bottom: 1rem; }
-    .fc-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem; letter-spacing: .06em; margin-bottom: .6rem;
-      transition: color .3s;
-    }
-    .filter-cell:nth-child(1):hover .fc-title { color: var(--hot); }
-    .filter-cell:nth-child(2):hover .fc-title { color: var(--cyan); }
-    .filter-cell:nth-child(3):hover .fc-title { color: var(--purple); }
-    .filter-cell:nth-child(4):hover .fc-title { color: var(--lime); }
-    .fc-body { font-size: .9rem; line-height: 1.6; color: rgba(245,240,235,.45); }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(197, 255, 74, 0.2); }
+    .btn-secondary { border: 1px solid var(--border); color: var(--text); }
+    .btn-secondary:hover { background: var(--surface); }
 
     /* ── SERVICES ── */
-    .services-section {
-      padding: 8vw 5vw;
-      border-bottom: 2px solid rgba(255,255,255,.06);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      margin-top: 3rem;
-      border: 2px solid rgba(255,255,255,.07);
-    }
-    @media (max-width: 860px) { .services-grid { grid-template-columns: 1fr; } }
-
     .service-card {
-      padding: 3rem 2.5rem;
-      border-right: 2px solid rgba(255,255,255,.07);
-      text-decoration: none; color: var(--white);
-      display: block; position: relative; overflow: hidden;
+      grid-column: span 4; background: var(--surface); padding: 3rem;
+      border-radius: 8px; border: 1px solid var(--border); transition: 0.4s;
     }
-    .service-card:last-child { border-right: none; }
-    .service-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      opacity: 0; transition: opacity .35s; pointer-events: none;
-    }
-    .service-card:nth-child(1)::after { background: var(--hot); }
-    .service-card:nth-child(2)::after { background: var(--cyan); }
-    .service-card:nth-child(3)::after { background: var(--purple); }
-    .service-card:hover::after { opacity: .07; }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+    .service-card h3 { font-size: 1.8rem; margin: 1.5rem 0 1rem; }
+    .service-card p { color: var(--muted); font-size: 0.95rem; }
 
-    .sc-tag {
-      font-family: 'DM Mono', monospace; font-size: .65rem;
-      letter-spacing: .4em; text-transform: uppercase;
-      margin-bottom: 2rem; display: block; transition: color .3s;
+    /* ── STATS/CREDIBILITY ── */
+    .stats-bar {
+      display: flex; justify-content: space-between; padding: 4rem 10%;
+      background: var(--surface); margin-top: -1px;
     }
-    .service-card:nth-child(1) .sc-tag { color: var(--hot); }
-    .service-card:nth-child(2) .sc-tag { color: var(--cyan); }
-    .service-card:nth-child(3) .sc-tag { color: var(--purple); }
+    .stat-item h4 { font-size: 3rem; color: var(--accent); }
+    .stat-item span { color: var(--muted); font-size: 0.8rem; }
 
-    .sc-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 8vw, 9rem);
-      line-height: 1; color: rgba(255,255,255,.05);
-      margin-bottom: .5rem; transition: color .3s;
-    }
-    .service-card:nth-child(1):hover .sc-num { color: rgba(255,45,107,.12); }
-    .service-card:nth-child(2):hover .sc-num { color: rgba(0,240,255,.12); }
-    .service-card:nth-child(3):hover .sc-num { color: rgba(155,93,229,.12); }
+    /* ── PROCESS ── */
+    .process-step { grid-column: span 12; display: flex; gap: 4rem; padding: 2rem 0; border-top: 1px solid var(--border); }
+    .step-num { font-size: 4rem; opacity: 0.2; font-weight: 800; flex-shrink: 0; }
+    .step-content h3 { font-size: 2rem; margin-bottom: 1rem; }
 
-    .sc-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem; letter-spacing: .05em; line-height: 1;
-      margin-bottom: 1rem; transition: color .3s;
-    }
-    .service-card:nth-child(1):hover .sc-title { color: var(--hot); }
-    .service-card:nth-child(2):hover .sc-title { color: var(--cyan); }
-    .service-card:nth-child(3):hover .sc-title { color: var(--purple); }
-
-    .sc-body {
-      font-size: .9rem; line-height: 1.65;
-      color: rgba(245,240,235,.45); max-width: 260px; margin-bottom: 2rem;
-    }
-
-    .sc-link {
-      font-family: 'DM Mono', monospace; font-size: .7rem;
-      letter-spacing: .25em; text-transform: uppercase;
-      display: flex; align-items: center; gap: .6rem;
-      opacity: 0; transform: translateY(8px);
-      transition: opacity .3s, transform .3s;
-    }
-    .service-card:hover .sc-link { opacity: 1; transform: translateY(0); }
-    .service-card:nth-child(1) .sc-link { color: var(--hot); }
-    .service-card:nth-child(2) .sc-link { color: var(--cyan); }
-    .service-card:nth-child(3) .sc-link { color: var(--purple); }
-
-    /* ── PROCESS TIMELINE ── */
-    .process-section {
-      padding: 8vw 5vw;
-      background: var(--off);
-      border-bottom: 2px solid rgba(255,255,255,.06);
-    }
-
-    .timeline {
-      position: relative;
-      margin-top: 4rem;
-      padding-left: 2px;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute; left: 0; top: 0; bottom: 0;
-      width: 2px; background: rgba(255,255,255,.08);
-    }
-
-    .tl-item {
-      padding: 0 0 4rem 4rem;
-      position: relative;
-      opacity: 0; transform: translateX(-20px);
-      transition: opacity .5s, transform .5s;
-    }
-    .tl-item.in { opacity: 1; transform: translateX(0); }
-
-    .tl-dot {
-      position: absolute; left: -7px; top: 6px;
-      width: 16px; height: 16px; border-radius: 50%;
-      border: 2px solid var(--black);
-      transition: transform .3s;
-    }
-    .tl-item:nth-child(1) .tl-dot { background: var(--hot); }
-    .tl-item:nth-child(2) .tl-dot { background: var(--cyan); }
-    .tl-item:nth-child(3) .tl-dot { background: var(--purple); }
-    .tl-item:nth-child(4) .tl-dot { background: var(--lime); }
-    .tl-item:hover .tl-dot { transform: scale(1.6); }
-
-    .tl-step {
-      font-family: 'DM Mono', monospace; font-size: .65rem;
-      letter-spacing: .4em; text-transform: uppercase;
-      color: rgba(255,255,255,.3); margin-bottom: .5rem;
-    }
-    .tl-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      letter-spacing: .04em; line-height: 1; margin-bottom: .8rem;
-      transition: color .3s;
-    }
-    .tl-item:nth-child(1):hover .tl-title { color: var(--hot); }
-    .tl-item:nth-child(2):hover .tl-title { color: var(--cyan); }
-    .tl-item:nth-child(3):hover .tl-title { color: var(--purple); }
-    .tl-item:nth-child(4):hover .tl-title { color: var(--lime); }
-    .tl-body {
-      font-size: 1rem; line-height: 1.7;
-      color: rgba(245,240,235,.5); max-width: 580px;
-    }
-    .tl-body strong { color: var(--white); }
-
-    /* ── TESTIMONIALS ── */
-    .testi-section {
-      overflow: hidden;
-      border-top: 2px solid rgba(255,255,255,.06);
-      border-bottom: 2px solid rgba(255,255,255,.06);
-    }
-    .testi-track {
-      display: flex;
-      animation: testiScroll 30s linear infinite;
-      width: max-content;
-    }
-    .testi-track:hover { animation-play-state: paused; }
-    .testi-card {
-      width: 380px; flex-shrink: 0;
-      padding: 3rem 2.5rem;
-      border-right: 2px solid rgba(255,255,255,.06);
-      background: var(--off); transition: background .3s;
-    }
-    .testi-card:hover { background: #1a1a1a; }
-    .testi-stars { color: var(--lime); font-size: 1rem; letter-spacing: .2em; margin-bottom: 1.2rem; }
-    .testi-text {
-      font-family: 'Caveat', cursive; font-size: 1.3rem;
-      font-weight: 700; line-height: 1.5; color: var(--white); margin-bottom: 1.5rem;
-    }
-    .testi-name {
-      font-family: 'DM Mono', monospace; font-size: .7rem;
-      letter-spacing: .25em; text-transform: uppercase;
-      color: rgba(245,240,235,.35);
-    }
-    .testi-role {
-      font-family: 'DM Mono', monospace; font-size: .65rem;
-      letter-spacing: .2em; text-transform: uppercase; margin-top: .2rem;
-    }
-    .testi-card:nth-child(5n+1) .testi-role { color: var(--hot); }
-    .testi-card:nth-child(5n+2) .testi-role { color: var(--cyan); }
-    .testi-card:nth-child(5n+3) .testi-role { color: var(--purple); }
-    .testi-card:nth-child(5n+4) .testi-role { color: var(--lime); }
-    .testi-card:nth-child(5n+5) .testi-role { color: var(--orange); }
-    @keyframes testiScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-
-    /* ── ABOUT ── */
-    .about-section {
-      padding: 8vw 5vw;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6vw;
-      align-items: center;
-      border-bottom: 2px solid rgba(255,255,255,.06);
-    }
-    @media (max-width: 800px) { .about-section { grid-template-columns: 1fr; } }
-
-    .about-left .section-title { color: var(--white); }
-    .about-left .section-title .lime { color: var(--lime); }
-
-    .about-para {
-      font-size: 1.05rem; line-height: 1.8;
-      color: rgba(245,240,235,.6); margin-bottom: 1.2rem;
-    }
-    .about-para strong { color: var(--white); }
-
-    .about-tags {
-      display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem;
-    }
-    .about-tag {
-      font-family: 'DM Mono', monospace; font-size: .65rem;
-      letter-spacing: .25em; text-transform: uppercase;
-      padding: .4rem 1rem; border: 1px solid rgba(255,255,255,.12);
-      transition: all .25s; cursor: none;
-    }
-    .about-tag:hover { background: var(--lime); color: var(--black); border-color: var(--lime); }
-
-    .stat-strip {
-      display: flex;
-      border: 1px solid rgba(255,255,255,.08);
-      margin-top: 3rem;
-    }
-    .stat-strip-cell {
-      flex: 1; padding: 2rem 1.5rem;
-      border-right: 1px solid rgba(255,255,255,.08);
-      text-align: center; transition: background .3s; cursor: none;
-    }
-    .stat-strip-cell:last-child { border-right: none; }
-    .stat-strip-cell:hover { background: rgba(255,255,255,.03); }
-    .ss-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      color: var(--lime); display: block;
-    }
-    .ss-label {
-      font-family: 'DM Mono', monospace; font-size: .65rem;
-      letter-spacing: .25em; text-transform: uppercase;
-      color: rgba(255,255,255,.3); margin-top: .3rem; display: block;
-    }
-
-    /* ── MARQUEE 2 ── */
-    .marquee-bar-2 {
-      background: var(--black); color: var(--white);
-      padding: .8rem 0; overflow: hidden; white-space: nowrap;
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
-      letter-spacing: .12em;
-      border-top: 2px solid rgba(255,255,255,.07);
-      border-bottom: 2px solid rgba(255,255,255,.07);
-    }
-    .marquee-inner-2 {
-      display: inline-block;
-      animation: scrollM2 20s linear infinite;
-    }
-    .marquee-inner-2 span { margin: 0 2rem; }
-    @keyframes scrollM2 { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-
-    /* ── CONTACT ── */
-    .contact-section {
-      padding: 10vw 5vw;
-      background: var(--off);
-    }
-    .contact-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 6vw; align-items: end;
-    }
-    @media (max-width: 800px) { .contact-inner { grid-template-columns: 1fr; } }
-
-    .contact-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 9vw, 11rem);
-      line-height: .9; letter-spacing: .02em;
-    }
-    .ch-white { color: var(--white); display: block; }
-    .ch-stroke { -webkit-text-stroke: 2px var(--lime); color: transparent; display: block; }
-    .ch-lime { color: var(--lime); display: block; }
-
-    .contact-note {
-      font-family: 'Caveat', cursive; font-size: 1.3rem;
-      font-weight: 700; color: rgba(245,240,235,.4); margin-top: 1.5rem;
-    }
-
-    .contact-right { display: flex; flex-direction: column; gap: 1rem; }
-
-    .contact-link {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 4vw, 4rem);
-      letter-spacing: .05em; color: var(--white);
-      text-decoration: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 1.5rem;
-      border: 1px solid rgba(255,255,255,.08);
-      transition: all .25s; position: relative; overflow: hidden;
-    }
-    .contact-link::before {
-      content: ''; position: absolute; inset: 0;
-      transform: translateX(-101%); transition: transform .3s; z-index: 0;
-    }
-    .contact-link:nth-child(1)::before { background: var(--hot); }
-    .contact-link:nth-child(2)::before { background: var(--cyan); }
-    .contact-link:nth-child(3)::before { background: var(--lime); }
-    .contact-link:hover::before { transform: translateX(0); }
-    .contact-link:nth-child(1):hover { color: var(--white); border-color: var(--hot); }
-    .contact-link:nth-child(2):hover { color: var(--black); border-color: var(--cyan); }
-    .contact-link:nth-child(3):hover { color: var(--black); border-color: var(--lime); }
-    .contact-link span { position: relative; z-index: 1; }
-    .cl-arrow { font-size: 1.5rem; transition: transform .25s; }
-    .contact-link:hover .cl-arrow { transform: translate(4px,-4px); }
-
-    /* ── FOOTER ── */
-    .footer-bar {
-      padding: 1.5rem 5vw; background: var(--black);
-      border-top: 1px solid rgba(255,255,255,.07);
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-bar span {
-      font-family: 'DM Mono', monospace; font-size: .7rem;
-      color: rgba(255,255,255,.2); letter-spacing: .2em; text-transform: uppercase;
-    }
-
-    /* ── UTILS ── */
-    .section-label {
-      font-family: 'DM Mono', monospace; font-size: .7rem;
-      letter-spacing: .5em; text-transform: uppercase;
-      color: var(--lime); margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 7vw, 8rem); line-height: .95;
-    }
-
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(28px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
-
-    .reveal {
-      opacity:0; transform:translateY(20px);
-      transition: opacity .5s ease, transform .5s ease;
-    }
-    .reveal.in { opacity:1; transform:translateY(0); }
-
-    @media (max-width: 600px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { display: none; }
+    @media (max-width: 800px) {
+      .service-card { grid-column: span 12; }
+      .process-step { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-trail"></div>
-
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">NM ✦</a>
-  <ul class="nav-links">
-    <li><a href="#services">Work</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Ping</a></li>
-  </ul>
+  <a href="#" class="logo">NM / ARCHITECT.</a>
+  <div class="cta-group">
+    <a href="#contact" class="mono" style="text-decoration:none; color: var(--text)">Enquire →</a>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <p class="hero-eyebrow">✦ Content & Communication Lead ✦ D2C Brand Architect</p>
-    <h1>
-      <span class="l-white">YOUR BRAND</span>
-      <span class="l-stroke">IS GIVING</span>
-      <span class="l-lime">NOTHING.</span>
-    </h1>
-    <p class="hero-bio">
-      I'm Nitisha — I build <strong>main-character brands</strong> for D2C founders who are tired of posting into the void and calling it strategy.<br><br>
-      Three disciplines. One system. Zero corporate energy.
-    </p>
-    <div class="hero-cta-row">
-      <a href="#services" class="btn btn-primary"><span>SEE HOW →</span></a>
-      <a href="#contact" class="btn"><span>LET'S TALK</span></a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <a href="brand-thinking.html" class="hero-block">
-      <div class="hb-inner">
-        <span class="hb-num">01 —</span>
-        <span>BRAND THINKING</span>
-        <span class="hb-arrow">↗</span>
-      </div>
-    </a>
-    <a href="content-systems.html" class="hero-block">
-      <div class="hb-inner">
-        <span class="hb-num">02 —</span>
-        <span>CONTENT SYSTEMS</span>
-        <span class="hb-arrow">↗</span>
-      </div>
-    </a>
-    <a href="marketing-foundations.html" class="hero-block">
-      <div class="hb-inner">
-        <span class="hb-num">03 —</span>
-        <span>MARKETING FOUNDATIONS</span>
-        <span class="hb-arrow">↗</span>
-      </div>
-    </a>
+  <span class="mono">Strategic Brand Partner for D2C Founders</span>
+  <h1>Systems that scale <span class="serif">personality.</span></h1>
+  <p>
+    Nitisha Maan builds <strong>identity infrastructure</strong> for brands that are ready to stop chasing trends and start building equity. 
+    I bridge the gap between creative storytelling and conversion-first systems.
+  </p>
+  <div class="cta-group">
+    <a href="#work" class="btn btn-primary">VIEW METHODOLOGY</a>
+    <a href="#contact" class="btn btn-secondary">BOOK A DIAGNOSIS</a>
   </div>
 </section>
 
-<!-- MARQUEE 1 -->
-<div class="marquee-bar">
-  <div class="marquee-inner">
-    <span>MAIN CHARACTER BRANDS</span><span class="mdot">✦</span>
-    <span>NO MORE BORING</span><span class="mdot">✦</span>
-    <span>UNHINGED BUT STRATEGIC</span><span class="mdot">✦</span>
-    <span>LET HER COOK 🔥</span><span class="mdot">✦</span>
-    <span>0→1 D2C BRANDS</span><span class="mdot">✦</span>
-    <span>MAIN CHARACTER BRANDS</span><span class="mdot">✦</span>
-    <span>NO MORE BORING</span><span class="mdot">✦</span>
-    <span>UNHINGED BUT STRATEGIC</span><span class="mdot">✦</span>
-    <span>LET HER COOK 🔥</span><span class="mdot">✦</span>
-    <span>0→1 D2C BRANDS</span><span class="mdot">✦</span>
-  </div>
+<div class="stats-bar">
+  <div class="stat-item"><h4>0 to 1</h4><span>Foundational Launch</span></div>
+  <div class="stat-item"><h4>40%</h4><span>Avg. Conversion Lift</span></div>
+  <div class="stat-item"><h4>90 Days</h4><span>System Installation</span></div>
 </div>
 
-<!-- WHO THIS IS FOR -->
-<section class="filter-section">
-  <p class="section-label reveal">// who this is for</p>
-  <h2 class="section-title reveal">IS THIS<br>YOU?</h2>
-  <div class="filter-grid">
-    <div class="filter-cell reveal">
-      <span class="fc-emoji">🛍️</span>
-      <div class="fc-title">THE D2C FOUNDER</div>
-      <div class="fc-body">Product is great. Sales are okay. But no one can explain what the brand actually is. You need identity infrastructure — not more content.</div>
+<section id="work">
+  <div style="margin-bottom: 4rem;">
+    <span class="mono">The Core Disciplines</span>
+    <h2 style="font-size: 3rem;">Three Gaps. One Solution.</h2>
+  </div>
+  <div class="grid">
+    <div class="service-card">
+      <span class="mono">Phase 01</span>
+      <h3>Brand Thinking</h3>
+      <p>Hard-coding your brand's DNA. We define the language, the "enemy," and the behavior patterns that make you irreplaceable.</p>
     </div>
-    <div class="filter-cell reveal">
-      <span class="fc-emoji">🌀</span>
-      <div class="fc-title">THE CHAOS OPERATOR</div>
-      <div class="fc-body">Your team produces content but there's no system. Every week is an emergency. Nothing compounds. You need an engine, not an intern.</div>
+    <div class="service-card">
+      <span class="mono">Phase 02</span>
+      <h3>Content Engines</h3>
+      <p>Turning founder intuition into a repeatable production machine. One hour of your time, one month of strategic presence.</p>
     </div>
-    <div class="filter-cell reveal">
-      <span class="fc-emoji">📉</span>
-      <div class="fc-title">THE EXPENSIVE LEAK</div>
-      <div class="fc-body">You're spending on ads. Traffic is coming. Nothing converts or sticks. Fix the back-end before scaling the front.</div>
-    </div>
-    <div class="filter-cell reveal">
-      <span class="fc-emoji">🚀</span>
-      <div class="fc-title">THE READY-TO-SCALE</div>
-      <div class="fc-body">Strong product. Some traction. Now you need the full system — brand, content, and marketing — built for what comes next.</div>
+    <div class="service-card">
+      <span class="mono">Phase 03</span>
+      <h3>Retention Ops</h3>
+      <p>Fixing the "leaky bucket." We build high-conversion lifecycle flows that turn one-time buyers into brand loyalists.</p>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="services-section">
-  <p class="section-label reveal">// what i build</p>
-  <h2 class="section-title reveal">THREE PROBLEMS.<br>ONE SYSTEM.</h2>
-  <div class="services-grid">
-    <a href="brand-thinking.html" class="service-card reveal">
-      <span class="sc-tag">01 — Identity</span>
-      <div class="sc-num">01</div>
-      <div class="sc-title">BRAND THINKING</div>
-      <p class="sc-body">Turns your "vibes" into irreversible decisions. Language rules, the enemy, behavior maps, and a playbook so the brand runs without you in the room.</p>
-      <div class="sc-link">ENTER THE LORE <span>↗</span></div>
-    </a>
-    <a href="content-systems.html" class="service-card reveal">
-      <span class="sc-tag">02 — Execution</span>
-      <div class="sc-num">02</div>
-      <div class="sc-title">CONTENT SYSTEMS</div>
-      <p class="sc-body">One idea becomes a month of content. Repeatable formats, founder extraction playbooks, and an engine that runs even on your worst days.</p>
-      <div class="sc-link">SEE THE ENGINE <span>↗</span></div>
-    </a>
-    <a href="marketing-foundations.html" class="service-card reveal">
-      <span class="sc-tag">03 — Performance</span>
-      <div class="sc-num">03</div>
-      <div class="sc-title">MARKETING FOUNDATIONS</div>
-      <p class="sc-body">Fixes what happens after the click. Lifecycle flows, conversion architecture, and a retention engine that makes your CAC irrelevant.</p>
-      <div class="sc-link">FIX THE FUNNEL <span>↗</span></div>
-    </a>
+<section>
+  <span class="mono">The Road Map</span>
+  <h2 style="font-size: 3rem; margin-bottom: 4rem;">The Installation Process.</h2>
+  
+  <div class="process-step">
+    <div class="step-num">01</div>
+    <div class="step-content">
+      <h3>Audit & Diagnosis</h3>
+      <p>We perform a deep-tissue audit of your current communication and funnel. We find exactly where your brand authority is leaking and where your money is being wasted.</p>
+    </div>
   </div>
-</section>
 
-<!-- PROCESS -->
-<section id="process" class="process-section">
-  <p class="section-label">// how we work together</p>
-  <h2 class="section-title reveal">THE<br>PROCESS.</h2>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-step">// week 1–2</div>
-      <div class="tl-title">DIAGNOSIS</div>
-      <div class="tl-body">I audit everything — tone, funnel, content, gaps. No templates. I build a picture of exactly <strong>where the brand is leaking.</strong></div>
+  <div class="process-step">
+    <div class="step-num">02</div>
+    <div class="step-content">
+      <h3>Architecture Design</h3>
+      <p>We build the playbooks. No fluff—just actionable rules for content, tone, and customer journeys that your team can execute without a babysitter.</p>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-step">// week 2–4</div>
-      <div class="tl-title">ARCHITECTURE</div>
-      <div class="tl-body">Brand rules written. Content pillars defined. Funnel gaps mapped. <strong>This is where the system is designed</strong> — not just described.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-step">// month 2</div>
-      <div class="tl-title">BUILD & INSTALL</div>
-      <div class="tl-body">Playbooks, templates, flows, and formats built and handed off. <strong>Your team operates without me in the room.</strong> That's the entire point.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-step">// ongoing</div>
-      <div class="tl-title">COMPOUNDS</div>
-      <div class="tl-body">Authority builds. Reach grows. Retention improves. <strong>This is what separates brands from content accounts.</strong></div>
+  </div>
+
+  <div class="process-step">
+    <div class="step-num">03</div>
+    <div class="step-content">
+      <h3>Handover & Scale</h3>
+      <p>I install the system into your operations. You gain a self-sustaining brand engine that compounds in value every single month.</p>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testi-section">
-  <div class="testi-track">
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"We went from 'what do we post today' to a 3-month content bank in 6 weeks. The team actually knows what the brand sounds like now."</div>
-      <div class="testi-name">Aryan K.</div>
-      <div class="testi-role">Founder, D2C Skincare</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"She found the exact leak in our funnel that was costing us 40% of conversions. Nobody spotted it in 2 years of running ads."</div>
-      <div class="testi-name">Priya S.</div>
-      <div class="testi-role">CMO, Consumer Brand</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"Our brand finally sounds like us — not a press release, not agency-written. Actual personality. It's kind of unreal."</div>
-      <div class="testi-name">Mihir D.</div>
-      <div class="testi-role">Co-founder, Lifestyle Brand</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"I used to dread the content calendar meeting. Now there's no meeting — the system just runs. I have my Mondays back."</div>
-      <div class="testi-name">Tara V.</div>
-      <div class="testi-role">Brand Head, F&B Startup</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"The brand playbook she wrote is something our entire team — social to sales — now quotes from. That never existed before."</div>
-      <div class="testi-name">Rahul M.</div>
-      <div class="testi-role">Founder, D2C Wellness</div>
-    </div>
-    <!-- duplicate set for seamless loop -->
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"We went from 'what do we post today' to a 3-month content bank in 6 weeks. The team actually knows what the brand sounds like now."</div>
-      <div class="testi-name">Aryan K.</div>
-      <div class="testi-role">Founder, D2C Skincare</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"She found the exact leak in our funnel that was costing us 40% of conversions. Nobody spotted it in 2 years of running ads."</div>
-      <div class="testi-name">Priya S.</div>
-      <div class="testi-role">CMO, Consumer Brand</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"Our brand finally sounds like us — not a press release, not agency-written. Actual personality. It's kind of unreal."</div>
-      <div class="testi-name">Mihir D.</div>
-      <div class="testi-role">Co-founder, Lifestyle Brand</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"I used to dread the content calendar meeting. Now there's no meeting — the system just runs. I have my Mondays back."</div>
-      <div class="testi-name">Tara V.</div>
-      <div class="testi-role">Brand Head, F&B Startup</div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"The brand playbook she wrote is something our entire team — social to sales — now quotes from. That never existed before."</div>
-      <div class="testi-name">Rahul M.</div>
-      <div class="testi-role">Founder, D2C Wellness</div>
-    </div>
-  </div>
+<section id="contact" style="text-align: center; background: var(--accent); color: var(--bg);">
+  <span class="mono" style="color: var(--bg); opacity: 0.6;">Are you ready?</span>
+  <h2 style="font-size: clamp(2rem, 6vw, 5rem); margin: 1rem 0 2rem;">Build a brand that <br><span class="serif" style="font-weight: 400;">actually works.</span></h2>
+  <a href="mailto:hello@nitishamaan.com" class="btn" style="background: var(--bg); color: var(--text);">SECURE A CONSULTATION</a>
 </section>
-
-<!-- ABOUT -->
-<section id="about" class="about-section">
-  <div class="about-left reveal">
-    <p class="section-label">// the person behind it</p>
-    <h2 class="section-title">I'M<br><span class="lime">NITISHA.</span><br>NOT AN AGENCY.</h2>
-    <div class="stat-strip reveal">
-      <div class="stat-strip-cell">
-        <span class="ss-num">3+</span>
-        <span class="ss-label">Years D2C</span>
-      </div>
-      <div class="stat-strip-cell">
-        <span class="ss-num">20+</span>
-        <span class="ss-label">Brands Built</span>
-      </div>
-      <div class="stat-strip-cell">
-        <span class="ss-num">0</span>
-        <span class="ss-label">Generic Decks</span>
-      </div>
-    </div>
-  </div>
-  <div class="about-right reveal">
-    <p class="about-para">
-      I'm a <strong>Content & Communication Lead</strong> who thinks in systems, not campaigns. I work with D2C founders who have something real to say but keep getting drowned out by brands with bigger budgets and emptier ideas.
-    </p>
-    <p class="about-para">
-      My job is to give your brand an unfair advantage — <strong>a voice so distinct, a system so tight, and a funnel so efficient</strong> that scaling becomes a matter of turning up the volume, not rebuilding from scratch every quarter.
-    </p>
-    <p class="about-para">
-      I don't do retainer-by-the-hour. I build, install, and hand over. <strong>The goal is that you don't need me forever.</strong> You need a system that runs.
-    </p>
-    <div class="about-tags">
-      <span class="about-tag">Brand Identity</span>
-      <span class="about-tag">Content Strategy</span>
-      <span class="about-tag">Lifecycle Flows</span>
-      <span class="about-tag">Tone of Voice</span>
-      <span class="about-tag">Conversion CRO</span>
-      <span class="about-tag">D2C Growth</span>
-      <span class="about-tag">Playbook Writing</span>
-      <span class="about-tag">Retention Systems</span>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE 2 -->
-<div class="marquee-bar-2">
-  <div class="marquee-inner-2" style="animation-direction:reverse;">
-    <span style="color:var(--hot)">BUILD IN PUBLIC 🔥</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-    <span style="color:var(--cyan)">SHIP FAST ⚡</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-    <span style="color:var(--purple)">STAY WEIRD 💀</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-    <span>NO FLUFF 🎯</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-    <span style="color:var(--hot)">BUILD IN PUBLIC 🔥</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-    <span style="color:var(--cyan)">SHIP FAST ⚡</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-    <span style="color:var(--purple)">STAY WEIRD 💀</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-    <span>NO FLUFF 🎯</span><span style="color:var(--lime);margin:0 2rem">✦</span>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<section id="contact" class="contact-section">
-  <div class="contact-inner">
-    <div class="contact-left reveal">
-      <div class="contact-headline">
-        <span class="ch-white">STOP</span>
-        <span class="ch-stroke">BEING</span>
-        <span class="ch-lime">BORING.</span>
-      </div>
-      <p class="contact-note">no moodboards. no decks for the sake of decks.<br>just systems that work. 🔥</p>
-    </div>
-    <div class="contact-right reveal">
-      <a href="mailto:hello@example.com" class="contact-link">
-        <span>EMAIL ME</span>
-        <span class="cl-arrow">↗</span>
-      </a>
-      <a href="#" class="contact-link">
-        <span>INSTAGRAM</span>
-        <span class="cl-arrow">↗</span>
-      </a>
-      <a href="#" class="contact-link">
-        <span>LINKEDIN</span>
-        <span class="cl-arrow">↗</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="footer-bar">
-  <span>© 2026 Nitisha Maan</span>
-  <span>Built with ✦ chaos & intention</span>
-  <span>No generic content here</span>
-</div>
-
-<script>
-  // ── CURSOR ──
-  const cursor = document.getElementById("cursor");
-  const trail  = document.getElementById("cursor-trail");
-  let mx = 0, my = 0;
-  document.addEventListener("mousemove", (e) => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + "px";
-    cursor.style.top  = my + "px";
-    setTimeout(() => {
-      trail.style.left = mx + "px";
-      trail.style.top  = my + "px";
-    }, 80);
-  });
-  document.querySelectorAll("a, button, .filter-cell, .service-card, .tl-item, .stat-strip-cell, .contact-link, .hero-block, .about-tag").forEach(el => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("big"));
-    el.addEventListener("mouseleave", () => cursor.classList.remove("big"));
-  });
-
-  // ── SPARKLES ──
-  const sparkleChars = ["✦","★","◆","✿","⚡","💥"];
-  let lastS = 0;
-  document.addEventListener("mousemove", (e) => {
-    const now = Date.now();
-    if (now - lastS < 120) return;
-    lastS = now;
-    const s = document.createElement("div");
-    s.className = "sparkle";
-    s.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
-    s.style.left  = e.clientX + "px";
-    s.style.top   = e.clientY + "px";
-    s.style.color = ["#d4ff00","#ff2d6b","#00f0ff","#ffe500"][Math.floor(Math.random()*4)];
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 600);
-  });
-
-  // ── SCROLL REVEAL ──
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll(".reveal").forEach(el => revealObs.observe(el));
-
-  // ── TIMELINE staggered ──
-  const tlItems = document.querySelectorAll(".tl-item");
-  const tlObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const idx = Array.from(tlItems).indexOf(e.target);
-        setTimeout(() => e.target.classList.add("in"), idx * 150);
-        tlObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  tlItems.forEach(el => tlObs.observe(el));
-</script>
 
 </body>
 </html>
